@@ -1,7 +1,6 @@
 ﻿namespace Saliavustaja
 {
-    public class Poyta
+    public class Asiakas
     {
-       
     }
 }

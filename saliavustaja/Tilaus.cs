@@ -1,27 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Saliavustaja
 {
     public class Tilaus
     {
-        int poydanNumero = 0;
-        Tilauksentila tilanne = Tilauksentila.Alustava;
+        int tilausnumero = 0;
+        Poyta poyta = null;
+        Asiakas asiakas = null;
+        List<Ateria> ateriat = new List<Ateria>();
 
-        public int PoydanNumero
+        public List<Ateria> Ateriat
         {
-            get { return poydanNumero; }
-            set { poydanNumero = value; }
+            get
+            {
+                return ateriat;
+            }
         }
 
-        public Tilauksentila Tilanne
+        public Poyta Poyta
         {
-            get { return tilanne; }
-            set { tilanne = value; }
+            get
+            {
+                return poyta;
+            }
+
+            set
+            {
+                poyta = value;
+            }
         }
 
+        public Asiakas Asiakas
+        {
+            get
+            {
+                return asiakas;
+            }
+
+            set
+            {
+                asiakas = value;
+            }
+        }
+
+        public int Tilausnumero
+        {
+            get
+            {
+                return tilausnumero;
+            }
+
+            set
+            {
+                tilausnumero = value;
+            }
+        }
+
+        public void LisaaAteria(Ateria ateria)
+        {
+            ateriat.Add(ateria);
+        }
     }
 }
