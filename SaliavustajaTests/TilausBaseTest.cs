@@ -32,27 +32,5 @@ namespace SaliavustajaTests
             tietokanta.Tallenna(tilaus3);
         }
 
-        protected Tilaus LuoUusiTilaus()
-        {
-            var tilaus = new Tilaus();
-            tilaus.Poyta = new Poyta(6, 2);
-            tilaus.Asiakas = new Asiakas();
-            tilaus.LisaaAteria(new Ateria()
-            {
-                Nimi = "Lihapullat ja muussi",
-                Maara = 3
-            });
-            tilaus.LisaaAteria(new Ateria()
-            {
-                Nimi = "Nakit ja muussi",
-                Maara = 1
-            });
-            tilaus.LisaaAteria(new Ateria()
-            {
-                Nimi = "Jäätelöpallo kinuskikastikkeella",
-                Maara = 4
-            });
-            return tilaus;
-        }
     }
 }

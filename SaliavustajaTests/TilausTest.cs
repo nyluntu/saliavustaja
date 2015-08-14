@@ -76,7 +76,6 @@ namespace SaliavustajaTests
         public void UudenTilauksenTilaOnVahvistamaton()
         {
             Assert.AreEqual(false, tilaus.OnkoVahvistettu());
-
         }
 
         [Test]
@@ -84,7 +83,70 @@ namespace SaliavustajaTests
         {
             tilaus.Vahvista();
             Assert.AreEqual(true, tilaus.OnkoVahvistettu());
+        }
 
+        [Test]
+        public void LaskeTilauksenKokonaishintaKunTilausTyhja()
+        {
+            var kokonaishinta = tilaus.LaskeKokonaishinta();
+            Assert.AreEqual(0.0, kokonaishinta, 0.01);
+        }
+
+        [Test]
+        public void LaskeKokonaishintaKunYksiAteria()
+        {
+            var ateria = new Ateria();
+            ateria.Nimi = "Chicken Wings";
+            ateria.Maara = 1;
+            ateria.Tunniste = 1;
+            ateria.VerotonHintaKpl = 11.50;
+            tilaus.LisaaAteria(ateria);
+            Assert.AreEqual(13.10, tilaus.LaskeKokonaishinta(), 0.01);
+        }
+
+        [Test]
+        public void LaskeKokonaishintaKunUseampiAteria()
+        {
+            var ateria = new Ateria();
+            ateria.Nimi = "Chicken Wings";
+            ateria.Maara = 1;
+            ateria.Tunniste = 1;
+            ateria.VerotonHintaKpl = 11.50;
+            tilaus.LisaaAteria(ateria);
+
+            ateria = new Ateria();
+            ateria.Nimi = "Cheese Burger";
+            ateria.Maara = 1;
+            ateria.Tunniste = 2;
+            ateria.VerotonHintaKpl = 9.70;
+            tilaus.LisaaAteria(ateria);
+
+            Assert.AreEqual(24.17, tilaus.LaskeKokonaishinta(), 0.01);
+        }
+
+        [Test]
+        public void LaskeKokonaishintaKunYksiAteriaJaUseampiKpl()
+        {
+            var ateria = new Ateria();
+            ateria.Nimi = "Chicken Wings";
+            ateria.Maara = 3;
+            ateria.Tunniste = 1;
+            ateria.VerotonHintaKpl = 11.50;
+            tilaus.LisaaAteria(ateria);
+            Assert.AreEqual(39.33, tilaus.LaskeKokonaishinta(), 0.01);
+        }
+
+        [Test]
+        public void LaskeKokonaishintaBonusAsiakkaalle()
+        {
+            var ateria = new Ateria();
+            ateria.Nimi = "Chicken Wings";
+            ateria.Maara = 3;
+            ateria.Tunniste = 1;
+            ateria.VerotonHintaKpl = 11.50;
+            tilaus.LisaaAteria(ateria);
+            tilaus.Asiakas = new BonusAsiakas();
+            Assert.AreEqual(33.43, tilaus.LaskeKokonaishinta(), 0.01);
         }
     }
 }

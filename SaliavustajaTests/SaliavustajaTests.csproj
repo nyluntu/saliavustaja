@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsiakasTest.cs" />
     <Compile Include="DbTest.cs" />
     <Compile Include="PoytaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

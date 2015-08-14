@@ -3,39 +3,18 @@ using System.Linq;
 
 namespace Saliavustaja
 {
-    public class Db
+    public abstract class Db
     {
         int viimeisinTilausnumero = 0;
-        List<Tilaus> tilaukset = SingletonList.Instance;
 
         public int ViimeisinTilausnumero
         {
-            get
-            {
-                return viimeisinTilausnumero;
-            }
-
-            private set
-            {
-                viimeisinTilausnumero = value;
-            }
+            get { return viimeisinTilausnumero; }
+            private set { viimeisinTilausnumero = value; }
         }
 
-        public void Tallenna(Tilaus tilaus)
-        {
-            ViimeisinTilausnumero++;
-            tilaus.Tilausnumero = viimeisinTilausnumero;
-            tilaukset.Add(tilaus);
-        }
-
-        public Tilaus HaeTilaus(int tilausnumero)
-        {
-            return tilaukset.FirstOrDefault(t => t.Tilausnumero == tilausnumero);
-        }
-
-        public List<Tilaus> HaeKaikkiTilaukset()
-        {
-            return tilaukset;
-        }
+        public abstract void Tallenna(Tilaus tilaus);
+        public abstract Tilaus HaeTilaus(int tilausnumero);
+        public abstract List<Tilaus> HaeKaikkiTilaukset();
     }
 }

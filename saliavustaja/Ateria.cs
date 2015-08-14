@@ -2,19 +2,9 @@
 {
     public class Ateria
     {
-        string nimi;
-        int maara;
-
-        public string Nimi
-        {
-            get { return nimi; }
-            set { nimi = value; }
-        }
-
-        public int Maara
-        {
-            get { return maara; }
-            set { maara = value; }
-        }
+        public int Tunniste { get; set; }
+        public string Nimi { get; set; }
+        public int Maara { get; set; }
+        public double VerotonHintaKpl { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Saliavustaja;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,15 @@ using System.Threading.Tasks;
 namespace SaliavustajaTests
 {
     [TestFixture]
-    public class TilauksenVastaanottoTest : TilausBaseTest
+    public class TilauksenVastaanottoTest
     {
+        Db tietokanta = null;
         TilauksenVastaanotto tilauksenVastaanotto = null;
 
         [TestFixtureSetUp]
-        public void TestiLuokanAlustus()
+        public void TestiluokanAlustus()
         {
-            tietokanta = new Db();
+            tietokanta = new TiedostoDb();
         }
 
         [SetUp]
@@ -26,21 +28,40 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void VahvistaTilaus()
+        [Ignore]
+        public void TallennaTilaus()
         {
             Tilaus tilaus = LuoUusiTilaus();
-            int tilausnumero = tilauksenVastaanotto.VahvistaJaTallenna(tilaus);
+            int tilausnumero = tilauksenVastaanotto.TallennaJaVahvista(tilaus);
+            Debug.WriteLine(tietokanta.HaeKaikkiTilaukset().Count);
             Assert.AreEqual(1, tilausnumero);
+            Tilaus entinenTilaus1 = tietokanta.HaeTilaus(tilausnumero);
+            Assert.IsNotNull(entinenTilaus1);
+            Assert.AreEqual(true, entinenTilaus1.OnkoVahvistettu());
 
-            Tilaus tilaus2 = LuoUusiTilaus();
-            int tilausnumero2 = tilauksenVastaanotto.VahvistaJaTallenna(tilaus);
-            Assert.AreEqual(2, tilausnumero2);
+        }
 
-            Tilaus tilaus3 = LuoUusiTilaus();
-            int tilausnumero3 = tilauksenVastaanotto.VahvistaJaTallenna(tilaus);
-            Assert.AreEqual(3, tilausnumero3);
-            Assert.That(tilaus3.Asiakas, Is.InstanceOf<Asiakas>());
-            Assert.That(tilaus3.Poyta, Is.InstanceOf<Poyta>());
+        Tilaus LuoUusiTilaus()
+        {
+            var tilaus = new Tilaus();
+            tilaus.Poyta = new Poyta(6, 2);
+            tilaus.Asiakas = new Asiakas();
+            tilaus.LisaaAteria(new Ateria()
+            {
+                Nimi = "Lihapullat ja muussi",
+                Maara = 3
+            });
+            tilaus.LisaaAteria(new Ateria()
+            {
+                Nimi = "Nakit ja muussi",
+                Maara = 1
+            });
+            tilaus.LisaaAteria(new Ateria()
+            {
+                Nimi = "Jäätelöpallo kinuskikastikkeella",
+                Maara = 4
+            });
+            return tilaus;
         }
 
     }

@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 namespace SaliavustajaTests
 {
     [TestFixture]
+    [Ignore]
     public class DbTest : TilausBaseTest
     {
 
         [TestFixtureSetUp]
         public void TestiAlustus()
         {
-            tietokanta = new Db();
+            tietokanta = new TiedostoDb();
             LisaaTilauksiaTietokantaan();
         }
 
@@ -49,7 +50,7 @@ namespace SaliavustajaTests
         [Test]
         public void UudenTietokantaObjektinLuontiEiTuhoaTietoja()
         {
-            Db tietokanta2 = new Db();
+            Db tietokanta2 = new TiedostoDb();
             Assert.AreNotEqual(0, tietokanta2.HaeKaikkiTilaukset().Count());
             Assert.AreEqual(3, tietokanta2.HaeKaikkiTilaukset().Count());
         }

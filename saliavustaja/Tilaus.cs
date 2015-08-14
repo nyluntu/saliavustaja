@@ -10,6 +10,7 @@ namespace Saliavustaja
         Asiakas asiakas = null;
         List<Ateria> ateriat = new List<Ateria>();
         TapahtumanTila tapahtumanTila = TapahtumanTila.Vahvistamaton;
+        DateTime pvm;
 
         public List<Ateria> Ateriat
         {
@@ -34,6 +35,11 @@ namespace Saliavustaja
             set { tilausnumero = value; }
         }
 
+        public DateTime Pvm
+        {
+            get {return pvm; }
+            set { pvm = value; }
+        }
 
         public void LisaaAteria(Ateria ateria)
         {
@@ -51,6 +57,20 @@ namespace Saliavustaja
                 return true;
 
             return false;
+        }
+
+        public double LaskeKokonaishinta()
+        {
+            double kokonaishinta = 0;
+            foreach (Ateria ateria in ateriat)
+            {
+                kokonaishinta += ateria.VerotonHintaKpl * ateria.Maara * 1.14;
+            }
+
+            if (asiakas != null)
+                kokonaishinta = asiakas.LaskeAsiakkaanEtuhinta(kokonaishinta);
+
+            return kokonaishinta;
         }
     }
 }
