@@ -6,7 +6,7 @@ namespace Saliavustaja
     public class Db
     {
         int viimeisinTilausnumero = 0;
-        List<Tilaus> tilaukset = new List<Tilaus>();
+        List<Tilaus> tilaukset = SingletonList.Instance;
 
         public int ViimeisinTilausnumero
         {

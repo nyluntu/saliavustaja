@@ -29,7 +29,7 @@ namespace SaliavustajaTests
         [Test]
         public void AsetaTilauksellePoyta()
         {
-            tilaus.Poyta = new Poyta();
+            tilaus.Poyta = new Poyta(1, 1);
             Assert.That(tilaus.Poyta, Is.InstanceOf<Poyta>());
             Assert.That(tilaus.Poyta, Is.Not.Null);
         }
@@ -40,14 +40,18 @@ namespace SaliavustajaTests
             tilaus.Asiakas = new Asiakas();
             Assert.That(tilaus.Asiakas, Is.InstanceOf<Asiakas>());
             Assert.That(tilaus.Asiakas, Is.Not.InstanceOf<BonusAsiakas>());
+        }
 
+        [Test]
+        public void AsetaTilaukselleBonusAsiakas()
+        {
             tilaus.Asiakas = new BonusAsiakas();
             Assert.That(tilaus.Asiakas, Is.InstanceOf<Asiakas>());
             Assert.That(tilaus.Asiakas, Is.InstanceOf<BonusAsiakas>());
         }
 
         [Test]
-        public void LisääTilaukselleAteria()
+        public void LisaaTilaukselleAteria()
         {
             var ateria = new Ateria();
             ateria.Nimi = "Lihapullat ja muussi";
@@ -66,6 +70,21 @@ namespace SaliavustajaTests
             Assert.AreEqual(2, ateriat2.Count());
             Assert.AreEqual("Lihapullat ja nakit", ateriat2.LastOrDefault().Nimi);
             Assert.AreEqual(3, ateriat2.LastOrDefault().Maara);
+        }
+
+        [Test]
+        public void UudenTilauksenTilaOnVahvistamaton()
+        {
+            Assert.AreEqual(false, tilaus.OnkoVahvistettu());
+
+        }
+
+        [Test]
+        public void VahvistaTilauksenTila()
+        {
+            tilaus.Vahvista();
+            Assert.AreEqual(true, tilaus.OnkoVahvistettu());
+
         }
     }
 }

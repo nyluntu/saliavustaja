@@ -9,67 +9,53 @@ using System.Threading.Tasks;
 namespace SaliavustajaTests
 {
     [TestFixture]
-    public class DbTest
+    public class DbTest : TilausBaseTest
     {
-        Db tietokanta = null;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void TestiAlustus()
         {
             tietokanta = new Db();
+            LisaaTilauksiaTietokantaan();
+        }
+
+        [Test] 
+        public void TarkistaTilaustenMaara()
+        {
+            Assert.AreEqual(3, tietokanta.HaeKaikkiTilaukset().Count);
         }
 
         [Test]
-        public void TallennaTilaus()
+        public void TarkistaViimeisinTilausnumero()
         {
-            var tilaus = new Tilaus();
-            tietokanta.Tallenna(tilaus);
-        }
-
-        [Test]
-        public void TallennaTilausJaTarkistaViimeisinTilausnumero()
-        {
-            tietokanta.Tallenna(new Tilaus());
-            Assert.AreEqual(1, tietokanta.ViimeisinTilausnumero);
-            tietokanta.Tallenna(new Tilaus());
-            Assert.AreEqual(2, tietokanta.ViimeisinTilausnumero);
-            tietokanta.Tallenna(new Tilaus());
             Assert.AreEqual(3, tietokanta.ViimeisinTilausnumero);
         }
-        
 
         [Test]
-        public void HaeTallennetutTilaukset()
+        public void HaeKaikkiTilauksetPalauttaaListan()
         {
-            tietokanta.Tallenna(new Tilaus());
-            tietokanta.Tallenna(new Tilaus());
-            tietokanta.Tallenna(new Tilaus());
-            Assert.AreEqual(3, tietokanta.HaeKaikkiTilaukset().Count);
             Assert.That(tietokanta.HaeKaikkiTilaukset(), Is.InstanceOf<List<Tilaus>>());
         }
 
         [Test]
-        public void HaeTilausTilausnumerolla()
+        public void HaeYksiTilausTilausnumerolla()
         {
-            tietokanta.Tallenna(UusiTilaus());
-            tietokanta.Tallenna(UusiTilaus());
-
-            var tilaus = UusiTilaus();
-            tilaus.LisaaAteria(new Ateria() { Nimi = "Jäätelöylläri kahdelle", Maara = 1 });
-            tietokanta.Tallenna(tilaus);
-
             var entinenTilaus = tietokanta.HaeTilaus(3);
             Assert.AreEqual(3, entinenTilaus.Tilausnumero);
-            Assert.AreEqual("Jäätelöylläri kahdelle", entinenTilaus.Ateriat.LastOrDefault().Nimi);
-            Assert.AreEqual(1, entinenTilaus.Ateriat.LastOrDefault().Maara);
+            Assert.AreEqual("Chocolate Fondant", entinenTilaus.Ateriat.LastOrDefault().Nimi);
+            Assert.AreEqual(3, entinenTilaus.Ateriat.LastOrDefault().Maara);
         }
 
-        Tilaus UusiTilaus()
+        [Test]
+        public void UudenTietokantaObjektinLuontiEiTuhoaTietoja()
         {
-            var tilaus = new Tilaus();
-            tilaus.LisaaAteria(new Ateria() { Nimi = "Lihapullat ja muussi", Maara = 2 });
-            tilaus.LisaaAteria(new Ateria() { Nimi = "Alkukeitto", Maara = 2 });
-            return tilaus;
+            Db tietokanta2 = new Db();
+            Assert.AreNotEqual(0, tietokanta2.HaeKaikkiTilaukset().Count());
+            Assert.AreEqual(3, tietokanta2.HaeKaikkiTilaukset().Count());
         }
+
+
+        
+       
     }
 }
