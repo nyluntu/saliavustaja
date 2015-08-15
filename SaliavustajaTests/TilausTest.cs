@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Saliavustaja;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,14 +23,14 @@ namespace SaliavustajaTests
             Assert.That(tilaus, Is.InstanceOf(typeof(Tilaus)));
             Assert.That(tilaus.Poyta, Is.Null);
             Assert.That(tilaus.Asiakas, Is.Null);
-            Assert.AreEqual(0, tilaus.Ateriat.Count);
-            Assert.That(tilaus.Ateriat, Is.InstanceOf<List<Ateria>>());
+            Assert.AreEqual(0, tilaus.Tilausrivit.Count);
+            Assert.That(tilaus.Tilausrivit, Is.InstanceOf<ArrayList>());
         }
 
         [Test]
         public void AsetaTilauksellePoyta()
         {
-            tilaus.Poyta = new Poyta(1, 1);
+            tilaus.Poyta = new Poyta(1, 1, Varaustilanne.Varattu);
             Assert.That(tilaus.Poyta, Is.InstanceOf<Poyta>());
             Assert.That(tilaus.Poyta, Is.Not.Null);
         }
@@ -53,23 +54,25 @@ namespace SaliavustajaTests
         [Test]
         public void LisaaTilaukselleAteria()
         {
-            var ateria = new Ateria();
-            ateria.Nimi = "Lihapullat ja muussi";
-            ateria.Maara = 1;
-            tilaus.LisaaAteria(ateria);
-        
-            List<Ateria> ateriat = tilaus.Ateriat;
-            Assert.AreEqual("Lihapullat ja muussi", ateriat.FirstOrDefault().Nimi);
-            Assert.AreEqual(1, ateriat.FirstOrDefault().Maara);
+            var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50);
+            tilaus.LisaaAteria(lihapullat, 1);
+            ArrayList tilausrivit = tilaus.Tilausrivit;
+            Tilausrivi rivi = (Tilausrivi)tilausrivit[0];
 
-            var ateria2 = new Ateria();
-            ateria2.Nimi = "Lihapullat ja nakit";
-            ateria2.Maara = 3;
-            tilaus.LisaaAteria(ateria2);
-            List<Ateria> ateriat2 = tilaus.Ateriat;
-            Assert.AreEqual(2, ateriat2.Count());
-            Assert.AreEqual("Lihapullat ja nakit", ateriat2.LastOrDefault().Nimi);
-            Assert.AreEqual(3, ateriat2.LastOrDefault().Maara);
+            Assert.AreEqual(1, rivi.Ateria.Id);
+            Assert.AreEqual("Lihapullat ja muussi", rivi.Ateria.Nimi);
+            Assert.AreEqual(11.50, rivi.Ateria.VerotonHinta, 0.01);
+            Assert.AreEqual(1, rivi.Maara);
+
+            var nakit = new Ateria(2, "Lihapullat ja nakit", 11.60);
+            tilaus.LisaaAteria(nakit, 3);
+
+            ArrayList ateriat2 = tilaus.Tilausrivit;
+            Tilausrivi rivi2 = (Tilausrivi)ateriat2[1];
+            Assert.AreEqual(2, ateriat2.Count);
+            Assert.AreEqual("Lihapullat ja nakit", rivi2.Ateria.Nimi);
+            Assert.AreEqual(11.60, rivi2.Ateria.VerotonHinta, 0.01);
+            Assert.AreEqual(3, rivi2.Maara);
         }
 
         [Test]
@@ -95,31 +98,19 @@ namespace SaliavustajaTests
         [Test]
         public void LaskeKokonaishintaKunYksiAteria()
         {
-            var ateria = new Ateria();
-            ateria.Nimi = "Chicken Wings";
-            ateria.Maara = 1;
-            ateria.Tunniste = 1;
-            ateria.VerotonHintaKpl = 11.50;
-            tilaus.LisaaAteria(ateria);
+            var ateria = new Ateria(1, "Chicken Wings", 11.50);
+            tilaus.LisaaAteria(ateria, 1);
             Assert.AreEqual(13.10, tilaus.LaskeKokonaishinta(), 0.01);
         }
 
         [Test]
         public void LaskeKokonaishintaKunUseampiAteria()
         {
-            var ateria = new Ateria();
-            ateria.Nimi = "Chicken Wings";
-            ateria.Maara = 1;
-            ateria.Tunniste = 1;
-            ateria.VerotonHintaKpl = 11.50;
-            tilaus.LisaaAteria(ateria);
+            var ateria = new Ateria(1, "Chicken Wings", 11.50);
+            tilaus.LisaaAteria(ateria, 1);
 
-            ateria = new Ateria();
-            ateria.Nimi = "Cheese Burger";
-            ateria.Maara = 1;
-            ateria.Tunniste = 2;
-            ateria.VerotonHintaKpl = 9.70;
-            tilaus.LisaaAteria(ateria);
+            ateria = new Ateria(2, "Cheese Burger", 9.70);
+            tilaus.LisaaAteria(ateria, 1);
 
             Assert.AreEqual(24.17, tilaus.LaskeKokonaishinta(), 0.01);
         }
@@ -127,24 +118,16 @@ namespace SaliavustajaTests
         [Test]
         public void LaskeKokonaishintaKunYksiAteriaJaUseampiKpl()
         {
-            var ateria = new Ateria();
-            ateria.Nimi = "Chicken Wings";
-            ateria.Maara = 3;
-            ateria.Tunniste = 1;
-            ateria.VerotonHintaKpl = 11.50;
-            tilaus.LisaaAteria(ateria);
+            var ateria = new Ateria(1, "Chicken Wings", 11.50);
+            tilaus.LisaaAteria(ateria, 3);
             Assert.AreEqual(39.33, tilaus.LaskeKokonaishinta(), 0.01);
         }
 
         [Test]
         public void LaskeKokonaishintaBonusAsiakkaalle()
         {
-            var ateria = new Ateria();
-            ateria.Nimi = "Chicken Wings";
-            ateria.Maara = 3;
-            ateria.Tunniste = 1;
-            ateria.VerotonHintaKpl = 11.50;
-            tilaus.LisaaAteria(ateria);
+            var ateria = new Ateria(1, "Chicken Wings", 11.50);
+            tilaus.LisaaAteria(ateria, 3);
             tilaus.Asiakas = new BonusAsiakas();
             Assert.AreEqual(33.43, tilaus.LaskeKokonaishinta(), 0.01);
         }

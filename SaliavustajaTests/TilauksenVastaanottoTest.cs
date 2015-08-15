@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
 using Saliavustaja;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaliavustajaTests
 {
@@ -44,23 +39,11 @@ namespace SaliavustajaTests
         Tilaus LuoUusiTilaus()
         {
             var tilaus = new Tilaus();
-            tilaus.Poyta = new Poyta(6, 2);
+            tilaus.Poyta = new Poyta(6, 2, Varaustilanne.Varattu);
             tilaus.Asiakas = new Asiakas();
-            tilaus.LisaaAteria(new Ateria()
-            {
-                Nimi = "Lihapullat ja muussi",
-                Maara = 3
-            });
-            tilaus.LisaaAteria(new Ateria()
-            {
-                Nimi = "Nakit ja muussi",
-                Maara = 1
-            });
-            tilaus.LisaaAteria(new Ateria()
-            {
-                Nimi = "Jäätelöpallo kinuskikastikkeella",
-                Maara = 4
-            });
+            tilaus.LisaaAteria(new Ateria(1, "Lihapullat ja muussi", 11.50), 1);
+            tilaus.LisaaAteria(new Ateria(2, "Nakit ja muussi", 9.50), 1);
+            tilaus.LisaaAteria(new Ateria(3, "Jäätelöä kinuskikastikkeella", 6.50), 2);
             return tilaus;
         }
 
