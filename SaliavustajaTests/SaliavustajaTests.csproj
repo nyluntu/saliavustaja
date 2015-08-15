@@ -45,11 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsiakasTest.cs" />
-    <Compile Include="DbTest.cs" />
+    <Compile Include="RamTilausLiittymaTest.cs" />
     <Compile Include="PoytaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TilauksenVastaanottoTest.cs" />
-    <Compile Include="TilausBaseTest.cs" />
     <Compile Include="TilausTest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,18 +4,16 @@ namespace Saliavustaja
 {
     public class TilauksenVastaanotto
     {
-        Db tietokanta = new TiedostoDb();
-
-        public int Tallenna(Tilaus tilaus)
+        RamTilausLiittyma tietokantaLiittyma;
+        
+        public TilauksenVastaanotto(RamTilausLiittyma tietokantaLiittyma)
         {
-            tietokanta.Tallenna(tilaus);
-            return tietokanta.ViimeisinTilausnumero;
+            this.tietokantaLiittyma = tietokantaLiittyma;
         }
 
-        public int TallennaJaVahvista(Tilaus tilaus)
+        public void VastaanotaTilaus(Tilaus tilaus)
         {
-            tilaus.Vahvista();
-            return this.Tallenna(tilaus);
+            tietokantaLiittyma.LuoUusi(tilaus);
         }
     }
 }

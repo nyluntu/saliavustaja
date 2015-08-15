@@ -43,17 +43,16 @@
     <Compile Include="Entiteetit\Asiakas.cs" />
     <Compile Include="Entiteetit\Ateria.cs" />
     <Compile Include="Entiteetit\BonusAsiakas.cs" />
-    <Compile Include="Db.cs" />
     <Compile Include="Entiteetit\Poyta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingletonList.cs" />
+    <Compile Include="RamTilausLiittyma.cs" />
     <Compile Include="Entiteetit\TapahtumanTila.cs" />
-    <Compile Include="TiedostoDb.cs" />
     <Compile Include="TilauksenVastaanotto.cs" />
     <Compile Include="Entiteetit\Tilaus.cs" />
     <Compile Include="Entiteetit\Tilausrivi.cs" />
     <Compile Include="Entiteetit\Varaustilanne.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

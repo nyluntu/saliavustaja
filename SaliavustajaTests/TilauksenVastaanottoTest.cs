@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using Saliavustaja;
+using System;
+using System.Collections;
 using System.Diagnostics;
 
 namespace SaliavustajaTests
@@ -7,44 +9,41 @@ namespace SaliavustajaTests
     [TestFixture]
     public class TilauksenVastaanottoTest
     {
-        Db tietokanta = null;
-        TilauksenVastaanotto tilauksenVastaanotto = null;
-
-        [TestFixtureSetUp]
-        public void TestiluokanAlustus()
-        {
-            tietokanta = new TiedostoDb();
-        }
-
-        [SetUp]
-        public void TestienAlustus()
-        {
-            tilauksenVastaanotto = new TilauksenVastaanotto();
-        }
-
         [Test]
-        [Ignore]
-        public void TallennaTilaus()
+        public void VastaanotaJaTallennaUusiTilaus()
         {
-            Tilaus tilaus = LuoUusiTilaus();
-            int tilausnumero = tilauksenVastaanotto.TallennaJaVahvista(tilaus);
-            Debug.WriteLine(tietokanta.HaeKaikkiTilaukset().Count);
-            Assert.AreEqual(1, tilausnumero);
-            Tilaus entinenTilaus1 = tietokanta.HaeTilaus(tilausnumero);
-            Assert.IsNotNull(entinenTilaus1);
-            Assert.AreEqual(true, entinenTilaus1.OnkoVahvistettu());
+            RamTilausLiittyma tietokantaLiittyma = new RamTilausLiittyma();
+            TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tietokantaLiittyma);
 
-        }
-
-        Tilaus LuoUusiTilaus()
-        {
-            var tilaus = new Tilaus();
-            tilaus.Poyta = new Poyta(6, 2, Varaustilanne.Varattu);
+            Tilaus tilaus = new Tilaus();
             tilaus.Asiakas = new Asiakas();
-            tilaus.LisaaAteria(new Ateria(1, "Lihapullat ja muussi", 11.50), 1);
-            tilaus.LisaaAteria(new Ateria(2, "Nakit ja muussi", 9.50), 1);
-            tilaus.LisaaAteria(new Ateria(3, "Jäätelöä kinuskikastikkeella", 6.50), 2);
-            return tilaus;
+            tilaus.Poyta = new Poyta(1, 5, Varaustilanne.Varattu);
+            tilaus.Pvm = DateTime.Now;
+            var pihvi = new Ateria(1, "Garlic Steak test", 11.60);
+            var lehtipihvi = new Ateria(2, "Lehtipihvi lohkoperunoilla", 13.60);
+            tilaus.LisaaAteria(pihvi, 1);
+            tilaus.LisaaAteria(lehtipihvi, 3);
+
+            tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+
+            int tilausnumero = tietokantaLiittyma.SeuraavaId - 1;
+            Tilaus tilausTietokannasta = tietokantaLiittyma.HaeTilaus(tilausnumero);
+            Assert.IsNotNull(tilausTietokannasta);
+            Assert.AreEqual(tilausnumero, tilausTietokannasta.Tilausnumero);
+            Assert.AreEqual(1, tilausTietokannasta.Poyta.Tunnus);
+            Assert.AreEqual(5, tilausTietokannasta.Poyta.PaikkojenMaara);
+            Assert.That(tilausTietokannasta.Asiakas, Is.InstanceOf<Asiakas>());
+            Assert.AreEqual(false, tilausTietokannasta.OnkoVahvistettu());
+            Assert.AreEqual(59.73, tilausTietokannasta.LaskeKokonaishinta(), 0.01);
+
+            ArrayList tilausrivit = tilausTietokannasta.Tilausrivit;
+            Tilausrivi rivi = (Tilausrivi)tilausrivit[1];
+            Assert.IsNotNull(rivi);
+            Assert.AreEqual(2, rivi.Ateria.Id);
+            Assert.AreEqual("Lehtipihvi lohkoperunoilla", rivi.Ateria.Nimi);
+            Assert.AreEqual(13.60, rivi.Ateria.VerotonHinta, 0.01);
+            Assert.AreEqual(3, rivi.Maara);
+
         }
 
     }
