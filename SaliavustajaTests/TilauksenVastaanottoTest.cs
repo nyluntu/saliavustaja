@@ -10,27 +10,27 @@ namespace SaliavustajaTests
     [TestFixture]
     public class TilauksenVastaanottoTest
     {
-        RamTilausLiittyma tilausTietokantaLiittyma;
-        RamPoytaLiittyma poytaTietokantaLiittyma;
-        RamAteriaLiittyma ateriaTietokantaLiittyma;
+        InMemoryTilausDb tilausDb;
+        InMemoryPoytaDb poytaDb;
+        InMemoryAteriaDb ateriaDb;
         TilauksenVastaanotto tilauksenVastaanotto;
         List<Ateria> ateriat;
 
         [SetUp]
         public void TestienAlustus()
         {
-            tilausTietokantaLiittyma = new RamTilausLiittyma();
-            poytaTietokantaLiittyma = new RamPoytaLiittyma();
-            ateriaTietokantaLiittyma = new RamAteriaLiittyma();
-            tilauksenVastaanotto = new TilauksenVastaanotto(tilausTietokantaLiittyma, poytaTietokantaLiittyma);
-            ateriat = ateriaTietokantaLiittyma.HaeKaikki();
+            tilausDb = new InMemoryTilausDb();
+            poytaDb = new InMemoryPoytaDb();
+            ateriaDb = new InMemoryAteriaDb();
+            tilauksenVastaanotto = new TilauksenVastaanotto(tilausDb, poytaDb);
+            ateriat = ateriaDb.HaeKaikki();
         }
 
         [Test]
         public void VastaanotaJaTallennaUusiTilaus()
         {
 
-            Poyta poyta = poytaTietokantaLiittyma.Hae(8);
+            Poyta poyta = poytaDb.Hae(8);
             Asiakas asiakas = new Asiakas();
             Tilaus tilaus = new Tilaus();
             tilaus.Poyta = poyta;
@@ -42,8 +42,8 @@ namespace SaliavustajaTests
             tilaus.LisaaAteria(ateria2, 3);
             tilauksenVastaanotto.VastaanotaTilaus(tilaus);
 
-            int tilausnumero = tilausTietokantaLiittyma.SeuraavaId - 1;
-            Tilaus tilausTietokannasta = tilausTietokantaLiittyma.Hae(tilausnumero);
+            int tilausnumero = tilausDb.SeuraavaId - 1;
+            Tilaus tilausTietokannasta = tilausDb.Hae(tilausnumero);
             Assert.IsNotNull(tilausTietokannasta);
             Assert.AreEqual(tilausnumero, tilausTietokannasta.Tilausnumero);
             Assert.That(tilausTietokannasta.Asiakas, Is.InstanceOf<Asiakas>());
@@ -58,7 +58,7 @@ namespace SaliavustajaTests
             Assert.AreEqual(12, rivi.Ateria.VerotonHinta, 0.01);
             Assert.AreEqual(3, rivi.Maara);
 
-            Poyta varattuPoyta = poytaTietokantaLiittyma.Hae(tilaus.Poyta.Tunnus);
+            Poyta varattuPoyta = poytaDb.Hae(tilaus.Poyta.Tunnus);
             Assert.That(varattuPoyta, Is.Not.Null);
             Assert.AreEqual(8, varattuPoyta.Tunnus);
             Assert.AreEqual(4, varattuPoyta.PaikkojenMaara);
@@ -84,9 +84,9 @@ namespace SaliavustajaTests
         [ExpectedException(typeof(Exception), ExpectedMessage = "Pöytä on jo varattu. Tilausta ei voitu vahvistaa.")]
         public void VirheellinenTilausPoytaVarattuna()
         {
-            poytaTietokantaLiittyma.VaraaPoyta(6);
+            poytaDb.VaraaPoyta(6);
 
-            Poyta poyta = poytaTietokantaLiittyma.Hae(6);
+            Poyta poyta = poytaDb.Hae(6);
             Asiakas asiakas = new Asiakas();
             Tilaus tilaus = new Tilaus();
             tilaus.Poyta = poyta;

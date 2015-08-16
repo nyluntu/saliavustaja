@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsiakasTest.cs" />
-    <Compile Include="RamAteriaLiittymaTest.cs" />
-    <Compile Include="RamPoytaLiittymaTest.cs" />
-    <Compile Include="RamTilausLiittymaTest.cs" />
+    <Compile Include="InMemoryAteriaDbTest.cs" />
+    <Compile Include="InMemoryPoytaDbTest.cs" />
+    <Compile Include="InMemoryTilausDbTest.cs" />
     <Compile Include="PoytaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TilauksenVastaanottoTest.cs" />
