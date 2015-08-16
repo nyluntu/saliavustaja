@@ -4,10 +4,10 @@ namespace Saliavustaja
 {
     public class TilauksenVastaanotto
     {
-        InMemoryTilausDb tilausDb;
-        InMemoryPoytaDb poytaDb;
+        TilausDb tilausDb;
+        PoytaDb poytaDb;
 
-        public TilauksenVastaanotto(InMemoryTilausDb tilausDb, InMemoryPoytaDb poytaDb)
+        public TilauksenVastaanotto(TilausDb tilausDb, PoytaDb poytaDb)
         {
             this.tilausDb = tilausDb;
             this.poytaDb = poytaDb;
