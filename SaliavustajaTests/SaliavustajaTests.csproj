@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsiakasTest.cs" />
+    <Compile Include="RamAteriaLiittymaTest.cs" />
     <Compile Include="RamPoytaLiittymaTest.cs" />
     <Compile Include="RamTilausLiittymaTest.cs" />
     <Compile Include="PoytaTest.cs" />

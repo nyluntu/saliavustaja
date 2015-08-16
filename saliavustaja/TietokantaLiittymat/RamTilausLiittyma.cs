@@ -14,13 +14,13 @@ namespace Saliavustaja
             get { return seuraavaId; }
         }
 
-        public void LuoUusi(Tilaus tilaus)
+        public void Tallenna(Tilaus tilaus)
         {
             tilaukset[seuraavaId] = tilaus;
             seuraavaId++;
         }
 
-        public Tilaus HaeTilaus(int tilausnumero)
+        public Tilaus Hae(int tilausnumero)
         {
             Tilaus tilaus = (Tilaus)tilaukset[tilausnumero];
             if(tilaus != null)
@@ -28,7 +28,7 @@ namespace Saliavustaja
             return tilaus;
         }
 
-        public List<Tilaus> HaeKaikkiTilaukset()
+        public List<Tilaus> HaeKaikki()
         {
             List<Tilaus> kaikkiTilaukset = new List<Tilaus>();
             for (int i = 1; i <= tilaukset.Count; i++)

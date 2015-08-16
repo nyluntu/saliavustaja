@@ -2,6 +2,7 @@
 using Saliavustaja;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SaliavustajaTests
@@ -9,41 +10,93 @@ namespace SaliavustajaTests
     [TestFixture]
     public class TilauksenVastaanottoTest
     {
+        RamTilausLiittyma tilausTietokantaLiittyma;
+        RamPoytaLiittyma poytaTietokantaLiittyma;
+        RamAteriaLiittyma ateriaTietokantaLiittyma;
+        TilauksenVastaanotto tilauksenVastaanotto;
+        List<Ateria> ateriat;
+
+        [SetUp]
+        public void TestienAlustus()
+        {
+            tilausTietokantaLiittyma = new RamTilausLiittyma();
+            poytaTietokantaLiittyma = new RamPoytaLiittyma();
+            ateriaTietokantaLiittyma = new RamAteriaLiittyma();
+            tilauksenVastaanotto = new TilauksenVastaanotto(tilausTietokantaLiittyma, poytaTietokantaLiittyma);
+            ateriat = ateriaTietokantaLiittyma.HaeKaikki();
+        }
+
         [Test]
         public void VastaanotaJaTallennaUusiTilaus()
         {
-            RamTilausLiittyma tietokantaLiittyma = new RamTilausLiittyma();
-            TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tietokantaLiittyma);
 
+            Poyta poyta = poytaTietokantaLiittyma.Hae(8);
+            Asiakas asiakas = new Asiakas();
             Tilaus tilaus = new Tilaus();
-            tilaus.Asiakas = new Asiakas();
-            tilaus.Poyta = new Poyta(1, 5, Varaustilanne.Varattu);
+            tilaus.Poyta = poyta;
+            tilaus.Asiakas = asiakas;
             tilaus.Pvm = DateTime.Now;
-            var pihvi = new Ateria(1, "Garlic Steak test", 11.60);
-            var lehtipihvi = new Ateria(2, "Lehtipihvi lohkoperunoilla", 13.60);
-            tilaus.LisaaAteria(pihvi, 1);
-            tilaus.LisaaAteria(lehtipihvi, 3);
-
+            var ateria1 = ateriat[1];
+            var ateria2 = ateriat[8];
+            tilaus.LisaaAteria(ateria1, 1);
+            tilaus.LisaaAteria(ateria2, 3);
             tilauksenVastaanotto.VastaanotaTilaus(tilaus);
 
-            int tilausnumero = tietokantaLiittyma.SeuraavaId - 1;
-            Tilaus tilausTietokannasta = tietokantaLiittyma.HaeTilaus(tilausnumero);
+            int tilausnumero = tilausTietokantaLiittyma.SeuraavaId - 1;
+            Tilaus tilausTietokannasta = tilausTietokantaLiittyma.Hae(tilausnumero);
             Assert.IsNotNull(tilausTietokannasta);
             Assert.AreEqual(tilausnumero, tilausTietokannasta.Tilausnumero);
-            Assert.AreEqual(1, tilausTietokannasta.Poyta.Tunnus);
-            Assert.AreEqual(5, tilausTietokannasta.Poyta.PaikkojenMaara);
             Assert.That(tilausTietokannasta.Asiakas, Is.InstanceOf<Asiakas>());
-            Assert.AreEqual(false, tilausTietokannasta.OnkoVahvistettu());
-            Assert.AreEqual(59.73, tilausTietokannasta.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(true, tilausTietokannasta.OnkoVahvistettu());
+            Assert.AreEqual(60.42, tilausTietokannasta.LaskeKokonaishinta(), 0.01);
 
             ArrayList tilausrivit = tilausTietokannasta.Tilausrivit;
             Tilausrivi rivi = (Tilausrivi)tilausrivit[1];
             Assert.IsNotNull(rivi);
-            Assert.AreEqual(2, rivi.Ateria.Id);
-            Assert.AreEqual("Lehtipihvi lohkoperunoilla", rivi.Ateria.Nimi);
-            Assert.AreEqual(13.60, rivi.Ateria.VerotonHinta, 0.01);
+            Assert.AreEqual(9, rivi.Ateria.Id);
+            Assert.AreEqual("Tyrnipossetti ja luomusuklaata", rivi.Ateria.Nimi);
+            Assert.AreEqual(12, rivi.Ateria.VerotonHinta, 0.01);
             Assert.AreEqual(3, rivi.Maara);
 
+            Poyta varattuPoyta = poytaTietokantaLiittyma.Hae(tilaus.Poyta.Tunnus);
+            Assert.That(varattuPoyta, Is.Not.Null);
+            Assert.AreEqual(8, varattuPoyta.Tunnus);
+            Assert.AreEqual(4, varattuPoyta.PaikkojenMaara);
+            Assert.AreEqual(true, varattuPoyta.OnkoVarattu());
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Pöytää ei ole valittu. Tilausta ei voitu vahvistaa.")]
+        public void VirheellinenTilausPoytaPuuttuu()
+        {
+            Asiakas asiakas = new Asiakas();
+            Tilaus tilaus = new Tilaus();
+            tilaus.Asiakas = asiakas;
+            tilaus.Pvm = DateTime.Now;
+            var ateria1 = ateriat[1];
+            var ateria2 = ateriat[8];
+            tilaus.LisaaAteria(ateria1, 1);
+            tilaus.LisaaAteria(ateria2, 3);
+            tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Pöytä on jo varattu. Tilausta ei voitu vahvistaa.")]
+        public void VirheellinenTilausPoytaVarattuna()
+        {
+            poytaTietokantaLiittyma.VaraaPoyta(6);
+
+            Poyta poyta = poytaTietokantaLiittyma.Hae(6);
+            Asiakas asiakas = new Asiakas();
+            Tilaus tilaus = new Tilaus();
+            tilaus.Poyta = poyta;
+            tilaus.Asiakas = asiakas;
+            tilaus.Pvm = DateTime.Now;
+            var ateria1 = ateriat[1];
+            var ateria2 = ateriat[8];
+            tilaus.LisaaAteria(ateria1, 1);
+            tilaus.LisaaAteria(ateria2, 3);
+            tilauksenVastaanotto.VastaanotaTilaus(tilaus);
         }
 
     }

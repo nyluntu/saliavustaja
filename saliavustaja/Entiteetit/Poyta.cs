@@ -12,7 +12,7 @@ namespace Saliavustaja
         {
             this.tunnus = tunnus;
             this.paikkojenMaara = paikkojenMaara;
-            this.varaustilanne = varattu;
+            this.Varaustilanne = varattu;
         }
 
         public int Tunnus
@@ -27,19 +27,15 @@ namespace Saliavustaja
             private set { paikkojenMaara = value; }
         }
 
-        public void Varaa()
+        public Varaustilanne Varaustilanne
         {
-            varaustilanne = Varaustilanne.Varattu;
-        }
-
-        public void Vapauta()
-        {
-            varaustilanne = Varaustilanne.Vapaa;
+            get { return varaustilanne; }
+            set { varaustilanne = value; }
         }
 
         public bool OnkoVarattu()
         {
-            if (varaustilanne == Varaustilanne.Varattu)
+            if (Varaustilanne == Varaustilanne.Varattu)
                 return true;
             return false;
         }

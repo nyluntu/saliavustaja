@@ -29,7 +29,7 @@ namespace SaliavustajaTests
         [Test]
         public void HaeTilausTilausnumerolla()
         {
-            Tilaus tilaus = liittyma.HaeTilaus(1);
+            Tilaus tilaus = liittyma.Hae(1);
             Assert.IsNotNull(tilaus);
             Assert.IsNotNull(tilaus.Asiakas);
             Assert.IsNotNull(tilaus.Poyta);
@@ -40,14 +40,14 @@ namespace SaliavustajaTests
         [Test]
         public void HaeTilausTilaustaEiLoydy()
         {
-            Tilaus tilaus = liittyma.HaeTilaus(99);
+            Tilaus tilaus = liittyma.Hae(99);
             Assert.IsNull(tilaus);
         }
 
         [Test]
         public void HaeKaikkiTilaukset()
         {
-            List<Tilaus> tilaukset = liittyma.HaeKaikkiTilaukset();
+            List<Tilaus> tilaukset = liittyma.HaeKaikki();
             Assert.IsNotNull(tilaukset);
             Assert.AreEqual(2, tilaukset.Count);
 
@@ -69,7 +69,7 @@ namespace SaliavustajaTests
             var lehtipihvi = new Ateria(2, "Lehtipihvi lohkoperunoilla", 13.60);
             tilaus.LisaaAteria(pihvi, 1);
             tilaus.LisaaAteria(lehtipihvi, 3);
-            liittyma.LuoUusi(tilaus);
+            liittyma.Tallenna(tilaus);
 
             tilaus = new Tilaus();
             tilaus.Asiakas = new Asiakas();
@@ -79,7 +79,7 @@ namespace SaliavustajaTests
             var lehtipihvi2 = new Ateria(2, "250g pihvi ranskalaisilla", 13.00);
             tilaus.LisaaAteria(salaatti, 1);
             tilaus.LisaaAteria(lehtipihvi2, 1);
-            liittyma.LuoUusi(tilaus);
+            liittyma.Tallenna(tilaus);
         }
 
     }

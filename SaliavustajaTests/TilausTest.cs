@@ -84,7 +84,7 @@ namespace SaliavustajaTests
         [Test]
         public void VahvistaTilauksenTila()
         {
-            tilaus.Vahvista();
+            tilaus.MerkitseVahvistetuksi();
             Assert.AreEqual(true, tilaus.OnkoVahvistettu());
         }
 

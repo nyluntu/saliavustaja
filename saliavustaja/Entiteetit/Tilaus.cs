@@ -67,7 +67,7 @@ namespace Saliavustaja
             tilausrivit.Add(rivi);
         }
 
-        public void Vahvista()
+        public void MerkitseVahvistetuksi()
         {
             tapahtumanTila = TapahtumanTila.Vahvistettu;
         }

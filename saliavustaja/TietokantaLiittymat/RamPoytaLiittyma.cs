@@ -22,7 +22,12 @@ namespace Saliavustaja
             poydat.Add(10, new Poyta(10, 4, Varaustilanne.Vapaa));
         }
 
-        public List<Poyta> HaeKaikkiPoydat()
+        public Poyta Hae(int tunnus)
+        {
+            return (Poyta)poydat[tunnus];
+        }
+
+        public List<Poyta> HaeKaikki()
         {
             List<Poyta> kaikkiPoydat = new List<Poyta>();
             for (int i = 1; i <= poydat.Count; i++)
@@ -31,6 +36,12 @@ namespace Saliavustaja
                 kaikkiPoydat.Add(poyta);
             }
             return kaikkiPoydat;
+        }
+
+        public void VaraaPoyta(int tunnus)
+        {
+            Poyta poyta = (Poyta)poydat[tunnus];
+            poyta.Varaustilanne = Varaustilanne.Varattu;
         }
     }
 }

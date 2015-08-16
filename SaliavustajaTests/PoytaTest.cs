@@ -20,30 +20,17 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void VaraaPoyta()
+        public void PoydanKuuluisiOllaVarattu()
         {
-            Poyta poyta = new Poyta(2, 4,Varaustilanne.Vapaa);
-            poyta.Varaa();
+            Poyta poyta = new Poyta(1, 4, Varaustilanne.Varattu);
             Assert.AreEqual(true, poyta.OnkoVarattu());
         }
 
         [Test]
-        public void VaraaJaVapautaPoyta()
+        public void PoydanKuuluisiOllaVapaa()
         {
-            Poyta poyta = new Poyta(3, 4, Varaustilanne.Vapaa);
-            poyta.Varaa();
-            poyta.Vapauta();
+            Poyta poyta = new Poyta(1, 4, Varaustilanne.Vapaa);
             Assert.AreEqual(false, poyta.OnkoVarattu());
         }
-
-        [Test]
-        public void VaraaJaVapautaPoytaRakentajalla()
-        {
-            Poyta poyta = new Poyta(3, 4, Varaustilanne.Varattu);
-            Assert.AreEqual(true, poyta.OnkoVarattu());
-            Poyta poyta2 = new Poyta(3, 4, Varaustilanne.Vapaa);
-            Assert.AreEqual(false, poyta2.OnkoVarattu());
-        }
-
     }
 }
