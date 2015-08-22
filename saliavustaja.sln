@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saliavustaja", "saliavustaj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaliavustajaTests", "SaliavustajaTests\SaliavustajaTests.csproj", "{B6A9F644-68C4-4000-9968-2CF9A61B146E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saliavustaja.UI", "Saliavustaja.UI\Saliavustaja.UI.csproj", "{50BDE0ED-8869-45D7-86C4-664E8B1C954A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B6A9F644-68C4-4000-9968-2CF9A61B146E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6A9F644-68C4-4000-9968-2CF9A61B146E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6A9F644-68C4-4000-9968-2CF9A61B146E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50BDE0ED-8869-45D7-86C4-664E8B1C954A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50BDE0ED-8869-45D7-86C4-664E8B1C954A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50BDE0ED-8869-45D7-86C4-664E8B1C954A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50BDE0ED-8869-45D7-86C4-664E8B1C954A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
