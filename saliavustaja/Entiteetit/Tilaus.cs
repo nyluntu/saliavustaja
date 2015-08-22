@@ -83,7 +83,7 @@ namespace Saliavustaja
         {
             double kokonaishinta = 0;
             foreach (Tilausrivi rivi in tilausrivit)
-                kokonaishinta += rivi.Ateria.VerotonHinta * rivi.Maara * 1.14;
+                kokonaishinta += rivi.Ateria.LaskeVerollinenHinta(0.14) * rivi.Maara;
 
             if (asiakas != null)
                 kokonaishinta = asiakas.LaskeAsiakkaanEtuhinta(kokonaishinta);

@@ -1,4 +1,6 @@
-﻿namespace Saliavustaja
+﻿using System;
+
+namespace Saliavustaja
 {
     public class Ateria
     {
@@ -26,6 +28,11 @@
         public double VerotonHinta
         {
             get { return verotonHinta; }
+        }
+
+        public double LaskeVerollinenHinta(double alv)
+        {
+            return verotonHinta * (1 + alv);
         }
     }
 }

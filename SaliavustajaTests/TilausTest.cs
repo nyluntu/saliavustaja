@@ -100,7 +100,7 @@ namespace SaliavustajaTests
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50);
             tilaus.LisaaAteria(ateria, 1);
-            Assert.AreEqual(13.10, tilaus.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(13.11, tilaus.LaskeKokonaishinta(), 0.01);
         }
 
         [Test]

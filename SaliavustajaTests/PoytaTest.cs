@@ -32,5 +32,14 @@ namespace SaliavustajaTests
             Poyta poyta = new Poyta(1, 4, Varaustilanne.Vapaa);
             Assert.AreEqual(false, poyta.OnkoVarattu());
         }
+
+        [Test]
+        public void PoydanToStringMetodinTulostus()
+        {
+            Poyta poyta = new Poyta(6, 5, Varaustilanne.Vapaa);
+            Assert.AreEqual("Pöytä 6, paikkoja 5, VAPAA", poyta.ToString());
+            poyta.Varaustilanne = Varaustilanne.Varattu;
+            Assert.AreEqual("Pöytä 6, paikkoja 5, VARATTU", poyta.ToString());
+        }
     }
 }

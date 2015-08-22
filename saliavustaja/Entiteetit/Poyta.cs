@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Saliavustaja
 {
@@ -40,6 +41,17 @@ namespace Saliavustaja
             return false;
         }
 
-
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Pöytä ");
+            sb.Append(tunnus);
+            sb.Append(", ");
+            sb.Append("paikkoja ");
+            sb.Append(paikkojenMaara);
+            sb.Append(", ");
+            sb.Append(varaustilanne.ToString().ToUpper());
+            return sb.ToString();
+        }
     }
 }
