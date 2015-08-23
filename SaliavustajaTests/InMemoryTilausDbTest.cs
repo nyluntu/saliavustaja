@@ -3,21 +3,22 @@ using Saliavustaja;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaliavustajaTests
 {
     [TestFixture]
-    public class InMemoryTilausDbTest
+    public class InMemoryTilausDbTest : TilausDbBaseTest
     {
-        InMemoryTilausDb tilausDb;
+        new InMemoryTilausDb tilausDb;
 
         [TestFixtureSetUp]
         public void TestienAlustus()
         {
             tilausDb = new InMemoryTilausDb();
-            LisaaTilausTietokantaan();
+            var tilaukset = LuoTilauksia();
+
+            foreach (Tilaus tilaus in tilaukset)
+                tilausDb.Tallenna(tilaus);
         }
 
         [TestFixtureTearDown]
@@ -45,7 +46,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeKaikkiTilaukset()
+        public override void HaeKaikkiTilaukset()
         {
             List<Tilaus> tilaukset = tilausDb.HaeKaikki();
             Assert.IsNotNull(tilaukset);
@@ -56,31 +57,13 @@ namespace SaliavustajaTests
 
             Tilausrivi tilausrivi = (Tilausrivi)viimeinenTilaus.Tilausrivit[0];
             Assert.AreEqual("Kanasalaatti", tilausrivi.Ateria.Nimi);
-
         }
 
-        void LisaaTilausTietokantaan()
+
+
+        public override void TallennaTilausTietokantaan()
         {
-            Tilaus tilaus = new Tilaus();
-            tilaus.Asiakas = new Asiakas();
-            tilaus.Poyta = new Poyta(1, 5, Varaustilanne.Varattu);
-            tilaus.Pvm = DateTime.Now;
-            var pihvi = new Ateria(1, "Garlic Steak", 11.60);
-            var lehtipihvi = new Ateria(2, "Lehtipihvi lohkoperunoilla", 13.60);
-            tilaus.LisaaAteria(pihvi, 1);
-            tilaus.LisaaAteria(lehtipihvi, 3);
-            tilausDb.Tallenna(tilaus);
-
-            tilaus = new Tilaus();
-            tilaus.Asiakas = new Asiakas();
-            tilaus.Poyta = new Poyta(1, 5, Varaustilanne.Varattu);
-            tilaus.Pvm = DateTime.Now;
-            var salaatti = new Ateria(1, "Kanasalaatti", 5.60);
-            var lehtipihvi2 = new Ateria(2, "250g pihvi ranskalaisilla", 13.00);
-            tilaus.LisaaAteria(salaatti, 1);
-            tilaus.LisaaAteria(lehtipihvi2, 1);
-            tilausDb.Tallenna(tilaus);
+            throw new NotImplementedException();
         }
-
     }
 }

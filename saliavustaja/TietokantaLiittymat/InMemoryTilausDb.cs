@@ -6,7 +6,7 @@ namespace Saliavustaja
     public class InMemoryTilausDb : TilausDb
     {
         static int seuraavaId = 1;
-        Hashtable tilaukset = new Hashtable();
+        protected Hashtable tilaukset = new Hashtable();
 
         public int SeuraavaId
         {

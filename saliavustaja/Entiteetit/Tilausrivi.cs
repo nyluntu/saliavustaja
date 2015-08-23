@@ -1,4 +1,6 @@
-﻿namespace Saliavustaja
+﻿using System;
+
+namespace Saliavustaja
 {
     public class Tilausrivi
     {

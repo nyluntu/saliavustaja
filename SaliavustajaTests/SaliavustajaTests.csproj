@@ -52,6 +52,7 @@
     <Compile Include="PoytaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TilauksenVastaanottoTest.cs" />
+    <Compile Include="TilausDbBaseTest.cs" />
     <Compile Include="TilausTest.cs" />
   </ItemGroup>
   <ItemGroup>
