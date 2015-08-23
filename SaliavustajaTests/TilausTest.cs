@@ -76,6 +76,41 @@ namespace SaliavustajaTests
         }
 
         [Test]
+        public void PoistaTilauksestaAteria()
+        {
+            var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50);
+            tilaus.LisaaAteria(lihapullat, 1);
+            var nakit = new Ateria(3, "Lihapullat ja nakit", 11.60);
+            tilaus.LisaaAteria(nakit, 2);
+            Assert.AreEqual(2, tilaus.Tilausrivit.Count);
+
+            tilaus.PoistaAteria(lihapullat);
+            Assert.AreEqual(1, tilaus.Tilausrivit.Count);
+
+            Tilausrivi tilausrivi = (Tilausrivi)tilaus.Tilausrivit[0];
+            Assert.AreEqual(2, tilausrivi.Maara);
+            Assert.AreEqual(3, tilausrivi.Ateria.Id);
+            Assert.AreEqual("Lihapullat ja nakit", tilausrivi.Ateria.Nimi);
+        }
+
+        [Test]
+        public void VaihdaTilauksenAterianMaara()
+        {
+            var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50);
+            tilaus.LisaaAteria(lihapullat, 1);
+            var nakit = new Ateria(3, "Lihapullat ja nakit", 11.60);
+            tilaus.LisaaAteria(nakit, 2);
+            var soppa = new Ateria(5, "Nakkisoppa", 8.50);
+            tilaus.LisaaAteria(soppa, 2);
+
+            tilaus.VaihdaAterianMaara(nakit, 1);
+            Tilausrivi tilausrivi = (Tilausrivi)tilaus.Tilausrivit[1];
+
+            Assert.AreEqual(1, tilausrivi.Maara);
+            Assert.AreEqual(3, tilausrivi.Ateria.Id);
+        }
+
+        [Test]
         public void UudenTilauksenTilaOnVahvistamaton()
         {
             Assert.AreEqual(false, tilaus.OnkoVahvistettu());

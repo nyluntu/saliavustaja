@@ -18,7 +18,8 @@
 
         public int Maara
         {
-            get { return maara; }
+            get { return maara;  }
+            set { maara = value; }
         }
     }
 }

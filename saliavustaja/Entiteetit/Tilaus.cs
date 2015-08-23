@@ -90,7 +90,35 @@ namespace Saliavustaja
 
             return kokonaishinta;
         }
+
+        public void PoistaAteria(Ateria ateria)
+        {
+            int indeksi = -1;
+            foreach (Tilausrivi tilausrivi in tilausrivit)
+            {
+                if (tilausrivi.Ateria.Id == ateria.Id)
+                {
+                    indeksi = tilausrivit.IndexOf(tilausrivi);
+                    break;
+                }
+            }
+
+            if (indeksi > -1)
+                tilausrivit.RemoveAt(indeksi);
+        }
+
+        public void VaihdaAterianMaara(Ateria ateria, int maara)
+        {
+            foreach (Tilausrivi tilausrivi in tilausrivit)
+            {
+                if (tilausrivi.Ateria.Id == ateria.Id)
+                {
+                    tilausrivi.Maara = maara;
+                    break;
+                }
+            }
+        }
     }
 
-   
+
 }
