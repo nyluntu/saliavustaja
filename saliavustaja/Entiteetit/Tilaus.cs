@@ -79,11 +79,23 @@ namespace Saliavustaja
             return false;
         }
 
-        public double LaskeKokonaishinta()
+        public double LaskeVerollinenKokonaishinta()
         {
             double kokonaishinta = 0;
             foreach (Tilausrivi rivi in tilausrivit)
                 kokonaishinta += rivi.Ateria.LaskeVerollinenHinta(0.14) * rivi.Maara;
+
+            if (asiakas != null)
+                kokonaishinta = asiakas.LaskeAsiakkaanEtuhinta(kokonaishinta);
+
+            return kokonaishinta;
+        }
+
+        public double LaskeVerotonKokonaishinta()
+        {
+            double kokonaishinta = 0;
+            foreach (Tilausrivi rivi in tilausrivit)
+                kokonaishinta += rivi.Ateria.VerotonHinta * rivi.Maara;
 
             if (asiakas != null)
                 kokonaishinta = asiakas.LaskeAsiakkaanEtuhinta(kokonaishinta);
@@ -118,6 +130,8 @@ namespace Saliavustaja
                 }
             }
         }
+
+        
     }
 
 

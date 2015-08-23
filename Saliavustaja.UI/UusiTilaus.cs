@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saliavustaja.UI
@@ -57,6 +51,8 @@ namespace Saliavustaja.UI
                 rivi.Tag = ateria;
                 rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta(0.14).ToString("C2"), 0);
                 AteriatDataGridView.Rows.Add(rivi);
+
+                tilaus.LisaaAteria(ateria, 0);
             }
         }
 
@@ -66,6 +62,9 @@ namespace Saliavustaja.UI
             {
                 DataGridViewRow rivi = AteriatDataGridView.SelectedRows[i];
                 AteriatDataGridView.Rows.Remove(rivi);
+
+                Ateria ateria = (Ateria)rivi.Tag;
+                tilaus.PoistaAteria(ateria);
             }
         }
 
@@ -76,12 +75,17 @@ namespace Saliavustaja.UI
 
         void VahvistaTilausButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausLiittyma, poytaLiittyma);
+                tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
-            TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausLiittyma, poytaLiittyma);
-            tilauksenVastaanotto.VastaanotaTilaus(tilaus);
         }
-
-
 
         void AteriatDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -89,17 +93,11 @@ namespace Saliavustaja.UI
             {
                 Ateria ateria = (Ateria)AteriatDataGridView.Rows[e.RowIndex].Tag;
                 int maara = int.Parse(AteriatDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                tilaus.LisaaAteria(ateria, maara);
+                tilaus.VaihdaAterianMaara(ateria, maara);
 
-                KokonaishintaValue.Text = tilaus.LaskeKokonaishinta().ToString("C2");
-
-                double verotonKokonaishinta = 0.0;
-                foreach (Tilausrivi tilausrivi in tilaus.Tilausrivit)
-                {
-                   verotonKokonaishinta += tilausrivi.Ateria.VerotonHinta * tilausrivi.Maara; 
-                }
-                VerotonKokonaishintaValue.Text = verotonKokonaishinta.ToString("C2");
-                VeronosuusValue.Text = (tilaus.LaskeKokonaishinta() - verotonKokonaishinta).ToString("C2");
+                KokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
+                VerotonKokonaishintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
+                VeronosuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
             }
         }
 
@@ -112,6 +110,9 @@ namespace Saliavustaja.UI
         void BonusAsiakasCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             LisaaTilaukseenAsiakas();
+            KokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
+            VerotonKokonaishintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
+            VeronosuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
         }
 
         void LisaaTilaukseenAsiakas()

@@ -70,11 +70,11 @@
             // 
             // BonusAsiakasCheckbox
             // 
-            this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(725, 32);
+            this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(704, 32);
             this.BonusAsiakasCheckbox.Name = "BonusAsiakasCheckbox";
-            this.BonusAsiakasCheckbox.Size = new System.Drawing.Size(99, 20);
+            this.BonusAsiakasCheckbox.Size = new System.Drawing.Size(120, 20);
             this.BonusAsiakasCheckbox.TabIndex = 2;
-            this.BonusAsiakasCheckbox.Text = "Bonusasiakas";
+            this.BonusAsiakasCheckbox.Text = "Bonusasiakas, 15% ale";
             this.BonusAsiakasCheckbox.UseVisualStyleBackColor = true;
             this.BonusAsiakasCheckbox.CheckedChanged += new System.EventHandler(this.BonusAsiakasCheckbox_CheckedChanged);
             // 
@@ -110,7 +110,7 @@
             // 
             // PoistaAteriaButton
             // 
-            this.PoistaAteriaButton.Location = new System.Drawing.Point(392, 353);
+            this.PoistaAteriaButton.Location = new System.Drawing.Point(392, 61);
             this.PoistaAteriaButton.Name = "PoistaAteriaButton";
             this.PoistaAteriaButton.Size = new System.Drawing.Size(75, 23);
             this.PoistaAteriaButton.TabIndex = 3;

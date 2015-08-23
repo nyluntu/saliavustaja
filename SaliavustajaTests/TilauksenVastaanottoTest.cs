@@ -48,7 +48,7 @@ namespace SaliavustajaTests
             Assert.AreEqual(tilausnumero, tilausTietokannasta.Tilausnumero);
             Assert.That(tilausTietokannasta.Asiakas, Is.InstanceOf<Asiakas>());
             Assert.AreEqual(true, tilausTietokannasta.OnkoVahvistettu());
-            Assert.AreEqual(60.42, tilausTietokannasta.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(60.42, tilausTietokannasta.LaskeVerollinenKokonaishinta(), 0.01);
 
             ArrayList tilausrivit = tilausTietokannasta.Tilausrivit;
             Tilausrivi rivi = (Tilausrivi)tilausrivit[1];

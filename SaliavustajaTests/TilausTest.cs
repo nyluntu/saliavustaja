@@ -126,7 +126,7 @@ namespace SaliavustajaTests
         [Test]
         public void LaskeTilauksenKokonaishintaKunTilausTyhja()
         {
-            var kokonaishinta = tilaus.LaskeKokonaishinta();
+            var kokonaishinta = tilaus.LaskeVerollinenKokonaishinta();
             Assert.AreEqual(0.0, kokonaishinta, 0.01);
         }
 
@@ -135,7 +135,8 @@ namespace SaliavustajaTests
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50);
             tilaus.LisaaAteria(ateria, 1);
-            Assert.AreEqual(13.11, tilaus.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(13.11, tilaus.LaskeVerollinenKokonaishinta(), 0.01);
+            Assert.AreEqual(11.50, tilaus.LaskeVerotonKokonaishinta(), 0.01);
         }
 
         [Test]
@@ -147,7 +148,8 @@ namespace SaliavustajaTests
             ateria = new Ateria(2, "Cheese Burger", 9.70);
             tilaus.LisaaAteria(ateria, 1);
 
-            Assert.AreEqual(24.17, tilaus.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(24.17, tilaus.LaskeVerollinenKokonaishinta(), 0.01);
+            Assert.AreEqual(21.20, tilaus.LaskeVerotonKokonaishinta(), 0.01);
         }
 
         [Test]
@@ -155,7 +157,8 @@ namespace SaliavustajaTests
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50);
             tilaus.LisaaAteria(ateria, 3);
-            Assert.AreEqual(39.33, tilaus.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(39.33, tilaus.LaskeVerollinenKokonaishinta(), 0.01);
+            Assert.AreEqual(34.50, tilaus.LaskeVerotonKokonaishinta(), 0.01);
         }
 
         [Test]
@@ -164,7 +167,8 @@ namespace SaliavustajaTests
             var ateria = new Ateria(1, "Chicken Wings", 11.50);
             tilaus.LisaaAteria(ateria, 3);
             tilaus.Asiakas = new BonusAsiakas();
-            Assert.AreEqual(33.43, tilaus.LaskeKokonaishinta(), 0.01);
+            Assert.AreEqual(33.43, tilaus.LaskeVerollinenKokonaishinta(), 0.01);
+            Assert.AreEqual(29.32, tilaus.LaskeVerotonKokonaishinta(), 0.01);
         }
     }
 }
