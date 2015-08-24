@@ -18,7 +18,7 @@ namespace SaliavustajaTests
             var tilaukset = LuoTilauksia();
 
             foreach (Tilaus tilaus in tilaukset)
-                tilausDb.Tallenna(tilaus);
+                tilausDb.Uusi(tilaus);
         }
 
         [TestFixtureTearDown]

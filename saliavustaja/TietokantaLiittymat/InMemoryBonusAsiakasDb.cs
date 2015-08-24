@@ -20,10 +20,21 @@ namespace Saliavustaja.TietokantaLiittymat
 
         public override List<BonusAsiakas> HaeKaikki()
         {
-            throw new NotImplementedException();
+            List<BonusAsiakas> kaikkiAsiakkaat = new List<BonusAsiakas>();
+            for (int i = 1; i <= asiakkaat.Count; i++)
+            {
+                BonusAsiakas asiakas = (BonusAsiakas)asiakkaat[i];
+                kaikkiAsiakkaat.Add(new BonusAsiakas(asiakas.Id, asiakas.Etupisteet));
+            }
+            return kaikkiAsiakkaat;
         }
 
-        public override void Tallenna(BonusAsiakas asiakas)
+        public override void TallennaMuutokset(BonusAsiakas asiakas)
+        {
+            asiakkaat[asiakas.Id] = asiakas;
+        }
+
+        public override void Uusi(BonusAsiakas asiakas)
         {
             asiakkaat[seuraavaId] = asiakas;
             seuraavaId++;

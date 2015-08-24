@@ -10,6 +10,7 @@ namespace Saliavustaja.TietokantaLiittymat
     {
         public abstract BonusAsiakas Hae(int asiakasnumero);
         public abstract List<BonusAsiakas> HaeKaikki();
-        public abstract void Tallenna(BonusAsiakas asiakas);
+        public abstract void Uusi(BonusAsiakas asiakas);
+        public abstract void TallennaMuutokset(BonusAsiakas asiakas);
     }
 }

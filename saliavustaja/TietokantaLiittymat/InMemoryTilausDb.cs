@@ -13,7 +13,7 @@ namespace Saliavustaja
             get { return seuraavaId; }
         }
 
-        public override void Tallenna(Tilaus tilaus)
+        public override void Uusi(Tilaus tilaus)
         {
             tilaukset[seuraavaId] = tilaus;
             seuraavaId++;

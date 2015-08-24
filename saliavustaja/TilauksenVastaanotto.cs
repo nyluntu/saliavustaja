@@ -26,7 +26,7 @@ namespace Saliavustaja
 
                 poytaDb.VaraaPoyta(poyta.Tunnus);
                 tilaus.MerkitseVahvistetuksi();
-                tilausDb.Tallenna(tilaus);
+                tilausDb.Uusi(tilaus);
             }
             catch (Exception)
             {
