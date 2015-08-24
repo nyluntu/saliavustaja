@@ -51,6 +51,8 @@
             this.KokonaishintaLabel = new System.Windows.Forms.Label();
             this.VahvistaTilausButton = new System.Windows.Forms.Button();
             this.PeruTilausButton = new System.Windows.Forms.Button();
+            this.AsiakasnumeroTextBox = new System.Windows.Forms.TextBox();
+            this.AsiakasnumeroLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AteriatDataGridView)).BeginInit();
@@ -59,6 +61,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.AsiakasnumeroLabel);
+            this.panel1.Controls.Add(this.AsiakasnumeroTextBox);
             this.panel1.Controls.Add(this.BonusAsiakasCheckbox);
             this.panel1.Controls.Add(this.PoydanValintaLabel);
             this.panel1.Controls.Add(this.PoydatCombobox);
@@ -70,9 +74,9 @@
             // 
             // BonusAsiakasCheckbox
             // 
-            this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(704, 32);
+            this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(684, 12);
             this.BonusAsiakasCheckbox.Name = "BonusAsiakasCheckbox";
-            this.BonusAsiakasCheckbox.Size = new System.Drawing.Size(120, 20);
+            this.BonusAsiakasCheckbox.Size = new System.Drawing.Size(140, 20);
             this.BonusAsiakasCheckbox.TabIndex = 2;
             this.BonusAsiakasCheckbox.Text = "Bonusasiakas, 15% ale";
             this.BonusAsiakasCheckbox.UseVisualStyleBackColor = true;
@@ -279,6 +283,23 @@
             this.PeruTilausButton.UseVisualStyleBackColor = true;
             this.PeruTilausButton.Click += new System.EventHandler(this.PeruTilausButton_Click);
             // 
+            // AsiakasnumeroTextBox
+            // 
+            this.AsiakasnumeroTextBox.Enabled = false;
+            this.AsiakasnumeroTextBox.Location = new System.Drawing.Point(684, 52);
+            this.AsiakasnumeroTextBox.Name = "AsiakasnumeroTextBox";
+            this.AsiakasnumeroTextBox.Size = new System.Drawing.Size(140, 20);
+            this.AsiakasnumeroTextBox.TabIndex = 3;
+            // 
+            // AsiakasnumeroLabel
+            // 
+            this.AsiakasnumeroLabel.AutoSize = true;
+            this.AsiakasnumeroLabel.Location = new System.Drawing.Point(682, 36);
+            this.AsiakasnumeroLabel.Name = "AsiakasnumeroLabel";
+            this.AsiakasnumeroLabel.Size = new System.Drawing.Size(79, 13);
+            this.AsiakasnumeroLabel.TabIndex = 4;
+            this.AsiakasnumeroLabel.Text = "Asiakasnumero";
+            // 
             // UusiTilaus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,5 +345,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AterioidenMaara;
         private System.Windows.Forms.Label VeronosuusValue;
         private System.Windows.Forms.Label VerotonKokonaishintaValue;
+        private System.Windows.Forms.Label AsiakasnumeroLabel;
+        private System.Windows.Forms.TextBox AsiakasnumeroTextBox;
     }
 }

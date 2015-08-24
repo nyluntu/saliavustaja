@@ -17,7 +17,7 @@ namespace Saliavustaja.UI
             InitializeComponent();
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListaValikkoon();
-            LisaaTilaukseenAsiakas();
+            AsiakastyypinLisaaminenTilaukseen();
         }
 
         void LisaaPoydatPudotusvalikkoon()
@@ -77,6 +77,7 @@ namespace Saliavustaja.UI
         {
             try
             {
+                AsiakastyypinLisaaminenTilaukseen();
                 TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausLiittyma, poytaLiittyma);
                 tilauksenVastaanotto.VastaanotaTilaus(tilaus);
             }
@@ -84,7 +85,15 @@ namespace Saliavustaja.UI
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
+        }
+
+        void AsiakastyypinLisaaminenTilaukseen()
+        {
+            if (BonusAsiakasCheckbox.Checked)
+                tilaus.Asiakas = new BonusAsiakas();
+            else
+                tilaus.Asiakas = new Asiakas();
         }
 
         void AteriatDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -109,18 +118,19 @@ namespace Saliavustaja.UI
 
         void BonusAsiakasCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            LisaaTilaukseenAsiakas();
+            AktivoiAsiakasnumeroKentta();
+            AsiakastyypinLisaaminenTilaukseen();
             KokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
             VerotonKokonaishintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
             VeronosuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
         }
 
-        void LisaaTilaukseenAsiakas()
+        void AktivoiAsiakasnumeroKentta()
         {
             if (BonusAsiakasCheckbox.Checked)
-                tilaus.Asiakas = new BonusAsiakas();
+                AsiakasnumeroTextBox.Enabled = true;
             else
-                tilaus.Asiakas = new Asiakas();
+                AsiakasnumeroTextBox.Enabled = false;
         }
     }
 }

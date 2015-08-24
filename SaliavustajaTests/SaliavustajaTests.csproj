@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AsiakasTest.cs" />
     <Compile Include="AteriaTest.cs" />
+    <Compile Include="InMemoryBonusAsiakasDbTest.cs" />
     <Compile Include="InMemoryAteriaDbTest.cs" />
     <Compile Include="InMemoryPoytaDbTest.cs" />
     <Compile Include="InMemoryTilausDbTest.cs" />

@@ -86,7 +86,7 @@ namespace Saliavustaja
                 kokonaishinta += rivi.Ateria.LaskeVerollinenHinta(0.14) * rivi.Maara;
 
             if (asiakas != null)
-                kokonaishinta = asiakas.LaskeAsiakkaanEtuhinta(kokonaishinta);
+                kokonaishinta = asiakas.LaskeHinta(kokonaishinta);
 
             return kokonaishinta;
         }
@@ -98,7 +98,7 @@ namespace Saliavustaja
                 kokonaishinta += rivi.Ateria.VerotonHinta * rivi.Maara;
 
             if (asiakas != null)
-                kokonaishinta = asiakas.LaskeAsiakkaanEtuhinta(kokonaishinta);
+                kokonaishinta = asiakas.LaskeHinta(kokonaishinta);
 
             return kokonaishinta;
         }

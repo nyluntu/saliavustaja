@@ -4,9 +4,15 @@ namespace Saliavustaja
 {
     public class Asiakas
     {
-        public virtual double LaskeAsiakkaanEtuhinta(double kokonaishinta)
+        protected bool etukuponki = false;
+        const double ETUKERROIN = 0.85;
+
+        public virtual double LaskeHinta(double tilauksenhinta)
         {
-            return kokonaishinta;
+            if (etukuponki)
+                return tilauksenhinta * ETUKERROIN;
+
+            return tilauksenhinta;
         }
     }
 }
