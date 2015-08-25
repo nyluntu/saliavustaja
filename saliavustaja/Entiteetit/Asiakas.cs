@@ -7,7 +7,7 @@ namespace Saliavustaja
         protected bool etukuponki = false;
         const double ETUKERROIN = 0.85;
 
-        public virtual double LaskeHinta(double tilauksenhinta)
+        public double LaskeHinta(double tilauksenhinta)
         {
             if (etukuponki)
                 return tilauksenhinta * ETUKERROIN;

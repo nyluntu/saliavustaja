@@ -51,8 +51,8 @@
             this.KokonaishintaLabel = new System.Windows.Forms.Label();
             this.VahvistaTilausButton = new System.Windows.Forms.Button();
             this.PeruTilausButton = new System.Windows.Forms.Button();
-            this.AsiakasnumeroTextBox = new System.Windows.Forms.TextBox();
-            this.AsiakasnumeroLabel = new System.Windows.Forms.Label();
+            this.EtupisteetLabel = new System.Windows.Forms.Label();
+            this.EtupisteetValue = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AteriatDataGridView)).BeginInit();
@@ -61,8 +61,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.AsiakasnumeroLabel);
-            this.panel1.Controls.Add(this.AsiakasnumeroTextBox);
             this.panel1.Controls.Add(this.BonusAsiakasCheckbox);
             this.panel1.Controls.Add(this.PoydanValintaLabel);
             this.panel1.Controls.Add(this.PoydatCombobox);
@@ -74,7 +72,7 @@
             // 
             // BonusAsiakasCheckbox
             // 
-            this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(684, 12);
+            this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(684, 32);
             this.BonusAsiakasCheckbox.Name = "BonusAsiakasCheckbox";
             this.BonusAsiakasCheckbox.Size = new System.Drawing.Size(140, 20);
             this.BonusAsiakasCheckbox.TabIndex = 2;
@@ -192,6 +190,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.EtupisteetValue);
+            this.panel3.Controls.Add(this.EtupisteetLabel);
             this.panel3.Controls.Add(this.VerotonKokonaishintaValue);
             this.panel3.Controls.Add(this.VeronosuusValue);
             this.panel3.Controls.Add(this.VerotonKokonaishintaLabel);
@@ -203,13 +203,13 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 478);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(836, 110);
+            this.panel3.Size = new System.Drawing.Size(836, 99);
             this.panel3.TabIndex = 2;
             // 
             // VerotonKokonaishintaValue
             // 
             this.VerotonKokonaishintaValue.AutoSize = true;
-            this.VerotonKokonaishintaValue.Location = new System.Drawing.Point(250, 35);
+            this.VerotonKokonaishintaValue.Location = new System.Drawing.Point(253, 31);
             this.VerotonKokonaishintaValue.Name = "VerotonKokonaishintaValue";
             this.VerotonKokonaishintaValue.Size = new System.Drawing.Size(22, 13);
             this.VerotonKokonaishintaValue.TabIndex = 7;
@@ -219,7 +219,7 @@
             // VeronosuusValue
             // 
             this.VeronosuusValue.AutoSize = true;
-            this.VeronosuusValue.Location = new System.Drawing.Point(250, 54);
+            this.VeronosuusValue.Location = new System.Drawing.Point(253, 50);
             this.VeronosuusValue.Name = "VeronosuusValue";
             this.VeronosuusValue.Size = new System.Drawing.Size(22, 13);
             this.VeronosuusValue.TabIndex = 6;
@@ -229,7 +229,7 @@
             // VerotonKokonaishintaLabel
             // 
             this.VerotonKokonaishintaLabel.AutoSize = true;
-            this.VerotonKokonaishintaLabel.Location = new System.Drawing.Point(12, 35);
+            this.VerotonKokonaishintaLabel.Location = new System.Drawing.Point(15, 31);
             this.VerotonKokonaishintaLabel.Name = "VerotonKokonaishintaLabel";
             this.VerotonKokonaishintaLabel.Size = new System.Drawing.Size(70, 13);
             this.VerotonKokonaishintaLabel.TabIndex = 5;
@@ -238,7 +238,7 @@
             // VeronosuusLabel
             // 
             this.VeronosuusLabel.AutoSize = true;
-            this.VeronosuusLabel.Location = new System.Drawing.Point(12, 54);
+            this.VeronosuusLabel.Location = new System.Drawing.Point(15, 50);
             this.VeronosuusLabel.Name = "VeronosuusLabel";
             this.VeronosuusLabel.Size = new System.Drawing.Size(66, 13);
             this.VeronosuusLabel.TabIndex = 4;
@@ -247,7 +247,7 @@
             // KokonaishintaValue
             // 
             this.KokonaishintaValue.AutoSize = true;
-            this.KokonaishintaValue.Location = new System.Drawing.Point(250, 74);
+            this.KokonaishintaValue.Location = new System.Drawing.Point(253, 70);
             this.KokonaishintaValue.Name = "KokonaishintaValue";
             this.KokonaishintaValue.Size = new System.Drawing.Size(22, 13);
             this.KokonaishintaValue.TabIndex = 3;
@@ -257,7 +257,7 @@
             // KokonaishintaLabel
             // 
             this.KokonaishintaLabel.AutoSize = true;
-            this.KokonaishintaLabel.Location = new System.Drawing.Point(9, 74);
+            this.KokonaishintaLabel.Location = new System.Drawing.Point(15, 70);
             this.KokonaishintaLabel.Name = "KokonaishintaLabel";
             this.KokonaishintaLabel.Size = new System.Drawing.Size(122, 13);
             this.KokonaishintaLabel.TabIndex = 2;
@@ -265,7 +265,7 @@
             // 
             // VahvistaTilausButton
             // 
-            this.VahvistaTilausButton.Location = new System.Drawing.Point(704, 62);
+            this.VahvistaTilausButton.Location = new System.Drawing.Point(704, 50);
             this.VahvistaTilausButton.Name = "VahvistaTilausButton";
             this.VahvistaTilausButton.Size = new System.Drawing.Size(120, 37);
             this.VahvistaTilausButton.TabIndex = 1;
@@ -275,7 +275,7 @@
             // 
             // PeruTilausButton
             // 
-            this.PeruTilausButton.Location = new System.Drawing.Point(573, 62);
+            this.PeruTilausButton.Location = new System.Drawing.Point(578, 50);
             this.PeruTilausButton.Name = "PeruTilausButton";
             this.PeruTilausButton.Size = new System.Drawing.Size(120, 37);
             this.PeruTilausButton.TabIndex = 0;
@@ -283,28 +283,29 @@
             this.PeruTilausButton.UseVisualStyleBackColor = true;
             this.PeruTilausButton.Click += new System.EventHandler(this.PeruTilausButton_Click);
             // 
-            // AsiakasnumeroTextBox
+            // EtupisteetLabel
             // 
-            this.AsiakasnumeroTextBox.Enabled = false;
-            this.AsiakasnumeroTextBox.Location = new System.Drawing.Point(684, 52);
-            this.AsiakasnumeroTextBox.Name = "AsiakasnumeroTextBox";
-            this.AsiakasnumeroTextBox.Size = new System.Drawing.Size(140, 20);
-            this.AsiakasnumeroTextBox.TabIndex = 3;
+            this.EtupisteetLabel.AutoSize = true;
+            this.EtupisteetLabel.Location = new System.Drawing.Point(319, 70);
+            this.EtupisteetLabel.Name = "EtupisteetLabel";
+            this.EtupisteetLabel.Size = new System.Drawing.Size(96, 13);
+            this.EtupisteetLabel.TabIndex = 8;
+            this.EtupisteetLabel.Text = "Kertyviä etupisteitä";
             // 
-            // AsiakasnumeroLabel
+            // EtupisteetValue
             // 
-            this.AsiakasnumeroLabel.AutoSize = true;
-            this.AsiakasnumeroLabel.Location = new System.Drawing.Point(682, 36);
-            this.AsiakasnumeroLabel.Name = "AsiakasnumeroLabel";
-            this.AsiakasnumeroLabel.Size = new System.Drawing.Size(79, 13);
-            this.AsiakasnumeroLabel.TabIndex = 4;
-            this.AsiakasnumeroLabel.Text = "Asiakasnumero";
+            this.EtupisteetValue.AutoSize = true;
+            this.EtupisteetValue.Location = new System.Drawing.Point(470, 70);
+            this.EtupisteetValue.Name = "EtupisteetValue";
+            this.EtupisteetValue.Size = new System.Drawing.Size(13, 13);
+            this.EtupisteetValue.TabIndex = 9;
+            this.EtupisteetValue.Text = "0";
             // 
             // UusiTilaus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 588);
+            this.ClientSize = new System.Drawing.Size(836, 577);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -345,7 +346,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AterioidenMaara;
         private System.Windows.Forms.Label VeronosuusValue;
         private System.Windows.Forms.Label VerotonKokonaishintaValue;
-        private System.Windows.Forms.Label AsiakasnumeroLabel;
-        private System.Windows.Forms.TextBox AsiakasnumeroTextBox;
+        private System.Windows.Forms.Label EtupisteetValue;
+        private System.Windows.Forms.Label EtupisteetLabel;
     }
 }

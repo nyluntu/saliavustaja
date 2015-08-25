@@ -99,5 +99,33 @@ namespace SaliavustajaTests
             tilauksenVastaanotto.VastaanotaTilaus(tilaus);
         }
 
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Tilaus ei sisällä tilausrivejä.")]
+        public void VirheellinenTilausEiSisallaTilausriveja()
+        {
+            poytaDb.VaraaPoyta(1);
+            Poyta poyta = poytaDb.Hae(6);
+            Asiakas asiakas = new Asiakas();
+            Tilaus tilaus = new Tilaus();
+            tilaus.Poyta = poyta;
+            tilaus.Asiakas = asiakas;
+            tilaus.Pvm = DateTime.Now;
+            tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Tilaus ei sisällä asiakasta.")]
+        public void VirheellinenTilausEiSisallaAsiakasta()
+        {
+            poytaDb.VaraaPoyta(1);
+            Poyta poyta = poytaDb.Hae(6);
+            var ateria1 = ateriat[1];
+            Tilaus tilaus = new Tilaus();
+            tilaus.LisaaAteria(ateria1,2);
+            tilaus.Poyta = poyta;
+            tilaus.Pvm = DateTime.Now;
+            tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+        }
+
     }
 }

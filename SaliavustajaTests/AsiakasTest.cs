@@ -21,16 +21,27 @@ namespace SaliavustajaTests
         }
 
         [Test]
+        public void LaskeBonusAsiakkaanEtupisteet()
+        {
+            BonusAsiakas asiakas = new BonusAsiakas();
+            double etupisteet = asiakas.LaskeEtupisteet(75);
+            Assert.AreEqual(1.5, etupisteet);
+            etupisteet = asiakas.LaskeEtupisteet(150);
+            Assert.AreEqual(3.0, etupisteet);
+            etupisteet = asiakas.LaskeEtupisteet(351);
+            Assert.AreEqual(7.0, etupisteet);
+        }
+        [Test]
         public void KerrytaEtupisteitaBonusAsiakkaalle()
         {
             BonusAsiakas asiakas = new BonusAsiakas();
             Assert.AreEqual(0, asiakas.Etupisteet);
 
-            asiakas.KerrytaPisteita(75);
+            asiakas.KerrytaEtupisteita(75);
             Assert.AreEqual(1.5, asiakas.Etupisteet);
-            asiakas.KerrytaPisteita(75);
+            asiakas.KerrytaEtupisteita(75);
             Assert.AreEqual(3.0, asiakas.Etupisteet);
-            asiakas.KerrytaPisteita(25);
+            asiakas.KerrytaEtupisteita(25);
             Assert.AreEqual(3.5, asiakas.Etupisteet);
         }
 
@@ -43,13 +54,13 @@ namespace SaliavustajaTests
             Assert.AreEqual(48, asiakas.OstaEtupisteilla(173));
             Assert.AreEqual(0, asiakas.Etupisteet);
 
-            asiakas.KerrytaPisteita(75);
-            asiakas.KerrytaPisteita(75);
-            asiakas.KerrytaPisteita(75);
-            asiakas.KerrytaPisteita(75);
-            asiakas.KerrytaPisteita(75);
-            asiakas.KerrytaPisteita(75);
-            asiakas.KerrytaPisteita(50);
+            asiakas.KerrytaEtupisteita(75);
+            asiakas.KerrytaEtupisteita(75);
+            asiakas.KerrytaEtupisteita(75);
+            asiakas.KerrytaEtupisteita(75);
+            asiakas.KerrytaEtupisteita(75);
+            asiakas.KerrytaEtupisteita(75);
+            asiakas.KerrytaEtupisteita(50);
             Assert.AreEqual(10, asiakas.Etupisteet);
             Assert.AreEqual(33, asiakas.OstaEtupisteilla(43));
             Assert.AreEqual(0, asiakas.Etupisteet);

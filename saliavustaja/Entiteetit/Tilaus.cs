@@ -5,6 +5,7 @@ namespace Saliavustaja
 {
     public class Tilaus
     {
+        const double ALV = 0.14;
         int tilausnumero;
         ArrayList tilausrivit;
         Poyta poyta;
@@ -67,9 +68,10 @@ namespace Saliavustaja
             tilausrivit.Add(rivi);
         }
 
-        public void MerkitseVahvistetuksi()
+        public void VahvistaTilaus()
         {
             tapahtumanTila = TapahtumanTila.Vahvistettu;
+            pvm = DateTime.Now;
         }
 
         public bool OnkoVahvistettu()
@@ -83,7 +85,7 @@ namespace Saliavustaja
         {
             double kokonaishinta = 0;
             foreach (Tilausrivi rivi in tilausrivit)
-                kokonaishinta += rivi.Ateria.LaskeVerollinenHinta(0.14) * rivi.Maara;
+                kokonaishinta += rivi.Ateria.LaskeVerollinenHinta(ALV) * rivi.Maara;
 
             if (asiakas != null)
                 kokonaishinta = asiakas.LaskeHinta(kokonaishinta);

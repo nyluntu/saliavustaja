@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saliavustaja.TietokantaLiittymat;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -6,11 +7,13 @@ namespace Saliavustaja.UI
 {
     public partial class UusiTilaus : Form
     {
+        const double ALV = 0.14;
 
         Tilaus tilaus = new Tilaus();
-        TilausDb tilausLiittyma = new InMemoryTilausDb();
-        PoytaDb poytaLiittyma = new InMemoryPoytaDb();
-        AteriaDb ateriaLiittyma = new InMemoryAteriaDb();
+        TilausDb tilausDb = new InMemoryTilausDb();
+        PoytaDb poytaDb = new InMemoryPoytaDb();
+        AteriaDb ateriaDb = new InMemoryAteriaDb();
+        BonusAsiakasDb asiakasDb = new InMemoryBonusAsiakasDb();
 
         public UusiTilaus()
         {
@@ -18,27 +21,28 @@ namespace Saliavustaja.UI
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListaValikkoon();
             AsiakastyypinLisaaminenTilaukseen();
+            PiilotaEtupisteidenElementit();
         }
 
-        void LisaaPoydatPudotusvalikkoon()
+        void VahvistaTilausButton_Click(object sender, EventArgs e)
         {
-            List<Poyta> poydat = poytaLiittyma.HaeKaikki();
-            foreach (Poyta poyta in poydat)
+            try
             {
-                PoydatCombobox.Items.Add(poyta);
+                AsiakastyypinLisaaminenTilaukseen();
+                TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausDb, poytaDb, asiakasDb);
+                tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+                MessageBox.Show("Tilaus tallennettu onnistuneesti.");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
-        void LisaaAteriatListaValikkoon()
+        void PeruTilausButton_Click(object sender, EventArgs e)
         {
-            List<Ateria> ateriat = ateriaLiittyma.HaeKaikki();
-            foreach (var ateria in ateriat)
-            {
-                ListViewItem rivi = new ListViewItem(ateria.Nimi);
-                rivi.Tag = ateria;
-                rivi.SubItems.Add(ateria.LaskeVerollinenHinta(0.14).ToString("C2"));
-                AteriatListView.Items.Add(rivi);
-            }
+            this.Close();
         }
 
         void LisaaAteriaButton_Click(object sender, EventArgs e)
@@ -49,9 +53,8 @@ namespace Saliavustaja.UI
                 DataGridViewRow rivi = new DataGridViewRow();
                 rivi.CreateCells(AteriatDataGridView);
                 rivi.Tag = ateria;
-                rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta(0.14).ToString("C2"), 0);
+                rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta(ALV).ToString("C2"), 0);
                 AteriatDataGridView.Rows.Add(rivi);
-
                 tilaus.LisaaAteria(ateria, 0);
             }
         }
@@ -62,38 +65,9 @@ namespace Saliavustaja.UI
             {
                 DataGridViewRow rivi = AteriatDataGridView.SelectedRows[i];
                 AteriatDataGridView.Rows.Remove(rivi);
-
                 Ateria ateria = (Ateria)rivi.Tag;
                 tilaus.PoistaAteria(ateria);
             }
-        }
-
-        void PeruTilausButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        void VahvistaTilausButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                AsiakastyypinLisaaminenTilaukseen();
-                TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausLiittyma, poytaLiittyma);
-                tilauksenVastaanotto.VastaanotaTilaus(tilaus);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        void AsiakastyypinLisaaminenTilaukseen()
-        {
-            if (BonusAsiakasCheckbox.Checked)
-                tilaus.Asiakas = new BonusAsiakas();
-            else
-                tilaus.Asiakas = new Asiakas();
         }
 
         void AteriatDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -104,9 +78,29 @@ namespace Saliavustaja.UI
                 int maara = int.Parse(AteriatDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                 tilaus.VaihdaAterianMaara(ateria, maara);
 
-                KokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
-                VerotonKokonaishintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
-                VeronosuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
+                LaskeKokonaishintaTilaukselle();
+                LaskeEtupisteetTilaukselle();
+            }
+        }
+
+        void LisaaPoydatPudotusvalikkoon()
+        {
+            List<Poyta> poydat = poytaDb.HaeKaikki();
+            foreach (Poyta poyta in poydat)
+            {
+                PoydatCombobox.Items.Add(poyta);
+            }
+        }
+
+        void LisaaAteriatListaValikkoon()
+        {
+            List<Ateria> ateriat = ateriaDb.HaeKaikki();
+            foreach (var ateria in ateriat)
+            {
+                ListViewItem rivi = new ListViewItem(ateria.Nimi);
+                rivi.Tag = ateria;
+                rivi.SubItems.Add(ateria.LaskeVerollinenHinta(0.14).ToString("C2"));
+                AteriatListView.Items.Add(rivi);
             }
         }
 
@@ -118,19 +112,46 @@ namespace Saliavustaja.UI
 
         void BonusAsiakasCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            AktivoiAsiakasnumeroKentta();
             AsiakastyypinLisaaminenTilaukseen();
+            LaskeKokonaishintaTilaukselle();
+            LaskeEtupisteetTilaukselle();
+        }
+
+        void AsiakastyypinLisaaminenTilaukseen()
+        {
+            if (BonusAsiakasCheckbox.Checked)
+                tilaus.Asiakas = new BonusAsiakas();
+            else
+                tilaus.Asiakas = new Asiakas();
+        }
+
+        void LaskeKokonaishintaTilaukselle()
+        {
             KokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
             VerotonKokonaishintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
             VeronosuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
         }
 
-        void AktivoiAsiakasnumeroKentta()
+        void LaskeEtupisteetTilaukselle()
         {
-            if (BonusAsiakasCheckbox.Checked)
-                AsiakasnumeroTextBox.Enabled = true;
+            if (tilaus.Asiakas.GetType() == typeof(BonusAsiakas))
+                NaytaEtupisteidenElementit();
             else
-                AsiakasnumeroTextBox.Enabled = false;
+                PiilotaEtupisteidenElementit();
+        }
+
+        void NaytaEtupisteidenElementit()
+        {
+            BonusAsiakas asiakas = (BonusAsiakas)tilaus.Asiakas;
+            EtupisteetLabel.Show();
+            EtupisteetValue.Show();
+            EtupisteetValue.Text = asiakas.LaskeEtupisteet(tilaus.LaskeVerollinenKokonaishinta()).ToString();
+        }
+
+        void PiilotaEtupisteidenElementit()
+        {
+            EtupisteetLabel.Hide();
+            EtupisteetValue.Hide();
         }
     }
 }

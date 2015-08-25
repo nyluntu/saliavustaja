@@ -45,9 +45,9 @@ namespace SaliavustajaTests
         public void TallennaAsiakkaanMuutoksetTietokantaan()
         {
             BonusAsiakas asiakasTietokannasta = asiakasDb.Hae(1);
-            asiakasTietokannasta.KerrytaPisteita(200);
-            asiakasTietokannasta.KerrytaPisteita(142);
-            asiakasTietokannasta.KerrytaPisteita(360);
+            asiakasTietokannasta.LaskeEtupisteet(200);
+            asiakasTietokannasta.LaskeEtupisteet(142);
+            asiakasTietokannasta.LaskeEtupisteet(360);
             Assert.AreEqual(14.04, asiakasTietokannasta.Etupisteet, 0.01);
 
             asiakasDb.TallennaMuutokset(asiakasTietokannasta);

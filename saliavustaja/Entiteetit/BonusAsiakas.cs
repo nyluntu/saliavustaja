@@ -21,9 +21,14 @@ namespace Saliavustaja
             etukuponki = true;
         }
 
-        public void KerrytaPisteita(double hinta)
+        public double LaskeEtupisteet(double hinta)
         {
-            Etupisteet += Math.Round(hinta / 50, 2);
+            return Math.Round(hinta / 50, 1);
+        }
+
+        public void KerrytaEtupisteita(double hinta)
+        {
+            Etupisteet += LaskeEtupisteet(hinta);
         }
 
         public double OstaEtupisteilla(double hinta)
