@@ -31,6 +31,7 @@ namespace Saliavustaja.Entiteetit
             Etupisteet += LaskeEtupisteet(hinta);
         }
 
+        // OstaEtupisteillä toimintoa ei ole hyödynnetty toistaiseksi ohjelmassa.
         public double OstaEtupisteilla(double hinta)
         {
             // Jos erotus yli 0, pisteitä jää erotuksen verran.
