@@ -35,7 +35,6 @@ namespace SaliavustajaTests
             Tilaus tilaus = new Tilaus();
             tilaus.Poyta = poyta;
             tilaus.Asiakas = asiakas;
-            tilaus.Pvm = DateTime.Now;
             var ateria1 = ateriat[1];
             var ateria2 = ateriat[8];
             tilaus.LisaaAteria(ateria1, 1);
@@ -58,9 +57,9 @@ namespace SaliavustajaTests
             Assert.AreEqual(12, rivi.Ateria.VerotonHinta, 0.01);
             Assert.AreEqual(3, rivi.Maara);
 
-            Poyta varattuPoyta = poytaDb.Hae(tilaus.Poyta.Tunnus);
+            Poyta varattuPoyta = poytaDb.Hae(tilaus.Poyta.Id);
             Assert.That(varattuPoyta, Is.Not.Null);
-            Assert.AreEqual(8, varattuPoyta.Tunnus);
+            Assert.AreEqual(8, varattuPoyta.Id);
             Assert.AreEqual(4, varattuPoyta.PaikkojenMaara);
             Assert.AreEqual(true, varattuPoyta.OnkoVarattu());
         }
@@ -72,7 +71,6 @@ namespace SaliavustajaTests
             Asiakas asiakas = new Asiakas();
             Tilaus tilaus = new Tilaus();
             tilaus.Asiakas = asiakas;
-            tilaus.Pvm = DateTime.Now;
             var ateria1 = ateriat[1];
             var ateria2 = ateriat[8];
             tilaus.LisaaAteria(ateria1, 1);
@@ -91,7 +89,6 @@ namespace SaliavustajaTests
             Tilaus tilaus = new Tilaus();
             tilaus.Poyta = poyta;
             tilaus.Asiakas = asiakas;
-            tilaus.Pvm = DateTime.Now;
             var ateria1 = ateriat[1];
             var ateria2 = ateriat[8];
             tilaus.LisaaAteria(ateria1, 1);
@@ -109,7 +106,6 @@ namespace SaliavustajaTests
             Tilaus tilaus = new Tilaus();
             tilaus.Poyta = poyta;
             tilaus.Asiakas = asiakas;
-            tilaus.Pvm = DateTime.Now;
             tilauksenVastaanotto.VastaanotaTilaus(tilaus);
         }
 
@@ -123,7 +119,6 @@ namespace SaliavustajaTests
             Tilaus tilaus = new Tilaus();
             tilaus.LisaaAteria(ateria1,2);
             tilaus.Poyta = poyta;
-            tilaus.Pvm = DateTime.Now;
             tilauksenVastaanotto.VastaanotaTilaus(tilaus);
         }
 

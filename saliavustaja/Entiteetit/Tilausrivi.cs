@@ -4,25 +4,18 @@ namespace Saliavustaja
 {
     public class Tilausrivi
     {
-        Ateria ateria;
-        int maara;
+        public Ateria Ateria { get; private set; }
+        public int Maara { get; private set; }
 
         public Tilausrivi(Ateria ateria, int maara)
         {
-            this.ateria = ateria;
-            this.maara = maara;
+            Ateria = ateria;
+            Maara = maara;
         }
 
-        public Ateria Ateria
+        public void VaihdaMaara(int maara)
         {
-            get { return ateria; }
+            Maara = maara;
         }
-
-        public int Maara
-        {
-            get { return maara;  }
-            set { maara = value; }
-        }
-
     }
 }

@@ -21,7 +21,7 @@ namespace SaliavustajaTests
         {
             Poyta poyta = poytaDb.Hae(4);
             Assert.That(poyta, Is.Not.Null);
-            Assert.AreEqual(4, poyta.Tunnus);
+            Assert.AreEqual(4, poyta.Id);
             Assert.AreEqual(6, poyta.PaikkojenMaara);
         }
 
@@ -40,7 +40,7 @@ namespace SaliavustajaTests
             Poyta poyta = kaikkiPoydat[4];
             Assert.AreEqual(false, poyta.OnkoVarattu());
 
-            poytaDb.VaraaPoyta(poyta.Tunnus);
+            poytaDb.VaraaPoyta(poyta.Id);
             kaikkiPoydat = poytaDb.HaeKaikki();
             Poyta varattuPoyta = kaikkiPoydat[4];
             Assert.AreEqual(true, varattuPoyta.OnkoVarattu()); 

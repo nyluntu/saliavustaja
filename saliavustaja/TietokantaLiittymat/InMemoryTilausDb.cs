@@ -22,9 +22,11 @@ namespace Saliavustaja
         public override Tilaus Hae(int tilausnumero)
         {
             Tilaus tilaus = (Tilaus)tilaukset[tilausnumero];
-            if(tilaus != null)
-                tilaus.Tilausnumero = tilausnumero;
-            return tilaus;
+
+            if (tilaus == null)
+                return null; 
+
+            return new Tilaus(tilausnumero, tilaus.Tilausrivit, tilaus.Poyta, tilaus.Asiakas, tilaus.TapahtumanTila, tilaus.Pvm);
         }
 
         public override List<Tilaus> HaeKaikki()
@@ -33,8 +35,7 @@ namespace Saliavustaja
             for (int i = 1; i <= tilaukset.Count; i++)
             {
                 Tilaus tilaus = (Tilaus)tilaukset[i];
-                tilaus.Tilausnumero = i;
-                kaikkiTilaukset.Add(tilaus);
+                kaikkiTilaukset.Add(new Tilaus(i, tilaus.Tilausrivit, tilaus.Poyta, tilaus.Asiakas, tilaus.TapahtumanTila, tilaus.Pvm));
             }
             return kaikkiTilaukset;
         }

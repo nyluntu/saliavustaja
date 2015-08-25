@@ -1,6 +1,6 @@
 ﻿namespace Saliavustaja
 {
-    public enum TapahtumanTila
+    public enum Tapahtumantila
     {
         Vahvistamaton = 1,
         Vahvistettu = 2

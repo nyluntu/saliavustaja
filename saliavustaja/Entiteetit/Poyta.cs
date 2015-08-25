@@ -5,53 +5,40 @@ namespace Saliavustaja
 {
     public class Poyta
     {
-        int tunnus;
-        int paikkojenMaara;
-        Varaustilanne varaustilanne;
+        public int Id { get; private set; }
+        public int PaikkojenMaara { get; private set; }
+        public Varaustilanne Varaustilanne { get; private set; }
 
         public Poyta(int tunnus, int paikkojenMaara, Varaustilanne varattu)
         {
-            this.tunnus = tunnus;
-            this.paikkojenMaara = paikkojenMaara;
-            this.Varaustilanne = varattu;
+            Id = tunnus;
+            PaikkojenMaara = paikkojenMaara;
+            Varaustilanne = varattu;
         }
 
-        public int Tunnus
+        public void VaraaPoyta()
         {
-            get { return tunnus; }
-            private set { tunnus = value; }
+            Varaustilanne = Varaustilanne.Varattu;
         }
 
-        public int PaikkojenMaara
+        public void VapautaPoyta()
         {
-            get { return paikkojenMaara; }
-            private set { paikkojenMaara = value; }
-        }
-
-        public Varaustilanne Varaustilanne
-        {
-            get { return varaustilanne; }
-            set { varaustilanne = value; }
+            Varaustilanne = Varaustilanne.Vapaa;
         }
 
         public bool OnkoVarattu()
         {
             if (Varaustilanne == Varaustilanne.Varattu)
                 return true;
+
             return false;
         }
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Pöytä ");
-            sb.Append(tunnus);
-            sb.Append(", ");
-            sb.Append("paikkoja ");
-            sb.Append(paikkojenMaara);
-            sb.Append(", ");
-            sb.Append(varaustilanne.ToString().ToUpper());
-            return sb.ToString();
+            return string.Format("Pöytä {0}, paikkoja {1}, {2}", Id, PaikkojenMaara, Varaustilanne.ToString().ToUpper());
         }
+
+
     }
 }

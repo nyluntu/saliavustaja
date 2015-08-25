@@ -53,7 +53,7 @@ namespace Saliavustaja.UI
                 DataGridViewRow rivi = new DataGridViewRow();
                 rivi.CreateCells(AteriatDataGridView);
                 rivi.Tag = ateria;
-                rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta(ALV).ToString("C2"), 0);
+                rivi.SetValues(ateria.Nimi, (ateria.VerotonHinta * (1+ALV)).ToString("C2"), 0);
                 AteriatDataGridView.Rows.Add(rivi);
                 tilaus.LisaaAteria(ateria, 0);
             }
@@ -76,7 +76,7 @@ namespace Saliavustaja.UI
             {
                 Ateria ateria = (Ateria)AteriatDataGridView.Rows[e.RowIndex].Tag;
                 int maara = int.Parse(AteriatDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                tilaus.VaihdaAterianMaara(ateria, maara);
+                tilaus.VaihdaAteriaMaara(ateria, maara);
 
                 LaskeKokonaishintaTilaukselle();
                 LaskeEtupisteetTilaukselle();
@@ -99,7 +99,7 @@ namespace Saliavustaja.UI
             {
                 ListViewItem rivi = new ListViewItem(ateria.Nimi);
                 rivi.Tag = ateria;
-                rivi.SubItems.Add(ateria.LaskeVerollinenHinta(0.14).ToString("C2"));
+                rivi.SubItems.Add((ateria.VerotonHinta * (1 + ALV)).ToString("C2"));
                 AteriatListView.Items.Add(rivi);
             }
         }

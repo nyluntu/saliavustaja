@@ -53,7 +53,7 @@
     <Compile Include="TietokantaLiittymat\InMemoryAteriaDb.cs" />
     <Compile Include="TietokantaLiittymat\InMemoryPoytaDb.cs" />
     <Compile Include="TietokantaLiittymat\InMemoryTilausDb.cs" />
-    <Compile Include="Entiteetit\TapahtumanTila.cs" />
+    <Compile Include="Entiteetit\Tapahtumantila.cs" />
     <Compile Include="TietokantaLiittymat\TilausDb.cs" />
     <Compile Include="TilauksenVastaanotto.cs" />
     <Compile Include="Entiteetit\Tilaus.cs" />

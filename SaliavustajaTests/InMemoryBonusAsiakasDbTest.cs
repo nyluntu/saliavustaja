@@ -45,22 +45,22 @@ namespace SaliavustajaTests
         public void TallennaAsiakkaanMuutoksetTietokantaan()
         {
             BonusAsiakas asiakasTietokannasta = asiakasDb.Hae(1);
-            asiakasTietokannasta.LaskeEtupisteet(200);
-            asiakasTietokannasta.LaskeEtupisteet(142);
-            asiakasTietokannasta.LaskeEtupisteet(360);
-            Assert.AreEqual(14.04, asiakasTietokannasta.Etupisteet, 0.01);
+            asiakasTietokannasta.KerrytaEtupisteita(200);
+            asiakasTietokannasta.KerrytaEtupisteita(142);
+            asiakasTietokannasta.KerrytaEtupisteita(360);
+            Assert.AreEqual(14.04, asiakasTietokannasta.Etupisteet, 0.1);
 
             asiakasDb.TallennaMuutokset(asiakasTietokannasta);
             BonusAsiakas asiakasTietokannasta2 = asiakasDb.Hae(1);
             Assert.AreEqual(1, asiakasTietokannasta2.Id);
-            Assert.AreEqual(14.04, asiakasTietokannasta2.Etupisteet, 0.01);
+            Assert.AreEqual(14.04, asiakasTietokannasta2.Etupisteet, 0.1);
 
             double maksettavaSumma = asiakasTietokannasta2.OstaEtupisteilla(90);
             asiakasDb.TallennaMuutokset(asiakasTietokannasta2);
             BonusAsiakas asiakasTietokannasta3 = asiakasDb.Hae(1);
             Assert.AreEqual(1, asiakasTietokannasta3.Id);
-            Assert.AreEqual(0, asiakasTietokannasta3.Etupisteet, 0.01);
-            Assert.AreEqual(75.96, maksettavaSumma, 0.01);
+            Assert.AreEqual(0, asiakasTietokannasta3.Etupisteet, 0.1);
+            Assert.AreEqual(75.96, maksettavaSumma, 0.1);
         }
     }
 }

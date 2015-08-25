@@ -4,35 +4,23 @@ namespace Saliavustaja
 {
     public class Ateria
     {
-        int id;
-        string nimi;
-        double verotonHinta;
+        public int Id { get; private set; }
+        public string Nimi { get; private set; }
+        public double VerotonHinta { get; private set; }
+        public readonly double Alv;
 
-        public Ateria(int id, string nimi, double verotonHinta)
+        public Ateria(int id, string nimi, double verotonHinta, double alv)
         {
-            this.id = id;
-            this.nimi = nimi;
-            this.verotonHinta = verotonHinta;
+            Id = id;
+            Nimi = nimi;
+            VerotonHinta = verotonHinta;
+            Alv = alv;
         }
 
-        public int Id
+        public double LaskeVerollinenHinta()
         {
-            get { return id; }
+            return VerotonHinta * (1 + Alv);
         }
-
-        public string Nimi
-        {
-            get { return nimi; }
-        }
-
-        public double VerotonHinta
-        {
-            get { return verotonHinta; }
-        }
-
-        public double LaskeVerollinenHinta(double alv)
-        {
-            return verotonHinta * (1 + alv);
-        }
+        
     }
 }

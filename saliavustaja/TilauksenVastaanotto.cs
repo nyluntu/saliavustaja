@@ -35,14 +35,14 @@ namespace Saliavustaja
                 if (tilaus.Poyta == null)
                     throw new Exception("Pöytää ei ole valittu. Tilausta ei voitu vahvistaa.");
 
-                Poyta poyta = poytaDb.Hae(tilaus.Poyta.Tunnus);
+                Poyta poyta = poytaDb.Hae(tilaus.Poyta.Id);
                 if (poyta.OnkoVarattu())
                     throw new Exception("Pöytä on jo varattu. Tilausta ei voitu vahvistaa.");
 
                 tilaus.VahvistaTilaus();
                 tilausDb.Uusi(tilaus);
 
-                poytaDb.VaraaPoyta(poyta.Tunnus);
+                poytaDb.VaraaPoyta(poyta.Id);
 
                if(tilaus.Asiakas.GetType() == typeof(BonusAsiakas))
                 {

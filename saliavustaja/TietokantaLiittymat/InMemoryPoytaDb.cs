@@ -40,7 +40,7 @@ namespace Saliavustaja
         public override void VaraaPoyta(int tunnus)
         {
             Poyta poyta = (Poyta)poydat[tunnus];
-            poyta.Varaustilanne = Varaustilanne.Varattu;
+            poyta.VaraaPoyta();
         }
     }
 }
