@@ -1,7 +1,8 @@
-﻿using Saliavustaja.TietokantaLiittymat;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Saliavustaja.Entiteetit;
+using Saliavustaja.TietokantaLiittymat;
 
 namespace Saliavustaja.UI
 {

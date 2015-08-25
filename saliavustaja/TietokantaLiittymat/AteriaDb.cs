@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Saliavustaja.Entiteetit;
+using System.Collections.Generic;
 
-namespace Saliavustaja
+namespace Saliavustaja.TietokantaLiittymat
 {
     public abstract class AteriaDb
     {

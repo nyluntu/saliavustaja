@@ -1,5 +1,5 @@
-﻿using Saliavustaja;
-using System;
+﻿using Saliavustaja.Entiteetit;
+using Saliavustaja.TietokantaLiittymat;
 using System.Collections.Generic;
 
 namespace SaliavustajaTests

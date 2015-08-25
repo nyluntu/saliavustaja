@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Saliavustaja.Entiteetit;
 
-namespace Saliavustaja
+namespace Saliavustaja.TietokantaLiittymat
 {
     public class InMemoryPoytaDb : PoytaDb
     {

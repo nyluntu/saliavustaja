@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
-using Saliavustaja;
+using Saliavustaja.Entiteetit;
+using Saliavustaja.TietokantaLiittymat;
 using System;
 using System.Collections.Generic;
 using System.Linq;

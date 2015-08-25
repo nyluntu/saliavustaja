@@ -1,9 +1,10 @@
-﻿using NUnit.Framework;
-using Saliavustaja;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using NUnit.Framework;
+using Saliavustaja;
+using Saliavustaja.Entiteetit;
+using Saliavustaja.TietokantaLiittymat;
 
 namespace SaliavustajaTests
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace Saliavustaja
+﻿namespace Saliavustaja.Entiteetit
 {
     public class Poyta
     {

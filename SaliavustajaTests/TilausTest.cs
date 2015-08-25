@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
-using Saliavustaja;
+using Saliavustaja.Entiteetit;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SaliavustajaTests
 {

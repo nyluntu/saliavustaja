@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Saliavustaja
+namespace Saliavustaja.Entiteetit
 {
     public class Tilaus
     {

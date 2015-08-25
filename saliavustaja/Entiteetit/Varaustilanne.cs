@@ -1,4 +1,4 @@
-﻿namespace Saliavustaja
+﻿namespace Saliavustaja.Entiteetit
 {
     public enum Varaustilanne
     {

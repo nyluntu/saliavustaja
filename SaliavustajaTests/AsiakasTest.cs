@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Saliavustaja;
+using Saliavustaja.Entiteetit;
 
 namespace SaliavustajaTests
 {
