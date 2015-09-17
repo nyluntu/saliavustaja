@@ -1,5 +1,8 @@
-﻿namespace Saliavustaja.Entiteetit
+﻿using System;
+
+namespace Saliavustaja.Entiteetit
 {
+    [Serializable]
     public class Asiakas
     {
         protected bool etukuponki = false;

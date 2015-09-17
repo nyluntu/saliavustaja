@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TietokantaLiittymat\BonusAsiakasDb.cs" />
     <Compile Include="TietokantaLiittymat\AteriaDb.cs" />
+    <Compile Include="TietokantaLiittymat\FileSystemTilausDb.cs" />
     <Compile Include="TietokantaLiittymat\InMemoryBonusAsiakasDb.cs" />
     <Compile Include="TietokantaLiittymat\PoytaDb.cs" />
     <Compile Include="TietokantaLiittymat\InMemoryAteriaDb.cs" />

@@ -6,7 +6,7 @@ namespace Saliavustaja.TietokantaLiittymat
 {
     public class InMemoryTilausDb : TilausDb
     {
-        static int seuraavaId = 1;
+        protected static int seuraavaId = 1;
         protected Hashtable tilaukset = new Hashtable();
 
         public int SeuraavaId

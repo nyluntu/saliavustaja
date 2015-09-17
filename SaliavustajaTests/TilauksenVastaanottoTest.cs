@@ -50,8 +50,8 @@ namespace SaliavustajaTests
             Assert.AreEqual(true, tilausTietokannasta.OnkoVahvistettu());
             Assert.AreEqual(60.42, tilausTietokannasta.LaskeVerollinenKokonaishinta(), 0.01);
 
-            ArrayList tilausrivit = tilausTietokannasta.Tilausrivit;
-            Tilausrivi rivi = (Tilausrivi)tilausrivit[1];
+            List<Tilausrivi> tilausrivit = tilausTietokannasta.Tilausrivit;
+            Tilausrivi rivi = tilausrivit[1];
             Assert.IsNotNull(rivi);
             Assert.AreEqual(9, rivi.Ateria.Id);
             Assert.AreEqual("Tyrnipossetti ja luomusuklaata", rivi.Ateria.Nimi);

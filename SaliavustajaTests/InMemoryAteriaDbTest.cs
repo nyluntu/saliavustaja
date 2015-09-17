@@ -17,7 +17,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeYksittainenAteria()
+        public void HaeAteriaTunnisteella()
         {
             Ateria ateria = ateriaDb.Hae(3);
             Assert.That(ateria, Is.Not.Null);

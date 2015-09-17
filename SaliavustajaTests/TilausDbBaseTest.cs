@@ -6,10 +6,11 @@ namespace SaliavustajaTests
 {
     public abstract class TilausDbBaseTest
     {
-        protected TilausDb tilausDb;
 
-        public abstract void TallennaTilausTietokantaan();
+        public abstract void LuoUusiTilaus();
+        public abstract void HaeTilausTunnisteella();
         public abstract void HaeKaikkiTilaukset();
+        public abstract void HaeTilausTunnisteellaMuttaTilaustaEiLoydy();
 
         protected List<Tilaus> LuoTilauksia()
         {
@@ -33,6 +34,16 @@ namespace SaliavustajaTests
             tilaukset.Add(tilaus);
 
             return tilaukset;
+        }
+
+        protected Tilaus LuoTilaus(string aterianNimi = "Garlic Steak")
+        {
+            Tilaus tilaus = new Tilaus();
+            tilaus.Asiakas = new Asiakas();
+            tilaus.Poyta = new Poyta(1, 5, Varaustilanne.Varattu);
+            var pihvi = new Ateria(1, aterianNimi, 11.60, 0.14);
+            tilaus.LisaaAteria(pihvi, 1);
+            return tilaus;
         }
     }
 }

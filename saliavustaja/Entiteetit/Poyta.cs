@@ -1,5 +1,8 @@
-﻿namespace Saliavustaja.Entiteetit
+﻿using System;
+
+namespace Saliavustaja.Entiteetit
 {
+    [Serializable]
     public class Poyta
     {
         public int Id { get; private set; }

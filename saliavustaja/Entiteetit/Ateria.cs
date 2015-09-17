@@ -1,5 +1,8 @@
-﻿namespace Saliavustaja.Entiteetit
+﻿using System;
+
+namespace Saliavustaja.Entiteetit
 {
+    [Serializable]
     public class Ateria
     {
         public int Id { get; private set; }

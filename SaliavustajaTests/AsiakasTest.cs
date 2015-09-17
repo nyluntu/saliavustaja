@@ -7,21 +7,21 @@ namespace SaliavustajaTests
     public class AsiakasTest
     {
         [Test]
-        public void LaskeAsiakkaalleEtuhinta()
+        public void LaskeEtuhintaAsiakkaalle()
         {
             Asiakas asiakas = new Asiakas();
             Assert.AreEqual(33.30, asiakas.LaskeHinta(33.30), 0.01);
         }
 
         [Test]
-        public void LaskeBonusAsiakkaalleEtuhinta()
+        public void LaskeEtuhintaBonusAsiakkaalle()
         {
             Asiakas asiakas = new BonusAsiakas();
             Assert.AreEqual(28.30, asiakas.LaskeHinta(33.30), 0.01);
         }
 
         [Test]
-        public void LaskeBonusAsiakkaanEtupisteet()
+        public void LaskeEtupisteetBonusAsiakkaalle()
         {
             BonusAsiakas asiakas = new BonusAsiakas();
             double etupisteet = asiakas.LaskeEtupisteet(75);
@@ -32,7 +32,7 @@ namespace SaliavustajaTests
             Assert.AreEqual(7.0, etupisteet);
         }
         [Test]
-        public void KerrytaEtupisteitaBonusAsiakkaalle()
+        public void KerrytaEtupisteetBonusAsiakkaalle()
         {
             BonusAsiakas asiakas = new BonusAsiakas();
             Assert.AreEqual(0, asiakas.Etupisteet);
@@ -46,7 +46,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void OstaEtupisteilla()
+        public void OstaEtupisteillaJaPaivitaEtupisteTilanne()
         {
             BonusAsiakas asiakas = new BonusAsiakas(1, 245);
             Assert.AreEqual(0, asiakas.OstaEtupisteilla(120));

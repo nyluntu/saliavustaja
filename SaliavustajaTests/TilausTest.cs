@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Saliavustaja.Entiteetit;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace SaliavustajaTests
 {
@@ -22,7 +22,7 @@ namespace SaliavustajaTests
             Assert.That(tilaus.Poyta, Is.Null);
             Assert.That(tilaus.Asiakas, Is.Null);
             Assert.AreEqual(0, tilaus.Tilausrivit.Count);
-            Assert.That(tilaus.Tilausrivit, Is.InstanceOf<ArrayList>());
+            Assert.That(tilaus.Tilausrivit, Is.InstanceOf<List<Tilausrivi>>());
         }
 
         [Test]
@@ -54,8 +54,8 @@ namespace SaliavustajaTests
         {
             var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50, 0.14);
             tilaus.LisaaAteria(lihapullat, 1);
-            ArrayList tilausrivit = tilaus.Tilausrivit;
-            Tilausrivi rivi = (Tilausrivi)tilausrivit[0];
+            List<Tilausrivi> tilausrivit = tilaus.Tilausrivit;
+            Tilausrivi rivi = tilausrivit[0];
 
             Assert.AreEqual(1, rivi.Ateria.Id);
             Assert.AreEqual("Lihapullat ja muussi", rivi.Ateria.Nimi);
@@ -65,8 +65,8 @@ namespace SaliavustajaTests
             var nakit = new Ateria(2, "Lihapullat ja nakit", 11.60, 0.14);
             tilaus.LisaaAteria(nakit, 3);
 
-            ArrayList ateriat2 = tilaus.Tilausrivit;
-            Tilausrivi rivi2 = (Tilausrivi)ateriat2[1];
+            List<Tilausrivi> ateriat2 = tilaus.Tilausrivit;
+            Tilausrivi rivi2 = ateriat2[1];
             Assert.AreEqual(2, ateriat2.Count);
             Assert.AreEqual("Lihapullat ja nakit", rivi2.Ateria.Nimi);
             Assert.AreEqual(11.60, rivi2.Ateria.VerotonHinta, 0.01);

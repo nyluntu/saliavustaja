@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Saliavustaja.Entiteetit
 {
+    [Serializable]
     public class Tilaus
     {
         public int Tilausnumero { get; private set; }
-        public ArrayList Tilausrivit { get; private set; }
+        public List<Tilausrivi> Tilausrivit { get; private set; }
         public Tapahtumantila TapahtumanTila { get; private set; }
         public DateTime Pvm { get; private set; }
         public Poyta Poyta { get; set; }
@@ -15,14 +16,14 @@ namespace Saliavustaja.Entiteetit
         public Tilaus()
         {
             Tilausnumero = 0;
-            Tilausrivit = new ArrayList();
+            Tilausrivit = new List<Tilausrivi>();
             Poyta = null;
             Asiakas = null;
             TapahtumanTila = Tapahtumantila.Vahvistamaton;
             Pvm = DateTime.Now;
         }
 
-        public Tilaus(int tilausnumero, ArrayList tilausrivit, Poyta poyta, Asiakas asiakas, Tapahtumantila tapahtumanTila, DateTime pvm)
+        public Tilaus(int tilausnumero, List<Tilausrivi> tilausrivit, Poyta poyta, Asiakas asiakas, Tapahtumantila tapahtumanTila, DateTime pvm)
         {
             Tilausnumero = tilausnumero;
             Tilausrivit = tilausrivit;

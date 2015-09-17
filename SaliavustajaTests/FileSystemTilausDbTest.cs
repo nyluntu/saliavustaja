@@ -3,19 +3,22 @@ using Saliavustaja.Entiteetit;
 using Saliavustaja.TietokantaLiittymat;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace SaliavustajaTests
 {
     [TestFixture]
-    public class InMemoryTilausDbTest : TilausDbBaseTest
+    public class FileSystemTilausDbTest : TilausDbBaseTest
     {
-        InMemoryTilausDb tilausDb;
+       FileSystemTilausDb tilausDb;
+        string tietokannanPolku = "C:\\Temp\\tilaukset.dat";
 
         [TestFixtureSetUp]
         public void TestienAlustus()
         {
-            tilausDb = new InMemoryTilausDb();
+            tilausDb = new FileSystemTilausDb(tietokannanPolku);
             var tilaukset = LuoTilauksia();
 
             foreach (Tilaus tilaus in tilaukset)
@@ -25,7 +28,7 @@ namespace SaliavustajaTests
         [TestFixtureTearDown]
         public void TestienLopetus()
         {
-            tilausDb = null;
+            File.Delete(tietokannanPolku);
         }
 
         [Test]

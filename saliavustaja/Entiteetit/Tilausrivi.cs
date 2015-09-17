@@ -1,5 +1,8 @@
-﻿namespace Saliavustaja.Entiteetit
+﻿using System;
+
+namespace Saliavustaja.Entiteetit
 {
+    [Serializable]
     public class Tilausrivi
     {
         public Ateria Ateria { get; private set; }

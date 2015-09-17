@@ -17,7 +17,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeYksittainenPoyta()
+        public void HaePoytaTunnisteella()
         {
             Poyta poyta = poytaDb.Hae(4);
             Assert.That(poyta, Is.Not.Null);
