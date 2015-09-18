@@ -2,6 +2,7 @@
 
 namespace Saliavustaja.Entiteetit
 {
+    [Serializable]
     public class BonusAsiakas : Asiakas
     {
         public int Id { get; private set; }

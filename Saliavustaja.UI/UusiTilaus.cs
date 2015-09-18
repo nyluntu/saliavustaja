@@ -11,7 +11,7 @@ namespace Saliavustaja.UI
         const double ALV = 0.14;
 
         Tilaus tilaus = new Tilaus();
-        TilausDb tilausDb = new InMemoryTilausDb();
+        TilausDb tilausDb = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
         PoytaDb poytaDb = new InMemoryPoytaDb();
         AteriaDb ateriaDb = new InMemoryAteriaDb();
         BonusAsiakasDb asiakasDb = new InMemoryBonusAsiakasDb();

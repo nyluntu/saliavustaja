@@ -9,7 +9,6 @@ namespace Saliavustaja.TietokantaLiittymat
 {
     public class FileSystemTilausDb : TilausDb
     {
-
         protected static int seuraavaId = 1;
         protected Hashtable tilaukset = new Hashtable();
         string tiedostonPolku = "";
@@ -19,11 +18,13 @@ namespace Saliavustaja.TietokantaLiittymat
         {
             this.tiedostonPolku = tiedostonPolku;
             binaryFormatter = new BinaryFormatter();
+            LueTilauksetTietokannasta();
         }
 
         public int SeuraavaId
         {
             get { return seuraavaId; }
+            private set { seuraavaId = value; }
         }
 
         public override void Uusi(Tilaus tilaus)
@@ -31,8 +32,9 @@ namespace Saliavustaja.TietokantaLiittymat
             tilaukset[seuraavaId] = tilaus;
             seuraavaId++;
 
-            using (FileStream fileStreamOut = File.OpenWrite(tiedostonPolku))
+            using (FileStream fileStreamOut = File.Create(tiedostonPolku))
             {
+                // TODO: jotain ongelmia kun tietoja tallennetaan useammin.
                 for (int i = 1; i <= tilaukset.Count; i++)
                     binaryFormatter.Serialize(fileStreamOut, tilaukset[i]);
 
@@ -42,11 +44,6 @@ namespace Saliavustaja.TietokantaLiittymat
 
         public override Tilaus Hae(int tilausnumero)
         {
-            using (FileStream stream = File.OpenRead(tiedostonPolku))
-            {
-                LueTilauksetTietokannasta(stream);
-            }
-
             Tilaus tilaus = (Tilaus)tilaukset[tilausnumero];
 
             if (tilaus == null)
@@ -57,11 +54,6 @@ namespace Saliavustaja.TietokantaLiittymat
 
         public override List<Tilaus> HaeKaikki()
         {
-            using (FileStream stream = File.OpenRead(tiedostonPolku))
-            {
-                LueTilauksetTietokannasta(stream);
-            }
-
             List<Tilaus> kaikkiTilaukset = new List<Tilaus>();
             for (int i = 1; i <= tilaukset.Count; i++)
             {
@@ -71,14 +63,21 @@ namespace Saliavustaja.TietokantaLiittymat
             return kaikkiTilaukset;
         }
 
-        void LueTilauksetTietokannasta(FileStream fileStreamIn)
+        void LueTilauksetTietokannasta()
         {
-            int i = 1;
-            while (fileStreamIn.Position != fileStreamIn.Length)
+            if (File.Exists(tiedostonPolku))
             {
-                Tilaus tilaus = (Tilaus)binaryFormatter.Deserialize(fileStreamIn);
-                tilaukset[i] = tilaus;
-                i++;
+                using (FileStream stream = File.OpenRead(tiedostonPolku))
+                {
+                    int i = 1;
+                    while (stream.Position != stream.Length)
+                    {
+                        Tilaus tilaus = (Tilaus)binaryFormatter.Deserialize(stream);
+                        tilaukset[i] = tilaus;
+                        i++;
+                    }
+                }
+                SeuraavaId = tilaukset.Count + 1;
             }
         }
     }
