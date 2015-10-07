@@ -30,6 +30,19 @@ namespace Saliavustaja.Entiteetit
         public Poyta Poyta { get; set; }
         public Asiakas Asiakas { get; set; }
 
+        /// <summary>
+        /// Tilaus()
+        /// 
+        /// Parametriton rakentaja. Rakentaja alustaa Tilaus-tyyppisen
+        /// olion alkuarvoilla, jotka ovat esitelty seuraavaksi.
+        /// 
+        /// Tilausnumero = 0;
+        /// Tilausrivit = new List<Tilausrivi>();
+        /// Poyta = null;
+        /// Asiakas = null;
+        /// TapahtumanTila = Tapahtumantila.Vahvistamaton;
+        /// Pvm = DateTime.Now;
+        /// </summary>
         public Tilaus()
         {
             Tilausnumero = 0;
@@ -40,6 +53,21 @@ namespace Saliavustaja.Entiteetit
             Pvm = DateTime.Now;
         }
 
+        /// <summary>
+        /// Tilaus(int tilausnumero, List<Tilausrivi> tilausrivit, 
+        ///     Poyta poyta, Asiakas asiakas, 
+        ///     Tapahtumantila tapahtumanTila, DateTime pvm)
+        /// 
+        /// Parametrillinen konstruktori luo Tilaus-tyyppisen olion
+        /// sille annetuista alkuarvoista. Parametrit ovat samoja kuin
+        /// luokan ominaisuudet.
+        /// </summary>
+        /// <param name="tilausnumero"></param>
+        /// <param name="tilausrivit"></param>
+        /// <param name="poyta"></param>
+        /// <param name="asiakas"></param>
+        /// <param name="tapahtumanTila"></param>
+        /// <param name="pvm"></param>
         public Tilaus(int tilausnumero, List<Tilausrivi> tilausrivit, Poyta poyta, Asiakas asiakas, Tapahtumantila tapahtumanTila, DateTime pvm)
         {
             Tilausnumero = tilausnumero;
@@ -50,12 +78,28 @@ namespace Saliavustaja.Entiteetit
             Pvm = pvm;
         }
 
+        /// <summary>
+        /// void LisaaAteria(Ateria ateria, int maara)
+        /// 
+        /// Metodi lisää tilaukseen tilausrivin, joka sisältää
+        /// parametrina annetun aterian ja määrän.
+        /// </summary>
+        /// <param name="ateria"></param>
+        /// <param name="maara"></param>
         public void LisaaAteria(Ateria ateria, int maara)
         {
             Tilausrivi rivi = new Tilausrivi(ateria, maara);
             Tilausrivit.Add(rivi);
         }
 
+        /// <summary>
+        /// void PoistaAteria(Ateria ateria)
+        /// 
+        /// Metodi poistaa tilauksen tilausrivistä parametrina
+        /// annetun aterian. Aterialla on tunnus, jota verrataan
+        /// tilausriveissä oleviin aterioihin.
+        /// </summary>
+        /// <param name="ateria"></param>
         public void PoistaAteria(Ateria ateria)
         {
             int indeksi = -1;
@@ -72,6 +116,15 @@ namespace Saliavustaja.Entiteetit
                 Tilausrivit.RemoveAt(indeksi);
         }
 
+        /// <summary>
+        /// void VaihdaAteriaMaara(Ateria ateria, int maara)
+        /// 
+        /// Metodi muuttaa aterian määrää tilauksessa. Tilausrivistä
+        /// etsitään aterian tunnuksella oikea rivi ja sen määrää
+        /// muutetaan.
+        /// </summary>
+        /// <param name="ateria"></param>
+        /// <param name="maara"></param>
         public void VaihdaAteriaMaara(Ateria ateria, int maara)
         {
             foreach (Tilausrivi tilausrivi in Tilausrivit)
@@ -84,12 +137,27 @@ namespace Saliavustaja.Entiteetit
             }
         }
 
+        /// <summary>
+        /// void VahvistaTilaus()
+        /// 
+        /// Metodi muuttaa Tilaus-olion tilaa siten, että merkitsee
+        /// tilauksen vahvistetuksi ja asettaa päivämääräksi sen
+        /// hetkisen ajanhetken.
+        /// </summary>
         public void VahvistaTilaus()
         {
             TapahtumanTila = Tapahtumantila.Vahvistettu;
             Pvm = DateTime.Now;
         }
 
+        /// <summary>
+        /// bool OnkoVahvistettu()
+        /// 
+        /// Metodi tarkistaa, onko tapahtuman tila vahvistettu.
+        /// Jos on niin palauttaa true, muussa tapauksessa
+        /// palautetaan arvo false.
+        /// </summary>
+        /// <returns></returns>
         public bool OnkoVahvistettu()
         {
             if (TapahtumanTila == Tapahtumantila.Vahvistettu)
@@ -97,6 +165,19 @@ namespace Saliavustaja.Entiteetit
             return false;
         }
 
+        /// <summary>
+        /// double LaskeVerollinenKokonaishinta()
+        /// 
+        /// Metodi laskee ja palauttaa tilauksen verollisen kokonaishinnan.
+        /// Kokonaishinta lasketaan siten, että tilausrivit käydään läpi
+        /// ja niiden summat aterioiden määrän mukaan lasketaan kaikki yhteen.
+        /// 
+        /// Jos Asiakas-tyyppinen olio on määritetty tilaukseen niin lasketaan
+        /// asiakkaalle hinta. Hinta voi vaihdella, jos kyseessä on bonusasiakas.
+        /// 
+        /// Lopuksi metodi palauttaa verollisen kokonaishinnan.
+        /// </summary>
+        /// <returns></returns>
         public double LaskeVerollinenKokonaishinta()
         {
             double kokonaishinta = 0;
@@ -109,6 +190,19 @@ namespace Saliavustaja.Entiteetit
             return kokonaishinta;
         }
 
+        /// <summary>
+        /// double LaskeVerotonKokonaishinta()
+        /// 
+        /// Metodi laskee ja palauttaa tilauksen verottoman kokonaishinnan.
+        /// Kokonaishinta lasketaan siten, että tilausrivit käydään läpi
+        /// ja niiden summat aterioiden määrän mukaan lasketaan kaikki yhteen.
+        /// 
+        /// Jos Asiakas-tyyppinen olio on määritetty tilaukseen niin lasketaan
+        /// asiakkaalle hinta. Hinta voi vaihdella, jos kyseessä on bonusasiakas.
+        /// 
+        /// Lopuksi metodi palauttaa verottoman kokonaishinnan.
+        /// </summary>
+        /// <returns></returns>
         public double LaskeVerotonKokonaishinta()
         {
             double kokonaishinta = 0;
