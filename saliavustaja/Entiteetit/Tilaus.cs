@@ -3,6 +3,23 @@ using System.Collections.Generic;
 
 namespace Saliavustaja.Entiteetit
 {
+    /// <summary>
+    /// Tilaus.cs
+    /// 
+    /// Luokka käsittelee Tilaus-olion tapahtumia ja on yksi
+    /// ohjelman toimintoja koostavista luokista. Se tarvitsee
+    /// toimiakseen ohjelman muita luokkia. Luokan toiminnot
+    /// on tarkemmin kuvattu sen metodien kuvauksissa.
+    /// 
+    /// Luokalla on seuraavia ominaisuuksia:
+    /// 
+    /// 1. int Tilausnumero
+    /// 2. List<Tilausrivi> Tilausrivit
+    /// 3. Tapahtumantila TapahtumanTila
+    /// 4. DateTime Pvm
+    /// 5. Poyta Poyta
+    /// 6. Asiakas Asiakas
+    /// </summary>
     [Serializable]
     public class Tilaus
     {
