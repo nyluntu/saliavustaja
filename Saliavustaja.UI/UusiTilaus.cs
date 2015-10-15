@@ -19,6 +19,10 @@ namespace Saliavustaja.UI
         public UusiTilaus()
         {
             InitializeComponent();
+        }
+
+        private void UusiTilaus_Load(object sender, EventArgs e)
+        {
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListaValikkoon();
             AsiakastyypinLisaaminenTilaukseen();
@@ -154,5 +158,7 @@ namespace Saliavustaja.UI
             EtupisteetLabel.Hide();
             EtupisteetValue.Hide();
         }
+
+        
     }
 }
