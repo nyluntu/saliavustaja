@@ -53,6 +53,7 @@ namespace Saliavustaja.TietokantaLiittymat
 
         public override List<Tilaus> HaeKaikki()
         {
+            LueTilauksetTietokannasta();
             List<Tilaus> kaikkiTilaukset = new List<Tilaus>();
             for (int i = 1; i <= tilaukset.Count; i++)
             {

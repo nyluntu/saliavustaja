@@ -66,7 +66,7 @@
             this.panel1.Controls.Add(this.PoydatCombobox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1115, 96);
             this.panel1.TabIndex = 0;
@@ -74,7 +74,7 @@
             // BonusAsiakasCheckbox
             // 
             this.BonusAsiakasCheckbox.Location = new System.Drawing.Point(912, 39);
-            this.BonusAsiakasCheckbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BonusAsiakasCheckbox.Margin = new System.Windows.Forms.Padding(4);
             this.BonusAsiakasCheckbox.Name = "BonusAsiakasCheckbox";
             this.BonusAsiakasCheckbox.Size = new System.Drawing.Size(187, 25);
             this.BonusAsiakasCheckbox.TabIndex = 2;
@@ -96,7 +96,7 @@
             // 
             this.PoydatCombobox.FormattingEnabled = true;
             this.PoydatCombobox.Location = new System.Drawing.Point(16, 39);
-            this.PoydatCombobox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PoydatCombobox.Margin = new System.Windows.Forms.Padding(4);
             this.PoydatCombobox.Name = "PoydatCombobox";
             this.PoydatCombobox.Size = new System.Drawing.Size(479, 24);
             this.PoydatCombobox.TabIndex = 0;
@@ -110,7 +110,7 @@
             this.panel2.Controls.Add(this.AteriatListView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 96);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1115, 492);
             this.panel2.TabIndex = 1;
@@ -118,7 +118,7 @@
             // PoistaAteriaButton
             // 
             this.PoistaAteriaButton.Location = new System.Drawing.Point(523, 75);
-            this.PoistaAteriaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PoistaAteriaButton.Margin = new System.Windows.Forms.Padding(4);
             this.PoistaAteriaButton.Name = "PoistaAteriaButton";
             this.PoistaAteriaButton.Size = new System.Drawing.Size(100, 28);
             this.PoistaAteriaButton.TabIndex = 3;
@@ -129,7 +129,7 @@
             // LisaaAteriaButton
             // 
             this.LisaaAteriaButton.Location = new System.Drawing.Point(523, 39);
-            this.LisaaAteriaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LisaaAteriaButton.Margin = new System.Windows.Forms.Padding(4);
             this.LisaaAteriaButton.Name = "LisaaAteriaButton";
             this.LisaaAteriaButton.Size = new System.Drawing.Size(100, 28);
             this.LisaaAteriaButton.TabIndex = 2;
@@ -146,7 +146,7 @@
             this.AterioidenMaara});
             this.AteriatDataGridView.Dock = System.Windows.Forms.DockStyle.Right;
             this.AteriatDataGridView.Location = new System.Drawing.Point(643, 0);
-            this.AteriatDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AteriatDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.AteriatDataGridView.MultiSelect = false;
             this.AteriatDataGridView.Name = "AteriatDataGridView";
             this.AteriatDataGridView.Size = new System.Drawing.Size(472, 492);
@@ -179,7 +179,7 @@
             this.HintaSarake});
             this.AteriatListView.Dock = System.Windows.Forms.DockStyle.Left;
             this.AteriatListView.Location = new System.Drawing.Point(0, 0);
-            this.AteriatListView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AteriatListView.Margin = new System.Windows.Forms.Padding(4);
             this.AteriatListView.MultiSelect = false;
             this.AteriatListView.Name = "AteriatListView";
             this.AteriatListView.Size = new System.Drawing.Size(495, 492);
@@ -211,7 +211,7 @@
             this.panel3.Controls.Add(this.PeruTilausButton);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 588);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1115, 122);
             this.panel3.TabIndex = 2;
@@ -302,7 +302,7 @@
             // VahvistaTilausButton
             // 
             this.VahvistaTilausButton.Location = new System.Drawing.Point(939, 62);
-            this.VahvistaTilausButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.VahvistaTilausButton.Margin = new System.Windows.Forms.Padding(4);
             this.VahvistaTilausButton.Name = "VahvistaTilausButton";
             this.VahvistaTilausButton.Size = new System.Drawing.Size(160, 46);
             this.VahvistaTilausButton.TabIndex = 1;
@@ -313,7 +313,7 @@
             // PeruTilausButton
             // 
             this.PeruTilausButton.Location = new System.Drawing.Point(771, 62);
-            this.PeruTilausButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PeruTilausButton.Margin = new System.Windows.Forms.Padding(4);
             this.PeruTilausButton.Name = "PeruTilausButton";
             this.PeruTilausButton.Size = new System.Drawing.Size(160, 46);
             this.PeruTilausButton.TabIndex = 0;
@@ -329,9 +329,10 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UusiTilaus";
             this.Text = "Uusi tilaus";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UusiTilaus_FormClosed);
             this.Load += new System.EventHandler(this.UusiTilaus_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

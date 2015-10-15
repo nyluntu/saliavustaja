@@ -16,24 +16,25 @@ namespace Saliavustaja.UI
             InitializeComponent();
         }
 
-        private void AloitusIkkuna_Load(object sender, EventArgs e)
+        void AloitusIkkuna_Load(object sender, EventArgs e)
         {
-            LisaaTilauksetListaKomponenttiin();
+            PaivitaTilauksetListaKomponenttiin();
         }
 
-        private void uusiTilausToolStripMenuItem_Click(object sender, EventArgs e)
+        void uusiTilausToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UusiTilaus tilausikkuna = new UusiTilaus();
+            UusiTilaus tilausikkuna = new UusiTilaus(this);
             tilausikkuna.Show();
         }
 
-        private void lopetaToolStripMenuItem_Click(object sender, EventArgs e)
+        void lopetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void LisaaTilauksetListaKomponenttiin()
+        public void PaivitaTilauksetListaKomponenttiin()
         {
+            TilauksetListView.Items.Clear();
             List<Tilaus> tilaukset = tilausDb.HaeKaikki();
             foreach (var tilaus in tilaukset)
             {
