@@ -1,6 +1,6 @@
 ﻿using System;
-using Saliavustaja.TietokantaLiittymat;
 using Saliavustaja.Entiteetit;
+using Saliavustaja.TietokantaLiittymat;
 
 namespace Saliavustaja
 {
