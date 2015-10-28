@@ -50,7 +50,7 @@ namespace Saliavustaja.UI
                 TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausDb, poytaDb, asiakasDb);
                 tilauksenVastaanotto.VastaanotaTilaus(tilaus);
                 MessageBox.Show("Tilaus tallennettu onnistuneesti.");
-                this.Close();
+                this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace Saliavustaja.UI
 
         void PeruTilausButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         void LisaaAteriaButton_Click(object sender, EventArgs e)

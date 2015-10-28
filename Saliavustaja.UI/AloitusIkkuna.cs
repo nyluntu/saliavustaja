@@ -24,7 +24,7 @@ namespace Saliavustaja.UI
         void uusiTilausToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UusiTilaus tilausikkuna = new UusiTilaus(this);
-            tilausikkuna.Show();
+            tilausikkuna.ShowDialog();
         }
 
         void lopetaToolStripMenuItem_Click(object sender, EventArgs e)
