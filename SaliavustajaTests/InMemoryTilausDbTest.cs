@@ -29,7 +29,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public override void HaeTilausTunnisteella()
+        public override void KuuluisiHakeaTilausTunnisteella()
         {
             Tilaus tilaus = tilausDb.Hae(1);
             Assert.IsNotNull(tilaus);
@@ -40,14 +40,14 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public override void HaeTilausTunnisteellaMuttaTilaustaEiLoydy()
+        public override void KuuluisiHakeaTilausTunnisteellaMuttaPalauttaaTyhjaTilaus()
         {
             Tilaus tilaus = tilausDb.Hae(99);
             Assert.IsNull(tilaus);
         }
 
         [Test]
-        public override void HaeKaikkiTilaukset()
+        public override void KuuluisiHakeaKaikkiTilaukset()
         {
             List<Tilaus> tilaukset = tilausDb.HaeKaikki();
             Assert.IsNotNull(tilaukset);
@@ -61,7 +61,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public override void LuoUusiTilaus()
+        public override void KuuluisiLuodaUusiTilaus()
         {
             var tilaus = LuoTilaus("Pihvi, aterian tallennus testi");
             tilausDb.Uusi(tilaus);

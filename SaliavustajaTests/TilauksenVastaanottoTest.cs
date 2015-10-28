@@ -28,7 +28,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void VastaanotaJaTallennaUusiTilaus()
+        public void KuuluisiVastaanottaaJaTallentaaUusiTilaus()
         {
 
             Poyta poyta = poytaDb.Hae(8);
@@ -67,7 +67,7 @@ namespace SaliavustajaTests
 
         [Test]
         [ExpectedException(typeof(Exception), ExpectedMessage = "Pöytää ei ole valittu. Tilausta ei voitu vahvistaa.")]
-        public void VirheellinenTilausPoytaPuuttuu()
+        public void KuuluisiIlmoittaaVirheestaKoskaTilauksestaPuuttuuPoyta()
         {
             Asiakas asiakas = new Asiakas();
             Tilaus tilaus = new Tilaus();
@@ -81,10 +81,9 @@ namespace SaliavustajaTests
 
         [Test]
         [ExpectedException(typeof(Exception), ExpectedMessage = "Pöytä on jo varattu. Tilausta ei voitu vahvistaa.")]
-        public void VirheellinenTilausPoytaVarattuna()
+        public void KuuluisiIlmoittaaVirheestaKoskaTilauksenPoytaOnVarattu()
         {
             poytaDb.VaraaPoyta(6);
-
             Poyta poyta = poytaDb.Hae(6);
             Asiakas asiakas = new Asiakas();
             Tilaus tilaus = new Tilaus();
@@ -99,7 +98,7 @@ namespace SaliavustajaTests
 
         [Test]
         [ExpectedException(typeof(Exception), ExpectedMessage = "Tilaus ei sisällä tilausrivejä.")]
-        public void VirheellinenTilausEiSisallaTilausriveja()
+        public void KuuluisiIlmoittaaVirheestaKoskaTilausEiSisallaTilausriveja()
         {
             poytaDb.VaraaPoyta(1);
             Poyta poyta = poytaDb.Hae(6);
@@ -112,7 +111,7 @@ namespace SaliavustajaTests
 
         [Test]
         [ExpectedException(typeof(Exception), ExpectedMessage = "Tilaus ei sisällä asiakasta.")]
-        public void VirheellinenTilausEiSisallaAsiakasta()
+        public void KuuluisiIlmoittaaVirheestaKoskaTilausEiSisallaAsiakasta()
         {
             poytaDb.VaraaPoyta(1);
             Poyta poyta = poytaDb.Hae(6);

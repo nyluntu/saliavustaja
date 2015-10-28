@@ -26,7 +26,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeAsiakasTunnisteella()
+        public void KuuluisiHakeaAsiakasTunnisteella()
         {
             BonusAsiakas asiakasTietokannasta = asiakasDb.Hae(3);
             Assert.That(asiakasTietokannasta, Is.Not.Null);
@@ -35,14 +35,14 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeKaikkiAsiakkaat()
+        public void KuuluisiHakeaKaikkiAsiakkaat()
         {
             List<BonusAsiakas> asiakkaat = asiakasDb.HaeKaikki();
             Assert.AreEqual(4, asiakkaat.Count);
         }
 
         [Test]
-        public void PaivitaAsiakkaanEtupisteMuutokset()
+        public void KuuluisiPaivittaaAsiakkaanEtupisteidenMuutokset()
         {
             BonusAsiakas asiakasTietokannasta = asiakasDb.Hae(1);
             asiakasTietokannasta.KerrytaEtupisteita(200);

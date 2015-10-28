@@ -16,7 +16,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void LuoUusiTilaus()
+        public void KuuluisiLuodaUusiTilaus()
         {
             Assert.That(tilaus, Is.InstanceOf(typeof(Tilaus)));
             Assert.That(tilaus.Poyta, Is.Null);
@@ -26,7 +26,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void AsetaTilauksellePoyta()
+        public void KuuluisiMaarittaaTilauksellePoyta()
         {
             tilaus.Poyta = new Poyta(1, 1, Varaustilanne.Varattu);
             Assert.That(tilaus.Poyta, Is.InstanceOf<Poyta>());
@@ -34,7 +34,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void AsetaTilaukselleAsiakas()
+        public void KuuluisiMaarittaaTilaukselleAsiakas()
         {
             tilaus.Asiakas = new Asiakas();
             Assert.That(tilaus.Asiakas, Is.InstanceOf<Asiakas>());
@@ -42,7 +42,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void AsetaTilaukselleBonusAsiakas()
+        public void KuuluisiMaarittaaTilaukselleBonusasiakas()
         {
             tilaus.Asiakas = new BonusAsiakas();
             Assert.That(tilaus.Asiakas, Is.InstanceOf<Asiakas>());
@@ -50,7 +50,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void LisaaTilaukselleAteria()
+        public void KuuluisiLisataTilaukselleTilausrivi()
         {
             var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50, 0.14);
             tilaus.LisaaAteria(lihapullat, 1);
@@ -74,7 +74,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void PoistaTilauksestaAteria()
+        public void KuuluisiPoistaaTilauksestaTilausrivi()
         {
             var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50, 0.14);
             tilaus.LisaaAteria(lihapullat, 1);
@@ -92,7 +92,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void VaihdaTilauksenAterianMaara()
+        public void KuuluisiMuuttaaTilausrivienAterioidenMaaraa()
         {
             var lihapullat = new Ateria(1, "Lihapullat ja muussi", 11.50, 0.14);
             tilaus.LisaaAteria(lihapullat, 1);
@@ -109,27 +109,27 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void UudenTilauksenTilaOnVahvistamaton()
+        public void KuuluisiTarkistaaOnkoUusiTilausMaaritettyVahvistetuksi()
         {
             Assert.AreEqual(false, tilaus.OnkoVahvistettu());
         }
 
         [Test]
-        public void VahvistaTilauksenTila()
+        public void KuuluisiMuuttaaTilauksenTilaVahvistetuksi()
         {
             tilaus.VahvistaTilaus();
             Assert.AreEqual(true, tilaus.OnkoVahvistettu());
         }
 
         [Test]
-        public void LaskeTilauksenKokonaishintaKunTilausTyhja()
+        public void KuuluisiLaskeaTilauksenKokonaishintaKunTilausrivejaEiOle()
         {
             var kokonaishinta = tilaus.LaskeVerollinenKokonaishinta();
             Assert.AreEqual(0.0, kokonaishinta, 0.01);
         }
 
         [Test]
-        public void LaskeKokonaishintaKunYksiAteria()
+        public void KuuluisiLaskeaKokonaishintaTilaukselleKunSisaltaaYhdenAterian()
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50, 0.14);
             tilaus.LisaaAteria(ateria, 1);
@@ -138,7 +138,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void LaskeKokonaishintaKunUseampiAteria()
+        public void KuuluisiLaskeaKokonaishintaTilaukselleKunSisaltaaUseanAterian()
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50, 0.14);
             tilaus.LisaaAteria(ateria, 1);
@@ -151,7 +151,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void LaskeKokonaishintaKunYksiAteriaJaUseampiKpl()
+        public void KuuluisiLaskeaKokonaishintaTilaukselleKunYhdenAterianMaaraOnUseitaKappaleita()
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50, 0.14);
             tilaus.LisaaAteria(ateria, 3);
@@ -160,7 +160,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void LaskeKokonaishintaBonusAsiakkaalle()
+        public void KuuluisiLaskeaKokonaishintaTilaukselleKunKyseessaBonusasiakas()
         {
             var ateria = new Ateria(1, "Chicken Wings", 11.50, 0.14);
             tilaus.LisaaAteria(ateria, 3);

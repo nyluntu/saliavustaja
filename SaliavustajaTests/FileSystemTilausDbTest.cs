@@ -13,7 +13,7 @@ namespace SaliavustajaTests
     public class FileSystemTilausDbTest : TilausDbBaseTest
     {
        FileSystemTilausDb tilausDb;
-        string tietokannanPolku = "C:\\Temp\\tilaukset.dat";
+        string tietokannanPolku = "C:\\Temp\\tilaukset_test.dat";
 
         [TestFixtureTearDown]
         public void TestienLopetus()
@@ -22,7 +22,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HyvaksymisTesti() {
+        public void KuuluisiTallentaaTilausTiedostojarjestelmaan() {
             // Luodaan uusi tiedostojärjestelmää käsittelevä luokka.
             tilausDb = new FileSystemTilausDb(tietokannanPolku);
 
@@ -67,22 +67,22 @@ namespace SaliavustajaTests
             Assert.AreEqual(2, loytynytTilaus.Tilausrivit.Count);
         }
 
-        public override void LuoUusiTilaus()
+        public override void KuuluisiLuodaUusiTilaus()
         {
             throw new NotImplementedException();
         }
 
-        public override void HaeTilausTunnisteella()
+        public override void KuuluisiHakeaTilausTunnisteella()
         {
             throw new NotImplementedException();
         }
 
-        public override void HaeKaikkiTilaukset()
+        public override void KuuluisiHakeaKaikkiTilaukset()
         {
             throw new NotImplementedException();
         }
 
-        public override void HaeTilausTunnisteellaMuttaTilaustaEiLoydy()
+        public override void KuuluisiHakeaTilausTunnisteellaMuttaPalauttaaTyhjaTilaus()
         {
             throw new NotImplementedException();
         }

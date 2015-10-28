@@ -7,7 +7,7 @@ namespace SaliavustajaTests
     class PoytaTest
     {
         [Test]
-        public void PoytaObjektinLuominen()
+        public void KuuluisiLuodaPoytaOlio()
         {
             Poyta poyta = new Poyta(1, 5, Varaustilanne.Vapaa);
             Assert.AreEqual(1, poyta.Id);
@@ -15,21 +15,21 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void PoydanKuuluisiOllaVarattu()
+        public void KuuluisiTarkistaaOnkoLuotuPoytaVarattu()
         {
             Poyta poyta = new Poyta(1, 4, Varaustilanne.Varattu);
             Assert.AreEqual(true, poyta.OnkoVarattu());
         }
 
         [Test]
-        public void PoydanKuuluisiOllaVapaa()
+        public void KuuluisiTarkistaaOnkoLuotuPoytaVapaa()
         {
             Poyta poyta = new Poyta(1, 4, Varaustilanne.Vapaa);
             Assert.AreEqual(false, poyta.OnkoVarattu());
         }
 
         [Test]
-        public void VaraaPoyta()
+        public void KuuluisiVarataPoyta()
         {
             Poyta poyta = new Poyta(1, 4, Varaustilanne.Vapaa);
             poyta.VaraaPoyta();
@@ -37,7 +37,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void VapautaPoyta()
+        public void KuuluisiVapauttaaPoyta()
         {
             Poyta poyta = new Poyta(1, 4, Varaustilanne.Varattu);
             poyta.VapautaPoyta();
@@ -45,7 +45,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void PoydanToStringMetodinTulostus()
+        public void KuuluisiTulostaaPoydastaMerkkijono()
         {
             Poyta poyta = new Poyta(6, 5, Varaustilanne.Vapaa);
             Assert.AreEqual("Pöytä 6, paikkoja 5, VAPAA", poyta.ToString());

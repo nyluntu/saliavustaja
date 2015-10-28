@@ -17,7 +17,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaePoytaTunnisteella()
+        public void KuuluisiHakeaPoytaTunnisteella()
         {
             Poyta poyta = poytaDb.Hae(4);
             Assert.That(poyta, Is.Not.Null);
@@ -26,7 +26,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeKaikkiPoydat()
+        public void KuuluisiHakeaKaikkiPoydat()
         {
             List<Poyta> kaikkiPoydat = poytaDb.HaeKaikki();
             Assert.That(kaikkiPoydat, Is.InstanceOf<List<Poyta>>());
@@ -34,7 +34,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void VaraaPoyta()
+        public void KuuluisiVarataPoyta()
         {
             List<Poyta> kaikkiPoydat = poytaDb.HaeKaikki();
             Poyta poyta = kaikkiPoydat[4];

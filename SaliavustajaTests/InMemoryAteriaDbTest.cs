@@ -17,7 +17,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeAteriaTunnisteella()
+        public void KuuluisiHakeaAteriaTunnisteella()
         {
             Ateria ateria = ateriaDb.Hae(3);
             Assert.That(ateria, Is.Not.Null);
@@ -33,7 +33,7 @@ namespace SaliavustajaTests
         }
 
         [Test]
-        public void HaeKaikkiAteriat()
+        public void KuuluisiHakeaKaikkiAteriat()
         {
             List<Ateria> ateriat = ateriaDb.HaeKaikki();
             Assert.That(ateriat, Is.InstanceOf<List<Ateria>>());

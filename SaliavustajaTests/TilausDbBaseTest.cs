@@ -7,10 +7,10 @@ namespace SaliavustajaTests
     public abstract class TilausDbBaseTest
     {
 
-        public abstract void LuoUusiTilaus();
-        public abstract void HaeTilausTunnisteella();
-        public abstract void HaeKaikkiTilaukset();
-        public abstract void HaeTilausTunnisteellaMuttaTilaustaEiLoydy();
+        public abstract void KuuluisiLuodaUusiTilaus();
+        public abstract void KuuluisiHakeaTilausTunnisteella();
+        public abstract void KuuluisiHakeaKaikkiTilaukset();
+        public abstract void KuuluisiHakeaTilausTunnisteellaMuttaPalauttaaTyhjaTilaus();
 
         protected List<Tilaus> LuoTilauksia()
         {
