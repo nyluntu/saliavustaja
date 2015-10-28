@@ -10,6 +10,7 @@ namespace Saliavustaja.UI
     {
         const double ALV = 0.14;
 
+        AloitusIkkuna kantaikkuna = null;
         Tilaus tilaus = new Tilaus();
         TilausDb tilausDb = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
         PoytaDb poytaDb = new InMemoryPoytaDb();
@@ -19,10 +20,26 @@ namespace Saliavustaja.UI
         public UusiTilaus()
         {
             InitializeComponent();
+        }
+
+        public UusiTilaus(AloitusIkkuna kantaikkuna)
+            : this()
+        {
+            this.kantaikkuna = kantaikkuna;
+        }
+
+        void UusiTilaus_Load(object sender, EventArgs e)
+        {
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListaValikkoon();
             AsiakastyypinLisaaminenTilaukseen();
             PiilotaEtupisteidenElementit();
+        }
+
+        void UusiTilaus_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (kantaikkuna != null)
+                kantaikkuna.PaivitaTilauksetListaKomponenttiin();
         }
 
         void VahvistaTilausButton_Click(object sender, EventArgs e)
@@ -154,5 +171,7 @@ namespace Saliavustaja.UI
             EtupisteetLabel.Hide();
             EtupisteetValue.Hide();
         }
+
+       
     }
 }

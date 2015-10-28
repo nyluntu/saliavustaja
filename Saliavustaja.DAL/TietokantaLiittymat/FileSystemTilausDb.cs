@@ -1,5 +1,4 @@
 ﻿using Saliavustaja.Entiteetit;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -54,6 +53,7 @@ namespace Saliavustaja.TietokantaLiittymat
 
         public override List<Tilaus> HaeKaikki()
         {
+            LueTilauksetTietokannasta();
             List<Tilaus> kaikkiTilaukset = new List<Tilaus>();
             for (int i = 1; i <= tilaukset.Count; i++)
             {
