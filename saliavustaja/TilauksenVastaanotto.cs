@@ -1,6 +1,7 @@
 ﻿using System;
 using Saliavustaja.Entiteetit;
 using Saliavustaja.TietokantaLiittymat;
+using Saliavustaja.Rajapinnat;
 
 namespace Saliavustaja
 {

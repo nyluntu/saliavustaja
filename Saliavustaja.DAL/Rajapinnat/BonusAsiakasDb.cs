@@ -1,7 +1,7 @@
 ﻿using Saliavustaja.Entiteetit;
 using System.Collections.Generic;
 
-namespace Saliavustaja.TietokantaLiittymat
+namespace Saliavustaja.Rajapinnat
 {
     public abstract class BonusAsiakasDb
     {

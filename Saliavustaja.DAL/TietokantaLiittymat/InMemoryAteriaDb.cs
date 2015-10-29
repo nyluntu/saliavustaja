@@ -1,13 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Saliavustaja.Entiteetit;
+using Saliavustaja.Rajapinnat;
 
 namespace Saliavustaja.TietokantaLiittymat
 {
+    /// <summary>
+    /// InMemoryAteriaDb.cs
+    /// 
+    /// Luokka käsittelee tietokantayhteyksiä Ateria-luokan
+    /// olioiden osalta.
+    /// 
+    /// HUOMAA ETTÄ KYSEESSÄ ON MUISTINVARAINEN TIETOKANTATOTEUTUS!
+    /// TOTEUTUSTAPAAN VOIT KYSYÄ NEUVOA.
+    /// 
+    /// Luokalla on seuraavia ominaisuuksia:
+    /// 
+    /// 1. Hashtable ateriat
+    /// </summary>
     public class InMemoryAteriaDb : AteriaDb
     {
         Hashtable ateriat = new Hashtable();
 
+        /// <summary>
+        /// InMemoryAteriaDb()
+        /// 
+        /// Parametriton rakenta. Alustetaan tietokanta (hashtable)
+        /// aterioilla, jotta voidaan kokeilla ohjelman toimintoja.
+        /// </summary>
         public InMemoryAteriaDb()
         {
             ateriat.Add(1, new Ateria(1, "Lämminsavustettua hanhenrintaa ja fenkolia", 17, 0.14));
@@ -22,11 +42,28 @@ namespace Saliavustaja.TietokantaLiittymat
             ateriat.Add(10, new Ateria(10, "Valikoima kotimaisia juustoja ja kuusenkerkkää", 13, 0.14));
         }
 
+        /// <summary>
+        /// Ateria Hae(int tunnus)
+        /// 
+        /// Metodi palauttaa tietokannasta (Hashtable) aterian käyttäen
+        /// metodille parametrina annettua aterian tunnusta.
+        /// 
+        /// TÄTÄ METODIA EI OLE KÄYTETTY MISSÄÄN
+        /// </summary>
+        /// <param name="tunnus"></param>
+        /// <returns></returns>
         public override Ateria Hae(int tunnus)
         {
             return (Ateria)ateriat[tunnus];
         }
 
+        /// <summary>
+        /// List<Ateria> HaeKaikki()
+        /// 
+        /// Metodi palauttaa kaikki ateriat tietokannasta (Hashtable)
+        /// listana, joka sisältää Ateria-luokan olioita.
+        /// </summary>
+        /// <returns></returns>
         public override List<Ateria> HaeKaikki()
         {
             List<Ateria> kaikkiAteriat = new List<Ateria>();

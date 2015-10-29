@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Saliavustaja.Entiteetit;
 using Saliavustaja.TietokantaLiittymat;
+using Saliavustaja.Rajapinnat;
 
 namespace Saliavustaja.UI
 {
