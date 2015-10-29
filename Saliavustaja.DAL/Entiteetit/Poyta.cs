@@ -79,9 +79,6 @@ namespace Saliavustaja.Entiteetit
 
         /// <summary>
         /// override string ToString()
-        /// 
-        /// Ei esitellä tehtävässä. Tulee vastaan kohta, jossa hyödyllinen
-        /// ja pyritään katsomaan kuka hoksaa käyttää.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

@@ -92,6 +92,8 @@ namespace Saliavustaja.Entiteetit
         }
 
         /// <summary>
+        /// EI OLE KÄYTETTY OHJELMASSA
+        /// 
         /// OstaEtupisteilla(double hinta)
         /// 
         /// Metodi vähentää bonusasiakkaan etupisteitä
@@ -112,7 +114,6 @@ namespace Saliavustaja.Entiteetit
         /// </summary>
         /// <param name="hinta"></param>
         /// <returns></returns>
-        // OstaEtupisteillä toimintoa ei ole hyödynnetty toistaiseksi ohjelmassa.
         public double OstaEtupisteilla(double hinta)
         {
             // Jos erotus yli 0, pisteitä jää erotuksen verran.
