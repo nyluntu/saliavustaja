@@ -30,6 +30,9 @@
         {
             this.labelValitsePoydat = new System.Windows.Forms.Label();
             this.comboBoxPoydat = new System.Windows.Forms.ComboBox();
+            this.listViewAteriat = new System.Windows.Forms.ListView();
+            this.columnHeaderAteriatNimi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderAteriatHinta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // labelValitsePoydat
@@ -49,11 +52,34 @@
             this.comboBoxPoydat.Size = new System.Drawing.Size(297, 21);
             this.comboBoxPoydat.TabIndex = 1;
             // 
+            // listViewAteriat
+            // 
+            this.listViewAteriat.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderAteriatNimi,
+            this.columnHeaderAteriatHinta});
+            this.listViewAteriat.Location = new System.Drawing.Point(13, 76);
+            this.listViewAteriat.Name = "listViewAteriat";
+            this.listViewAteriat.Size = new System.Drawing.Size(296, 238);
+            this.listViewAteriat.TabIndex = 2;
+            this.listViewAteriat.UseCompatibleStateImageBehavior = false;
+            this.listViewAteriat.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderAteriatNimi
+            // 
+            this.columnHeaderAteriatNimi.Text = "Aterian nimi";
+            this.columnHeaderAteriatNimi.Width = 181;
+            // 
+            // columnHeaderAteriatHinta
+            // 
+            this.columnHeaderAteriatHinta.Text = "Hinta";
+            this.columnHeaderAteriatHinta.Width = 109;
+            // 
             // UusiTilausIkkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 416);
+            this.Controls.Add(this.listViewAteriat);
             this.Controls.Add(this.comboBoxPoydat);
             this.Controls.Add(this.labelValitsePoydat);
             this.Name = "UusiTilausIkkuna";
@@ -68,5 +94,8 @@
 
         private System.Windows.Forms.Label labelValitsePoydat;
         private System.Windows.Forms.ComboBox comboBoxPoydat;
+        private System.Windows.Forms.ListView listViewAteriat;
+        private System.Windows.Forms.ColumnHeader columnHeaderAteriatNimi;
+        private System.Windows.Forms.ColumnHeader columnHeaderAteriatHinta;
     }
 }
