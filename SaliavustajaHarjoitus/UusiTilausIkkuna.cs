@@ -62,5 +62,14 @@ namespace SaliavustajaHarjoitus
                 dataGridViewAteriat.Rows.Add(rivi);
             }
         }
+
+        private void buttonPoistaAteria_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridViewAteriat.SelectedRows.Count; i++)
+            {
+                DataGridViewRow poistettavaRivi = dataGridViewAteriat.SelectedRows[i];
+                dataGridViewAteriat.Rows.Remove(poistettavaRivi);
+            }
+        }
     }
 }

@@ -128,6 +128,7 @@
             this.buttonPoistaAteria.TabIndex = 5;
             this.buttonPoistaAteria.Text = "<< Poista";
             this.buttonPoistaAteria.UseVisualStyleBackColor = true;
+            this.buttonPoistaAteria.Click += new System.EventHandler(this.buttonPoistaAteria_Click);
             // 
             // UusiTilausIkkuna
             // 
