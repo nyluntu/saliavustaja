@@ -39,6 +39,16 @@
             this.ColumnAterianMaara = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonLisaaAteria = new System.Windows.Forms.Button();
             this.buttonPoistaAteria = new System.Windows.Forms.Button();
+            this.labelVerotonHintaTitle = new System.Windows.Forms.Label();
+            this.labelVeronOsuusTitle = new System.Windows.Forms.Label();
+            this.labelTilauksenKokonaishintaTitle = new System.Windows.Forms.Label();
+            this.labelVerotonHintaValue = new System.Windows.Forms.Label();
+            this.labelVeronOsuusValue = new System.Windows.Forms.Label();
+            this.labelTilauksenKokonaishintaValue = new System.Windows.Forms.Label();
+            this.labelKertyvatPisteetTitle = new System.Windows.Forms.Label();
+            this.labelKertyvatPisteetValue = new System.Windows.Forms.Label();
+            this.buttonVahvistaTilaus = new System.Windows.Forms.Button();
+            this.buttonPeruTilaus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAteriat)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,11 +140,111 @@
             this.buttonPoistaAteria.UseVisualStyleBackColor = true;
             this.buttonPoistaAteria.Click += new System.EventHandler(this.buttonPoistaAteria_Click);
             // 
+            // labelVerotonHintaTitle
+            // 
+            this.labelVerotonHintaTitle.AutoSize = true;
+            this.labelVerotonHintaTitle.Location = new System.Drawing.Point(16, 399);
+            this.labelVerotonHintaTitle.Name = "labelVerotonHintaTitle";
+            this.labelVerotonHintaTitle.Size = new System.Drawing.Size(70, 13);
+            this.labelVerotonHintaTitle.TabIndex = 6;
+            this.labelVerotonHintaTitle.Text = "Veroton hinta";
+            // 
+            // labelVeronOsuusTitle
+            // 
+            this.labelVeronOsuusTitle.AutoSize = true;
+            this.labelVeronOsuusTitle.Location = new System.Drawing.Point(16, 433);
+            this.labelVeronOsuusTitle.Name = "labelVeronOsuusTitle";
+            this.labelVeronOsuusTitle.Size = new System.Drawing.Size(66, 13);
+            this.labelVeronOsuusTitle.TabIndex = 7;
+            this.labelVeronOsuusTitle.Text = "Veron osuus";
+            // 
+            // labelTilauksenKokonaishintaTitle
+            // 
+            this.labelTilauksenKokonaishintaTitle.AutoSize = true;
+            this.labelTilauksenKokonaishintaTitle.Location = new System.Drawing.Point(16, 467);
+            this.labelTilauksenKokonaishintaTitle.Name = "labelTilauksenKokonaishintaTitle";
+            this.labelTilauksenKokonaishintaTitle.Size = new System.Drawing.Size(122, 13);
+            this.labelTilauksenKokonaishintaTitle.TabIndex = 8;
+            this.labelTilauksenKokonaishintaTitle.Text = "Tilauksen kokonaishinta";
+            // 
+            // labelVerotonHintaValue
+            // 
+            this.labelVerotonHintaValue.AutoSize = true;
+            this.labelVerotonHintaValue.Location = new System.Drawing.Point(273, 398);
+            this.labelVerotonHintaValue.Name = "labelVerotonHintaValue";
+            this.labelVerotonHintaValue.Size = new System.Drawing.Size(22, 13);
+            this.labelVerotonHintaValue.TabIndex = 9;
+            this.labelVerotonHintaValue.Text = "0 €";
+            // 
+            // labelVeronOsuusValue
+            // 
+            this.labelVeronOsuusValue.AutoSize = true;
+            this.labelVeronOsuusValue.Location = new System.Drawing.Point(272, 433);
+            this.labelVeronOsuusValue.Name = "labelVeronOsuusValue";
+            this.labelVeronOsuusValue.Size = new System.Drawing.Size(22, 13);
+            this.labelVeronOsuusValue.TabIndex = 10;
+            this.labelVeronOsuusValue.Text = "0 €";
+            // 
+            // labelTilauksenKokonaishintaValue
+            // 
+            this.labelTilauksenKokonaishintaValue.AutoSize = true;
+            this.labelTilauksenKokonaishintaValue.Location = new System.Drawing.Point(271, 467);
+            this.labelTilauksenKokonaishintaValue.Name = "labelTilauksenKokonaishintaValue";
+            this.labelTilauksenKokonaishintaValue.Size = new System.Drawing.Size(22, 13);
+            this.labelTilauksenKokonaishintaValue.TabIndex = 11;
+            this.labelTilauksenKokonaishintaValue.Text = "0 €";
+            // 
+            // labelKertyvatPisteetTitle
+            // 
+            this.labelKertyvatPisteetTitle.AutoSize = true;
+            this.labelKertyvatPisteetTitle.Location = new System.Drawing.Point(317, 467);
+            this.labelKertyvatPisteetTitle.Name = "labelKertyvatPisteetTitle";
+            this.labelKertyvatPisteetTitle.Size = new System.Drawing.Size(96, 13);
+            this.labelKertyvatPisteetTitle.TabIndex = 12;
+            this.labelKertyvatPisteetTitle.Text = "Kertyviä etupisteitä";
+            // 
+            // labelKertyvatPisteetValue
+            // 
+            this.labelKertyvatPisteetValue.AutoSize = true;
+            this.labelKertyvatPisteetValue.Location = new System.Drawing.Point(461, 466);
+            this.labelKertyvatPisteetValue.Name = "labelKertyvatPisteetValue";
+            this.labelKertyvatPisteetValue.Size = new System.Drawing.Size(13, 13);
+            this.labelKertyvatPisteetValue.TabIndex = 13;
+            this.labelKertyvatPisteetValue.Text = "0";
+            // 
+            // buttonVahvistaTilaus
+            // 
+            this.buttonVahvistaTilaus.Location = new System.Drawing.Point(683, 452);
+            this.buttonVahvistaTilaus.Name = "buttonVahvistaTilaus";
+            this.buttonVahvistaTilaus.Size = new System.Drawing.Size(113, 34);
+            this.buttonVahvistaTilaus.TabIndex = 14;
+            this.buttonVahvistaTilaus.Text = "Vahvista tilaus";
+            this.buttonVahvistaTilaus.UseVisualStyleBackColor = true;
+            // 
+            // buttonPeruTilaus
+            // 
+            this.buttonPeruTilaus.Location = new System.Drawing.Point(554, 452);
+            this.buttonPeruTilaus.Name = "buttonPeruTilaus";
+            this.buttonPeruTilaus.Size = new System.Drawing.Size(105, 34);
+            this.buttonPeruTilaus.TabIndex = 15;
+            this.buttonPeruTilaus.Text = "Peru tilaus";
+            this.buttonPeruTilaus.UseVisualStyleBackColor = true;
+            // 
             // UusiTilausIkkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 498);
+            this.Controls.Add(this.buttonPeruTilaus);
+            this.Controls.Add(this.buttonVahvistaTilaus);
+            this.Controls.Add(this.labelKertyvatPisteetValue);
+            this.Controls.Add(this.labelKertyvatPisteetTitle);
+            this.Controls.Add(this.labelTilauksenKokonaishintaValue);
+            this.Controls.Add(this.labelVeronOsuusValue);
+            this.Controls.Add(this.labelVerotonHintaValue);
+            this.Controls.Add(this.labelTilauksenKokonaishintaTitle);
+            this.Controls.Add(this.labelVeronOsuusTitle);
+            this.Controls.Add(this.labelVerotonHintaTitle);
             this.Controls.Add(this.buttonPoistaAteria);
             this.Controls.Add(this.buttonLisaaAteria);
             this.Controls.Add(this.dataGridViewAteriat);
@@ -163,5 +273,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAterianMaara;
         private System.Windows.Forms.Button buttonLisaaAteria;
         private System.Windows.Forms.Button buttonPoistaAteria;
+        private System.Windows.Forms.Label labelVerotonHintaTitle;
+        private System.Windows.Forms.Label labelVeronOsuusTitle;
+        private System.Windows.Forms.Label labelTilauksenKokonaishintaTitle;
+        private System.Windows.Forms.Label labelVerotonHintaValue;
+        private System.Windows.Forms.Label labelVeronOsuusValue;
+        private System.Windows.Forms.Label labelTilauksenKokonaishintaValue;
+        private System.Windows.Forms.Label labelKertyvatPisteetTitle;
+        private System.Windows.Forms.Label labelKertyvatPisteetValue;
+        private System.Windows.Forms.Button buttonVahvistaTilaus;
+        private System.Windows.Forms.Button buttonPeruTilaus;
     }
 }
