@@ -47,5 +47,20 @@ namespace SaliavustajaHarjoitus
                 listViewAteriat.Items.Add(rivi);
             }
         }
+
+        private void buttonLisaaAteria_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listViewAteriat.SelectedItems.Count; i++)
+            {
+                Ateria ateria = (Ateria)listViewAteriat.SelectedItems[i].Tag;
+
+                DataGridViewRow rivi = new DataGridViewRow();
+                rivi.CreateCells(dataGridViewAteriat);
+                rivi.Tag = ateria;
+                rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta().ToString("C2"), 0);
+
+                dataGridViewAteriat.Rows.Add(rivi);
+            }
+        }
     }
 }

@@ -33,6 +33,13 @@
             this.listViewAteriat = new System.Windows.Forms.ListView();
             this.columnHeaderAteriatNimi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAteriatHinta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataGridViewAteriat = new System.Windows.Forms.DataGridView();
+            this.ColumnAterianNimi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAterianHinta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAterianMaara = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonLisaaAteria = new System.Windows.Forms.Button();
+            this.buttonPoistaAteria = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAteriat)).BeginInit();
             this.SuspendLayout();
             // 
             // labelValitsePoydat
@@ -74,17 +81,69 @@
             this.columnHeaderAteriatHinta.Text = "Hinta";
             this.columnHeaderAteriatHinta.Width = 109;
             // 
+            // dataGridViewAteriat
+            // 
+            this.dataGridViewAteriat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAteriat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnAterianNimi,
+            this.ColumnAterianHinta,
+            this.ColumnAterianMaara});
+            this.dataGridViewAteriat.Location = new System.Drawing.Point(461, 76);
+            this.dataGridViewAteriat.Name = "dataGridViewAteriat";
+            this.dataGridViewAteriat.Size = new System.Drawing.Size(336, 238);
+            this.dataGridViewAteriat.TabIndex = 3;
+            // 
+            // ColumnAterianNimi
+            // 
+            this.ColumnAterianNimi.HeaderText = "Aterian nimi";
+            this.ColumnAterianNimi.Name = "ColumnAterianNimi";
+            this.ColumnAterianNimi.ReadOnly = true;
+            // 
+            // ColumnAterianHinta
+            // 
+            this.ColumnAterianHinta.HeaderText = "Hinta";
+            this.ColumnAterianHinta.Name = "ColumnAterianHinta";
+            this.ColumnAterianHinta.ReadOnly = true;
+            // 
+            // ColumnAterianMaara
+            // 
+            this.ColumnAterianMaara.HeaderText = "Maara";
+            this.ColumnAterianMaara.Name = "ColumnAterianMaara";
+            // 
+            // buttonLisaaAteria
+            // 
+            this.buttonLisaaAteria.Location = new System.Drawing.Point(346, 111);
+            this.buttonLisaaAteria.Name = "buttonLisaaAteria";
+            this.buttonLisaaAteria.Size = new System.Drawing.Size(75, 23);
+            this.buttonLisaaAteria.TabIndex = 4;
+            this.buttonLisaaAteria.Text = "Lisää >>";
+            this.buttonLisaaAteria.UseVisualStyleBackColor = true;
+            this.buttonLisaaAteria.Click += new System.EventHandler(this.buttonLisaaAteria_Click);
+            // 
+            // buttonPoistaAteria
+            // 
+            this.buttonPoistaAteria.Location = new System.Drawing.Point(346, 141);
+            this.buttonPoistaAteria.Name = "buttonPoistaAteria";
+            this.buttonPoistaAteria.Size = new System.Drawing.Size(75, 23);
+            this.buttonPoistaAteria.TabIndex = 5;
+            this.buttonPoistaAteria.Text = "<< Poista";
+            this.buttonPoistaAteria.UseVisualStyleBackColor = true;
+            // 
             // UusiTilausIkkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 416);
+            this.ClientSize = new System.Drawing.Size(809, 498);
+            this.Controls.Add(this.buttonPoistaAteria);
+            this.Controls.Add(this.buttonLisaaAteria);
+            this.Controls.Add(this.dataGridViewAteriat);
             this.Controls.Add(this.listViewAteriat);
             this.Controls.Add(this.comboBoxPoydat);
             this.Controls.Add(this.labelValitsePoydat);
             this.Name = "UusiTilausIkkuna";
             this.Text = "Uusi tilaus";
             this.Load += new System.EventHandler(this.UusiTilausIkkuna_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAteriat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +156,11 @@
         private System.Windows.Forms.ListView listViewAteriat;
         private System.Windows.Forms.ColumnHeader columnHeaderAteriatNimi;
         private System.Windows.Forms.ColumnHeader columnHeaderAteriatHinta;
+        private System.Windows.Forms.DataGridView dataGridViewAteriat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAterianNimi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAterianHinta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAterianMaara;
+        private System.Windows.Forms.Button buttonLisaaAteria;
+        private System.Windows.Forms.Button buttonPoistaAteria;
     }
 }
