@@ -102,6 +102,7 @@
             this.dataGridViewAteriat.Name = "dataGridViewAteriat";
             this.dataGridViewAteriat.Size = new System.Drawing.Size(336, 238);
             this.dataGridViewAteriat.TabIndex = 3;
+            this.dataGridViewAteriat.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAteriat_CellValueChanged);
             // 
             // ColumnAterianNimi
             // 

@@ -9,6 +9,9 @@ namespace SaliavustajaHarjoitus
 {
     public partial class UusiTilausIkkuna : Form
     {
+
+        Tilaus tilaus = new Tilaus();
+
         public UusiTilausIkkuna()
         {
             InitializeComponent();
@@ -60,6 +63,8 @@ namespace SaliavustajaHarjoitus
                 rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta().ToString("C2"), 0);
 
                 dataGridViewAteriat.Rows.Add(rivi);
+
+                tilaus.LisaaAteria(ateria, 0);
             }
         }
 
@@ -69,6 +74,27 @@ namespace SaliavustajaHarjoitus
             {
                 DataGridViewRow poistettavaRivi = dataGridViewAteriat.SelectedRows[i];
                 dataGridViewAteriat.Rows.Remove(poistettavaRivi);
+
+                Ateria ateria = (Ateria)poistettavaRivi.Tag;
+
+                tilaus.PoistaAteria(ateria);
+            }
+        }
+
+        private void dataGridViewAteriat_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                Ateria ateria = (Ateria)dataGridViewAteriat.Rows[e.RowIndex].Tag;
+
+                int maara = Int32.Parse(dataGridViewAteriat.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+
+                tilaus.VaihdaAteriaMaara(ateria, maara);
+
+                labelVerotonHintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
+                labelTilauksenKokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
+                labelVeronOsuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
+
             }
         }
     }
