@@ -69,6 +69,7 @@
             this.comboBoxPoydat.Name = "comboBoxPoydat";
             this.comboBoxPoydat.Size = new System.Drawing.Size(297, 21);
             this.comboBoxPoydat.TabIndex = 1;
+            this.comboBoxPoydat.SelectedIndexChanged += new System.EventHandler(this.comboBoxPoydat_SelectedIndexChanged);
             // 
             // listViewAteriat
             // 

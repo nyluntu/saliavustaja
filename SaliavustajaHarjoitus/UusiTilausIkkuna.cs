@@ -9,12 +9,15 @@ namespace SaliavustajaHarjoitus
 {
     public partial class UusiTilausIkkuna : Form
     {
-
         Tilaus tilaus = new Tilaus();
 
         public UusiTilausIkkuna()
         {
             InitializeComponent();
+
+            tilaus.Asiakas = new Asiakas();
+            labelKertyvatPisteetTitle.Hide();
+            labelKertyvatPisteetValue.Hide();
         }
 
         private void UusiTilausIkkuna_Load(object sender, EventArgs e)
@@ -102,14 +105,30 @@ namespace SaliavustajaHarjoitus
         {
             if(checkBoxBonusasiakas.Checked)
             {
+                BonusAsiakas bonusAsiakas = new BonusAsiakas();
+                labelKertyvatPisteetValue.Text = bonusAsiakas.LaskeEtupisteet(tilaus.LaskeVerollinenKokonaishinta()).ToString();
+                tilaus.Asiakas = bonusAsiakas;
+
                 labelKertyvatPisteetTitle.Show();
                 labelKertyvatPisteetValue.Show();
             }
             else
             {
+                tilaus.Asiakas = new Asiakas();
+
                 labelKertyvatPisteetTitle.Hide();
                 labelKertyvatPisteetValue.Hide();
             }
+
+            labelVerotonHintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
+            labelTilauksenKokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
+            labelVeronOsuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
+        }
+
+        private void comboBoxPoydat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Poyta valittuPoyta = (Poyta)comboBoxPoydat.SelectedItem;
+            tilaus.Poyta = valittuPoyta;
         }
     }
 }
