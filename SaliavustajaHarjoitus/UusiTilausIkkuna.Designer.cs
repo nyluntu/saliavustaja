@@ -223,6 +223,7 @@
             this.buttonVahvistaTilaus.TabIndex = 14;
             this.buttonVahvistaTilaus.Text = "Vahvista tilaus";
             this.buttonVahvistaTilaus.UseVisualStyleBackColor = true;
+            this.buttonVahvistaTilaus.Click += new System.EventHandler(this.buttonVahvistaTilaus_Click);
             // 
             // buttonPeruTilaus
             // 
@@ -232,6 +233,7 @@
             this.buttonPeruTilaus.TabIndex = 15;
             this.buttonPeruTilaus.Text = "Peru tilaus";
             this.buttonPeruTilaus.UseVisualStyleBackColor = true;
+            this.buttonPeruTilaus.Click += new System.EventHandler(this.buttonPeruTilaus_Click);
             // 
             // checkBoxBonusasiakas
             // 

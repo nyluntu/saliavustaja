@@ -1,4 +1,5 @@
-﻿using Saliavustaja.Entiteetit;
+﻿using Saliavustaja;
+using Saliavustaja.Entiteetit;
 using Saliavustaja.Rajapinnat;
 using Saliavustaja.TietokantaLiittymat;
 using System;
@@ -129,6 +130,35 @@ namespace SaliavustajaHarjoitus
         {
             Poyta valittuPoyta = (Poyta)comboBoxPoydat.SelectedItem;
             tilaus.Poyta = valittuPoyta;
+        }
+
+        private void buttonPeruTilaus_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void buttonVahvistaTilaus_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TilausDb tilausTietokanta = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
+                PoytaDb poytaTietokanta = new InMemoryPoytaDb();
+                BonusAsiakasDb asiakasTietokanta = new InMemoryBonusAsiakasDb();
+
+                TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(
+                    tilausTietokanta, 
+                    poytaTietokanta, 
+                    asiakasTietokanta);
+
+                tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+
+                MessageBox.Show("Tilaus vastaanotettu onnistuneesti.");
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
