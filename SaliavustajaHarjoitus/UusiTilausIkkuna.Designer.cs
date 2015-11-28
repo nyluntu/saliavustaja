@@ -49,6 +49,7 @@
             this.labelKertyvatPisteetValue = new System.Windows.Forms.Label();
             this.buttonVahvistaTilaus = new System.Windows.Forms.Button();
             this.buttonPeruTilaus = new System.Windows.Forms.Button();
+            this.checkBoxBonusasiakas = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAteriat)).BeginInit();
             this.SuspendLayout();
             // 
@@ -231,11 +232,23 @@
             this.buttonPeruTilaus.Text = "Peru tilaus";
             this.buttonPeruTilaus.UseVisualStyleBackColor = true;
             // 
+            // checkBoxBonusasiakas
+            // 
+            this.checkBoxBonusasiakas.AutoSize = true;
+            this.checkBoxBonusasiakas.Location = new System.Drawing.Point(661, 29);
+            this.checkBoxBonusasiakas.Name = "checkBoxBonusasiakas";
+            this.checkBoxBonusasiakas.Size = new System.Drawing.Size(135, 17);
+            this.checkBoxBonusasiakas.TabIndex = 16;
+            this.checkBoxBonusasiakas.Text = "Bonusasiakas, ale 15%";
+            this.checkBoxBonusasiakas.UseVisualStyleBackColor = true;
+            this.checkBoxBonusasiakas.CheckedChanged += new System.EventHandler(this.checkBoxBonusasiakas_CheckedChanged);
+            // 
             // UusiTilausIkkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 498);
+            this.Controls.Add(this.checkBoxBonusasiakas);
             this.Controls.Add(this.buttonPeruTilaus);
             this.Controls.Add(this.buttonVahvistaTilaus);
             this.Controls.Add(this.labelKertyvatPisteetValue);
@@ -284,5 +297,6 @@
         private System.Windows.Forms.Label labelKertyvatPisteetValue;
         private System.Windows.Forms.Button buttonVahvistaTilaus;
         private System.Windows.Forms.Button buttonPeruTilaus;
+        private System.Windows.Forms.CheckBox checkBoxBonusasiakas;
     }
 }

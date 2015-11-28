@@ -97,5 +97,19 @@ namespace SaliavustajaHarjoitus
 
             }
         }
+
+        private void checkBoxBonusasiakas_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxBonusasiakas.Checked)
+            {
+                labelKertyvatPisteetTitle.Show();
+                labelKertyvatPisteetValue.Show();
+            }
+            else
+            {
+                labelKertyvatPisteetTitle.Hide();
+                labelKertyvatPisteetValue.Hide();
+            }
+        }
     }
 }
