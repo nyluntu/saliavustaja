@@ -11,48 +11,23 @@ namespace SaliavustajaHarjoitus
     public partial class UusiTilausIkkuna : Form
     {
         Tilaus tilaus = new Tilaus();
+        TilausDb tilausTietokanta = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
+        PoytaDb poytaTietokanta = new InMemoryPoytaDb();
+        BonusAsiakasDb asiakasTietokanta = new InMemoryBonusAsiakasDb();
+        PoytaDb poytaDb = new InMemoryPoytaDb();
+        AteriaDb ateriaDb = new InMemoryAteriaDb();
 
         public UusiTilausIkkuna()
         {
             InitializeComponent();
-
-            tilaus.Asiakas = new Asiakas();
-            labelKertyvatPisteetTitle.Hide();
-            labelKertyvatPisteetValue.Hide();
         }
 
         private void UusiTilausIkkuna_Load(object sender, EventArgs e)
         {
+            tilaus.Asiakas = new Asiakas();
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListalle();
-        }
-
-        private void LisaaPoydatPudotusvalikkoon()
-        {
-            PoytaDb poytaDb = new InMemoryPoytaDb();
-
-            List<Poyta> poydat = poytaDb.HaeKaikki();
-
-            foreach (Poyta poyta in poydat)
-            {
-                comboBoxPoydat.Items.Add(poyta);
-            }
-        }
-
-        private void LisaaAteriatListalle()
-        {
-            AteriaDb ateriaDb = new InMemoryAteriaDb();
-
-            List<Ateria> ateriat = ateriaDb.HaeKaikki();
-
-            foreach (Ateria ateria in ateriat)
-            {
-                ListViewItem rivi = new ListViewItem(ateria.Nimi);
-                rivi.Tag = ateria;
-                rivi.SubItems.Add(ateria.LaskeVerollinenHinta().ToString("C2"));
-
-                listViewAteriat.Items.Add(rivi);
-            }
+            PiilotaEtupisteet();
         }
 
         private void buttonLisaaAteria_Click(object sender, EventArgs e)
@@ -65,7 +40,6 @@ namespace SaliavustajaHarjoitus
                 rivi.CreateCells(dataGridViewAteriat);
                 rivi.Tag = ateria;
                 rivi.SetValues(ateria.Nimi, ateria.LaskeVerollinenHinta().ToString("C2"), 0);
-
                 dataGridViewAteriat.Rows.Add(rivi);
 
                 tilaus.LisaaAteria(ateria, 0);
@@ -78,11 +52,10 @@ namespace SaliavustajaHarjoitus
             {
                 DataGridViewRow poistettavaRivi = dataGridViewAteriat.SelectedRows[i];
                 dataGridViewAteriat.Rows.Remove(poistettavaRivi);
-
                 Ateria ateria = (Ateria)poistettavaRivi.Tag;
-
                 tilaus.PoistaAteria(ateria);
             }
+            MuutaTilauksenTiedotTekstikenttiin();
         }
 
         private void dataGridViewAteriat_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -90,40 +63,28 @@ namespace SaliavustajaHarjoitus
             if (e.RowIndex > -1)
             {
                 Ateria ateria = (Ateria)dataGridViewAteriat.Rows[e.RowIndex].Tag;
-
                 int maara = Int32.Parse(dataGridViewAteriat.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-
                 tilaus.VaihdaAteriaMaara(ateria, maara);
-
-                labelVerotonHintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
-                labelTilauksenKokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
-                labelVeronOsuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
-
+                MuutaTilauksenTiedotTekstikenttiin();
             }
         }
 
         private void checkBoxBonusasiakas_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxBonusasiakas.Checked)
+            if (checkBoxBonusasiakas.Checked)
             {
                 BonusAsiakas bonusAsiakas = new BonusAsiakas();
                 labelKertyvatPisteetValue.Text = bonusAsiakas.LaskeEtupisteet(tilaus.LaskeVerollinenKokonaishinta()).ToString();
                 tilaus.Asiakas = bonusAsiakas;
-
-                labelKertyvatPisteetTitle.Show();
-                labelKertyvatPisteetValue.Show();
+                NaytaEtupisteet();
             }
             else
             {
                 tilaus.Asiakas = new Asiakas();
-
-                labelKertyvatPisteetTitle.Hide();
-                labelKertyvatPisteetValue.Hide();
+                PiilotaEtupisteet();
             }
 
-            labelVerotonHintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
-            labelTilauksenKokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
-            labelVeronOsuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
+            MuutaTilauksenTiedotTekstikenttiin();
         }
 
         private void comboBoxPoydat_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,17 +102,12 @@ namespace SaliavustajaHarjoitus
         {
             try
             {
-                TilausDb tilausTietokanta = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
-                PoytaDb poytaTietokanta = new InMemoryPoytaDb();
-                BonusAsiakasDb asiakasTietokanta = new InMemoryBonusAsiakasDb();
-
                 TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(
-                    tilausTietokanta, 
-                    poytaTietokanta, 
+                    tilausTietokanta,
+                    poytaTietokanta,
                     asiakasTietokanta);
 
                 tilauksenVastaanotto.VastaanotaTilaus(tilaus);
-
                 MessageBox.Show("Tilaus vastaanotettu onnistuneesti.");
                 this.DialogResult = DialogResult.OK;
             }
@@ -159,6 +115,48 @@ namespace SaliavustajaHarjoitus
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LisaaPoydatPudotusvalikkoon()
+        {
+            List<Poyta> poydat = poytaDb.HaeKaikki();
+
+            foreach (Poyta poyta in poydat)
+            {
+                comboBoxPoydat.Items.Add(poyta);
+            }
+        }
+
+        private void LisaaAteriatListalle()
+        {
+            List<Ateria> ateriat = ateriaDb.HaeKaikki();
+
+            foreach (Ateria ateria in ateriat)
+            {
+                ListViewItem rivi = new ListViewItem(ateria.Nimi);
+                rivi.Tag = ateria;
+                rivi.SubItems.Add(ateria.LaskeVerollinenHinta().ToString("C2"));
+                listViewAteriat.Items.Add(rivi);
+            }
+        }
+
+        private void PiilotaEtupisteet()
+        {
+            labelKertyvatPisteetTitle.Hide();
+            labelKertyvatPisteetValue.Hide();
+        }
+
+        private void NaytaEtupisteet()
+        {
+            labelKertyvatPisteetTitle.Show();
+            labelKertyvatPisteetValue.Show();
+        }
+
+        private void MuutaTilauksenTiedotTekstikenttiin()
+        {
+            labelVerotonHintaValue.Text = tilaus.LaskeVerotonKokonaishinta().ToString("C2");
+            labelTilauksenKokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
+            labelVeronOsuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
         }
     }
 }
