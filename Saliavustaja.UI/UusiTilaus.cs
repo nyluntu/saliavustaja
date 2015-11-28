@@ -21,6 +21,7 @@ namespace Saliavustaja.UI
         public UusiTilaus()
         {
             InitializeComponent();
+            tilaus.Asiakas = new Asiakas();
         }
 
         public UusiTilaus(AloitusIkkuna kantaikkuna)
@@ -33,7 +34,6 @@ namespace Saliavustaja.UI
         {
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListaValikkoon();
-            AsiakastyypinLisaaminenTilaukseen();
             PiilotaEtupisteidenElementit();
         }
 
@@ -47,7 +47,6 @@ namespace Saliavustaja.UI
         {
             try
             {
-                AsiakastyypinLisaaminenTilaukseen();
                 TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(tilausDb, poytaDb, asiakasDb);
                 tilauksenVastaanotto.VastaanotaTilaus(tilaus);
                 MessageBox.Show("Tilaus tallennettu onnistuneesti.");
@@ -72,7 +71,7 @@ namespace Saliavustaja.UI
                 DataGridViewRow rivi = new DataGridViewRow();
                 rivi.CreateCells(AteriatDataGridView);
                 rivi.Tag = ateria;
-                rivi.SetValues(ateria.Nimi, (ateria.VerotonHinta * (1+ALV)).ToString("C2"), 0);
+                rivi.SetValues(ateria.Nimi, (ateria.VerotonHinta * (1 + ALV)).ToString("C2"), 0);
                 AteriatDataGridView.Rows.Add(rivi);
                 tilaus.LisaaAteria(ateria, 0);
             }
@@ -97,8 +96,7 @@ namespace Saliavustaja.UI
                 int maara = int.Parse(AteriatDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                 tilaus.VaihdaAteriaMaara(ateria, maara);
 
-                LaskeKokonaishintaTilaukselle();
-                LaskeEtupisteetTilaukselle();
+                LaskeKokonaishintaJaEtupisteet();
             }
         }
 
@@ -131,17 +129,24 @@ namespace Saliavustaja.UI
 
         void BonusAsiakasCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            AsiakastyypinLisaaminenTilaukseen();
-            LaskeKokonaishintaTilaukselle();
-            LaskeEtupisteetTilaukselle();
+            LaskeKokonaishintaJaEtupisteet();
         }
 
-        void AsiakastyypinLisaaminenTilaukseen()
+        void LaskeKokonaishintaJaEtupisteet()
         {
             if (BonusAsiakasCheckbox.Checked)
-                tilaus.Asiakas = new BonusAsiakas();
+            {
+                BonusAsiakas bonusAsiakas = new BonusAsiakas();
+                EtupisteetValue.Text = bonusAsiakas.LaskeEtupisteet(tilaus.LaskeVerollinenKokonaishinta()).ToString();
+                tilaus.Asiakas = bonusAsiakas;
+                NaytaEtupisteidenElementit();
+            }
             else
+            {
                 tilaus.Asiakas = new Asiakas();
+                PiilotaEtupisteidenElementit();
+            }
+            LaskeKokonaishintaTilaukselle();
         }
 
         void LaskeKokonaishintaTilaukselle()
@@ -151,20 +156,10 @@ namespace Saliavustaja.UI
             VeronosuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
         }
 
-        void LaskeEtupisteetTilaukselle()
-        {
-            if (tilaus.Asiakas.GetType() == typeof(BonusAsiakas))
-                NaytaEtupisteidenElementit();
-            else
-                PiilotaEtupisteidenElementit();
-        }
-
         void NaytaEtupisteidenElementit()
         {
-            BonusAsiakas asiakas = (BonusAsiakas)tilaus.Asiakas;
             EtupisteetLabel.Show();
             EtupisteetValue.Show();
-            EtupisteetValue.Text = asiakas.LaskeEtupisteet(tilaus.LaskeVerollinenKokonaishinta()).ToString();
         }
 
         void PiilotaEtupisteidenElementit()
@@ -173,6 +168,6 @@ namespace Saliavustaja.UI
             EtupisteetValue.Hide();
         }
 
-       
+
     }
 }
