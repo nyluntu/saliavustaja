@@ -32,6 +32,10 @@
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uusiTilausToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lopetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listViewTilaukset = new System.Windows.Forms.ListView();
+            this.columnTilausnumero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnVerotonKokonaishinta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnTapahtumanTila = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,26 +61,56 @@
             // uusiTilausToolStripMenuItem
             // 
             this.uusiTilausToolStripMenuItem.Name = "uusiTilausToolStripMenuItem";
-            this.uusiTilausToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uusiTilausToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.uusiTilausToolStripMenuItem.Text = "Uusi tilaus";
             this.uusiTilausToolStripMenuItem.Click += new System.EventHandler(this.uusiTilausToolStripMenuItem_Click);
             // 
             // lopetaToolStripMenuItem
             // 
             this.lopetaToolStripMenuItem.Name = "lopetaToolStripMenuItem";
-            this.lopetaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lopetaToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.lopetaToolStripMenuItem.Text = "Lopeta";
             this.lopetaToolStripMenuItem.Click += new System.EventHandler(this.lopetaToolStripMenuItem_Click);
+            // 
+            // listViewTilaukset
+            // 
+            this.listViewTilaukset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnTilausnumero,
+            this.columnVerotonKokonaishinta,
+            this.columnTapahtumanTila});
+            this.listViewTilaukset.Location = new System.Drawing.Point(12, 45);
+            this.listViewTilaukset.Name = "listViewTilaukset";
+            this.listViewTilaukset.Size = new System.Drawing.Size(562, 248);
+            this.listViewTilaukset.TabIndex = 1;
+            this.listViewTilaukset.UseCompatibleStateImageBehavior = false;
+            this.listViewTilaukset.View = System.Windows.Forms.View.Details;
+            // 
+            // columnTilausnumero
+            // 
+            this.columnTilausnumero.Text = "Tilausnumero";
+            this.columnTilausnumero.Width = 100;
+            // 
+            // columnVerotonKokonaishinta
+            // 
+            this.columnVerotonKokonaishinta.Text = "Veroton kokonaishinta";
+            this.columnVerotonKokonaishinta.Width = 262;
+            // 
+            // columnTapahtumanTila
+            // 
+            this.columnTapahtumanTila.Text = "Tapahtuman tila";
+            this.columnTapahtumanTila.Width = 193;
             // 
             // Aloitusikkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 314);
+            this.Controls.Add(this.listViewTilaukset);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Aloitusikkuna";
             this.Text = "Aloitusikkuna";
+            this.Load += new System.EventHandler(this.Aloitusikkuna_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -90,6 +124,10 @@
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uusiTilausToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lopetaToolStripMenuItem;
+        private System.Windows.Forms.ListView listViewTilaukset;
+        private System.Windows.Forms.ColumnHeader columnTilausnumero;
+        private System.Windows.Forms.ColumnHeader columnVerotonKokonaishinta;
+        private System.Windows.Forms.ColumnHeader columnTapahtumanTila;
     }
 }
 
