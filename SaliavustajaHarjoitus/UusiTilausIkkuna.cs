@@ -10,6 +10,7 @@ namespace SaliavustajaHarjoitus
 {
     public partial class UusiTilausIkkuna : Form
     {
+        Aloitusikkuna kantaikkuna = null;
         Tilaus tilaus = new Tilaus();
         TilausDb tilausTietokanta = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
         PoytaDb poytaTietokanta = new InMemoryPoytaDb();
@@ -22,12 +23,26 @@ namespace SaliavustajaHarjoitus
             InitializeComponent();
         }
 
+        public UusiTilausIkkuna(Aloitusikkuna kantaikkuna)
+            : this()
+        {
+            this.kantaikkuna = kantaikkuna;
+        }
+
         private void UusiTilausIkkuna_Load(object sender, EventArgs e)
         {
             tilaus.Asiakas = new Asiakas();
             LisaaPoydatPudotusvalikkoon();
             LisaaAteriatListalle();
             PiilotaEtupisteet();
+        }
+
+        private void UusiTilausIkkuna_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(kantaikkuna != null)
+            {
+                kantaikkuna.PaivitaTilausLista();
+            }
         }
 
         private void buttonLisaaAteria_Click(object sender, EventArgs e)
@@ -158,5 +173,7 @@ namespace SaliavustajaHarjoitus
             labelTilauksenKokonaishintaValue.Text = tilaus.LaskeVerollinenKokonaishinta().ToString("C2");
             labelVeronOsuusValue.Text = (tilaus.LaskeVerollinenKokonaishinta() - tilaus.LaskeVerotonKokonaishinta()).ToString("C2");
         }
+
+        
     }
 }

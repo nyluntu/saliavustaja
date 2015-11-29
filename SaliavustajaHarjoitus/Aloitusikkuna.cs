@@ -15,6 +15,8 @@ namespace SaliavustajaHarjoitus
 {
     public partial class Aloitusikkuna : Form
     {
+        TilausDb tilausTietokanta = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
+
         public Aloitusikkuna()
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace SaliavustajaHarjoitus
 
         private void uusiTilausToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UusiTilausIkkuna uusiTilausIkkuna = new UusiTilausIkkuna();
+            UusiTilausIkkuna uusiTilausIkkuna = new UusiTilausIkkuna(this);
             uusiTilausIkkuna.ShowDialog();
         }
 
@@ -33,9 +35,13 @@ namespace SaliavustajaHarjoitus
 
         private void Aloitusikkuna_Load(object sender, EventArgs e)
         {
-            TilausDb tilausTietokanta = new FileSystemTilausDb("C:\\Temp\\tietokanta.dat");
-            List<Tilaus> tilaukset = tilausTietokanta.HaeKaikki();
+            PaivitaTilausLista();
+        }
 
+        public void PaivitaTilausLista()
+        {
+            listViewTilaukset.Items.Clear();
+            List<Tilaus> tilaukset = tilausTietokanta.HaeKaikki();
             foreach (var tilaus in tilaukset)
             {
                 ListViewItem rivi = new ListViewItem(tilaus.Tilausnumero.ToString());

@@ -270,6 +270,7 @@
             this.Controls.Add(this.labelValitsePoydat);
             this.Name = "UusiTilausIkkuna";
             this.Text = "Uusi tilaus";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UusiTilausIkkuna_FormClosed);
             this.Load += new System.EventHandler(this.UusiTilausIkkuna_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAteriat)).EndInit();
             this.ResumeLayout(false);
