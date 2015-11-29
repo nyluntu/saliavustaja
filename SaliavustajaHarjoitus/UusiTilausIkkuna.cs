@@ -117,12 +117,13 @@ namespace SaliavustajaHarjoitus
         {
             try
             {
-                TilauksenVastaanotto tilauksenVastaanotto = new TilauksenVastaanotto(
+                OmaTilauksenVastaanotto tilauksenVastaanotto = new OmaTilauksenVastaanotto(
                     tilausTietokanta,
                     poytaTietokanta,
                     asiakasTietokanta);
 
                 tilauksenVastaanotto.VastaanotaTilaus(tilaus);
+
                 MessageBox.Show("Tilaus vastaanotettu onnistuneesti.");
                 this.DialogResult = DialogResult.OK;
             }
