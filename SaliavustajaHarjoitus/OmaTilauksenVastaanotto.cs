@@ -31,11 +31,28 @@ namespace SaliavustajaHarjoitus
 
         public void VastaanotaTilaus(Tilaus tilaus)
         {
-            tilaus.VahvistaTilaus();
+            try
+            {
+                if(tilaus.Tilausrivit.Count <= 0)
+                {
+                    throw new Exception("Tilaus ei sisällä tilausrivejä.");
+                }
 
-            tilausTietokanta.Uusi(tilaus);
+                tilaus.VahvistaTilaus();
+                tilausTietokanta.Uusi(tilaus);
+                poytaTietokanta.VaraaPoyta(tilaus.Poyta.Id);
 
-            poytaTietokanta.VaraaPoyta(tilaus.Poyta.Id);
+                if (tilaus.Asiakas.GetType() == typeof(BonusAsiakas))
+                {
+                    BonusAsiakas bonusAsiakas = (BonusAsiakas)tilaus.Asiakas;
+                    bonusAsiakas.KerrytaEtupisteita(tilaus.LaskeVerollinenKokonaishinta());
+                    asiakasTietokanta.Uusi(bonusAsiakas);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
