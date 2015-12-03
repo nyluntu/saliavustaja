@@ -18,18 +18,20 @@ namespace SaliavustajaHarjoitus
 
         public OmaTilauksenVastaanotto(TilausDb tilausDb, PoytaDb poytaDb)
         {
-
+            this.tilausTietokanta = tilausDb;
+            this.poytaTietokanta = poytaDb;
+            this.asiakasTietokanta = null;
         }
 
         public OmaTilauksenVastaanotto(TilausDb tilausDb, PoytaDb poytaDb, BonusAsiakasDb asiakasDb)
             : this(tilausDb, poytaDb)
         {
-
+            this.asiakasTietokanta = asiakasDb;
         }
 
         public void VastaanotaTilaus(Tilaus tilaus)
         {
-
+            
         }
     }
 }

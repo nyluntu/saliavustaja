@@ -3,7 +3,7 @@ using Saliavustaja.Entiteetit;
 using Saliavustaja.TietokantaLiittymat;
 using Saliavustaja.Rajapinnat;
 
-namespace Saliavustaja
+namespace SaliavustajaTv
 {
     /// <summary>
     /// TilauksenVastaanotto.cs

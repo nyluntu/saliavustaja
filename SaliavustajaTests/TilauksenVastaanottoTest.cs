@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Saliavustaja;
 using Saliavustaja.Entiteetit;
 using Saliavustaja.TietokantaLiittymat;
+using SaliavustajaTv;
 
 namespace SaliavustajaTests
 {
