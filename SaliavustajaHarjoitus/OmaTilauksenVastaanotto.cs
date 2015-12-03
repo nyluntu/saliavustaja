@@ -31,7 +31,11 @@ namespace SaliavustajaHarjoitus
 
         public void VastaanotaTilaus(Tilaus tilaus)
         {
-            
+            tilaus.VahvistaTilaus();
+
+            tilausTietokanta.Uusi(tilaus);
+
+            poytaTietokanta.VaraaPoyta(tilaus.Poyta.Id);
         }
     }
 }
