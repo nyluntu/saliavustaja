@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Saliavustaja.DAL.Standard\Saliavustaja.DAL.Standard.csproj" />
+    <ProjectReference Include="..\Saliavustaja.Standard\Saliavustaja.Standard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AloitusIkkuna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AloitusIkkuna.Designer.cs">
+      <DependentUpon>AloitusIkkuna.cs</DependentUpon>
+    </Compile>
+    <Compile Update="UusiTilaus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UusiTilaus.Designer.cs">
+      <DependentUpon>UusiTilaus.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="AloitusIkkuna.resx">
+      <DependentUpon>AloitusIkkuna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UusiTilaus.resx">
+      <DependentUpon>UusiTilaus.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
