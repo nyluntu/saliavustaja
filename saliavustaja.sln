@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saliavustaja.DAL.Standard",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saliavustaja.Standard", "Saliavustaja.Standard\Saliavustaja.Standard.csproj", "{ABD07419-1927-435B-99A0-E321886DFD54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaliavustajaTests.NETCore", "SaliavustajaTests.NETCore\SaliavustajaTests.NETCore.csproj", "{25BE5442-9F03-4E97-A1D8-D54232B38200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saliavustaja.UI.NETCore", "Saliavustaja.UI.NETCore\Saliavustaja.UI.NETCore.csproj", "{40CD9E1B-D279-465B-8930-0D994BC90278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saliavustaja.UI.NETCore", "Saliavustaja.UI.NETCore\Saliavustaja.UI.NETCore.csproj", "{40CD9E1B-D279-465B-8930-0D994BC90278}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaliavustajaTests.NUnit", "SaliavustajaTests.NUnit\SaliavustajaTests.NUnit.csproj", "{E4A73B6E-538A-4B32-8464-CE840C642BC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{ABD07419-1927-435B-99A0-E321886DFD54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABD07419-1927-435B-99A0-E321886DFD54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABD07419-1927-435B-99A0-E321886DFD54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25BE5442-9F03-4E97-A1D8-D54232B38200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25BE5442-9F03-4E97-A1D8-D54232B38200}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25BE5442-9F03-4E97-A1D8-D54232B38200}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25BE5442-9F03-4E97-A1D8-D54232B38200}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40CD9E1B-D279-465B-8930-0D994BC90278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40CD9E1B-D279-465B-8930-0D994BC90278}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40CD9E1B-D279-465B-8930-0D994BC90278}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40CD9E1B-D279-465B-8930-0D994BC90278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A73B6E-538A-4B32-8464-CE840C642BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A73B6E-538A-4B32-8464-CE840C642BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A73B6E-538A-4B32-8464-CE840C642BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A73B6E-538A-4B32-8464-CE840C642BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
