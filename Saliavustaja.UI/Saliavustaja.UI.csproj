@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Saliavustaja.UI</RootNamespace>
     <AssemblyName>Saliavustaja.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -91,13 +93,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Saliavustaja.DAL\Saliavustaja.DAL.csproj">
-      <Project>{cdda84e9-2958-42ee-aec9-be83573166b6}</Project>
-      <Name>Saliavustaja.DAL</Name>
+    <ProjectReference Include="..\Saliavustaja.DAL.Standard\Saliavustaja.DAL.Standard.csproj">
+      <Project>{7ba0ba6d-c678-4f80-bb77-ddd009e8158d}</Project>
+      <Name>Saliavustaja.DAL.Standard</Name>
     </ProjectReference>
-    <ProjectReference Include="..\saliavustaja\Saliavustaja.csproj">
-      <Project>{d382a3cc-d0e0-4bad-afed-71357e8c1e35}</Project>
-      <Name>Saliavustaja</Name>
+    <ProjectReference Include="..\Saliavustaja.Standard\Saliavustaja.Standard.csproj">
+      <Project>{abd07419-1927-435b-99a0-e321886dfd54}</Project>
+      <Name>Saliavustaja.Standard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
