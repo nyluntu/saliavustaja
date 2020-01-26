@@ -1,3 +1,7 @@
+# Saliavustaja esimerkki
+
+Ohjelma on tehty esittämään eri ohjelmoinnin käsitteitä sekä muita suunnitteluperiaatteisiin liittyviä asioita. Esimerkin kanssa on käsitelty myös erilaisten työkalujen käyttöä.
+
 # Harjoitustyöhön parannusehdotuksia #
 
 * Apukirjastoa ei välttämättä kannata antaa heti
