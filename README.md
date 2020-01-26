@@ -2,6 +2,8 @@
 
 Ohjelma on tehty esittämään eri ohjelmoinnin käsitteitä sekä muita suunnitteluperiaatteisiin liittyviä asioita. Esimerkin kanssa on käsitelty myös erilaisten työkalujen käyttöä.
 
+!()[saliavustaja-screenshot.png]
+
 # Harjoitustyöhön parannusehdotuksia #
 
 * Apukirjastoa ei välttämättä kannata antaa heti
