@@ -11,4 +11,6 @@ Ohjelma on tehty esittämään eri ohjelmoinnin käsitteitä sekä muita suunnit
 
 # Videot
 
+Videot tehty alkuperäistä harjoitustyötä varten jokunen vuosi takaperin. Lähinnä videoilla käydään läpi miten luokkia käytetään.
+
 https://www.youtube.com/playlist?list=PLXjerLcBWMyyMPkneyqwCvlTL2jvuGAml
