@@ -2,7 +2,7 @@
 
 Ohjelma on tehty esittämään eri ohjelmoinnin käsitteitä sekä muita suunnitteluperiaatteisiin liittyviä asioita. Esimerkin kanssa on käsitelty myös erilaisten työkalujen käyttöä.
 
-!()[saliavustaja-screenshot.png]
+![Kuvakaappaus ohjelmasta](saliavustaja-screenshot.png)
 
 # Harjoitustyöhön parannusehdotuksia #
 
